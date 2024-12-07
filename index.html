@@ -4,31 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Science Lectures</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Data Science Notes</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
     <header>
+        <a href="/" class="logo">Data Science Notes</a>
         <nav>
-            <ul class="nav-tabs">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="basic_probability.html">Basic Probability</a></li>
-                <li><a href="statistics.html">Statistics</a></li>
-                <li><a href="machine_learning.html">Machine Learning</a></li>
-            </ul>
+            <a href="/">Home</a>
+            <div class="dropdown">
+                <a href="#">Topics</a>
+                <div class="dropdown-content">
+                    <a href="/intro_to_data_science/">Introduction to Data Science</a>
+                    <a href="/linear_algebra/">Linear Algebra</a>
+                    <a href="/statistics/">Statistics</a>
+                    <a href="/machine_learning/">Machine Learning</a>
+                </div>
+            </div>
+            <a href="/about.html">About</a>
         </nav>
     </header>
-    <main>
-        <section id="content">
-            <h1>Welcome to Data Science Lectures</h1>
-            <p>Select a topic from the navigation tabs above to get started.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Data Science Lectures</p>
-    </footer>
-    <script src="script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
