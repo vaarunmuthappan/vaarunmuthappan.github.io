@@ -4,21 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class Notes</title>
+    <title>Math & Data Science Courses</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <header>
-        <h1>Welcome to Class Notes</h1>
-    </header>
     <nav>
-        <ul>
-            <li><a href="data_science.html">Introduction to Data Science</a></li>
-            <li><a href="machine_learning.html">Machine Learning</a></li>
-        </ul>
+        <div class="logo">
+            <a href="/">Review Notes</a>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="active">Home</a>
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Courses</a>
+                <div class="dropdown-content">
+                    <a href="/courses/data_science">Intro to Data Science</a>
+                </div>
+            </div>
+        </div>
     </nav>
-    <script src="script.js"></script>
+
+    <main>
+        <h1>Courses</h1>
+        <div class="course-grid">
+            <a href="/courses/data_science" class="course-card">
+                <div class="course-icon">
+                    <svg viewBox="0 0 100 100">
+                        <!-- Add data science icon here -->
+                        <rect x="10" y="10" width="80" height="80" fill="none" stroke="currentColor" />
+                    </svg>
+                </div>
+                <h2>Introduction to Data Science</h2>
+            </a>
+        </div>
+    </main>
 </body>
 
 </html>

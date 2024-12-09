@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const definitions = document.querySelectorAll('.definition');
+    const contactForm = document.getElementById('contact-form');
 
-    definitions.forEach(def => {
-        def.addEventListener('mouseover', function () {
-            this.style.backgroundColor = '#e0e0e0';
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Thank you for your message. We will get back to you soon!');
+            contactForm.reset();
         });
-
-        def.addEventListener('mouseout', function () {
-            this.style.backgroundColor = 'lightgrey';
-        });
-    });
+    }
 });
