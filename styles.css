@@ -1,0 +1,181 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: beige;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.header-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.nav-right {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 32px;
+    margin: 20px 0;
+    color: #333;
+}
+
+.bio {
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.button {
+    background-color: #e9e9e9;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+}
+
+.button:hover {
+    background-color: #ddd;
+}
+
+
+.nav-button {
+    background-color: #e9e9e9;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+}
+
+.nav-button:hover {
+    background-color: #ddd;
+}
+
+/* Add these styles to your existing CSS */
+.page-layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 40px;
+}
+
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.toc {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.toc h2 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc li {
+    margin-bottom: 10px;
+}
+
+.toc a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.toc a:hover {
+    color: #666;
+}
+
+.content {
+    flex-grow: 1;
+    max-width: 800px;
+}
+
+.course-header {
+    margin-bottom: 40px;
+}
+
+.course-meta {
+    color: #666;
+    margin-top: 10px;
+}
+
+.course-portal {
+    color: #666;
+    text-decoration: underline;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+.notes {
+    align-items: left;
+}
