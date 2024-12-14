@@ -48,43 +48,62 @@
                 <p>Notes covering basic data science topics.</p>
             </section>
             <section id="probability">
-                The <strong>sample space</strong> (Omega) is the set of all possible outcomes from one random
-                <strong>experiment</strong>, which is something repeatable. The <strong>event space</strong> is the set
-                of
-                all possible events, where an <strong>event</strong> is a set of outcomes. A <strong>probability
-                    measure</strong> maps the event space to a number from 0 to 1. The <strong>probability
-                    space</strong>
-                consists of the sample space, event space, and probability measure.
-
-                A <strong>random variable</strong> is a function that maps the sample space to real numbers.
-                <strong>Probability distributions</strong> describe the likelihood of different outcomes.
-                <strong>Axioms</strong> are things we assume to be true. The three axioms of probability are:
-
-                1. Probabilities are positive real numbers (≥ 0)
-                2. The probability of an outcome in the sample space (Omega) is 1
-                3. For disjoint subsets, the probability of their union is the sum of their individual probabilities
-
-                The <strong>addition rule</strong> states that the probability of a union b is p(a) + p(b) - p(a and b).
-                The
-                <strong>multiplication rule</strong> for independent events is p(a) * p(b), and for dependent events is
-                p(a)
-                * p(b|a). <strong>Conditional probability</strong> p(b|a) is the probability of b given a, calculated as
-                p(b
-                intersection a) / p(a).
-
-                The <strong>normal distribution</strong> occurs when there are many independent events. It resembles the
-                Pascal distribution in how different points are reached. <strong>Moments</strong> characterize the shape
-                of
-                a distribution, with the equation being the integration of x^k multiplied by the density(x). They come
-                from
-                moment generating functions that converge, though some do not.
-
-                The first (raw) moment is E[x], the balancing point. The second (centralized) moment is variance. The
-                third
-                (centralized) moment, cubed deviation, indicates symmetry. The fourth (centralized) moment, kurtosis,
-                describes the heaviness of tails compared to the normal distribution. There are more than five moments,
-                with
-                the Edgeworth series using hyper-skew moments (5th power) as an example.
+                <h2>Probability</h2>
+                <p>
+                    <strong>Inference</strong> means making conclusions from data. Probability is necessary because
+                    formal logic has limitations, describing things as always or never true, while real life is
+                    uncertain. Natural language is too subjective, so we need mathematics to describe uncertainty
+                    through probability.
+                </p>
+                <p>
+                    Key concepts in probability include:
+                <ul>
+                    <li><strong>Sample Space (Omega)</strong>: Set of all possible outcomes from one random experiment.
+                    </li>
+                    <li><strong>Experiment</strong>: Something repeatable.</li>
+                    <li><strong>Event Space</strong>: Set of all possible events.</li>
+                    <li><strong>Event</strong>: Set of outcomes.</li>
+                    <li><strong>Probability Measure</strong>: Maps event space to a number from 0-1.</li>
+                    <li><strong>Probability Space</strong>: Consists of sample space, event space, and probability
+                        measure.</li>
+                    <li><strong>Random Variable</strong>: Function that maps sample space to real numbers.</li>
+                </ul>
+                </p>
+                <p>
+                    <strong>Axioms</strong> are things we assume to be true. The three axioms of probability are:
+                <ol>
+                    <li>Probabilities are positive real numbers (≥ 0).</li>
+                    <li>Probability of an outcome in the sample space (Omega) is 1.</li>
+                    <li>For disjoint subsets, the probability of their union is the sum of their individual
+                        probabilities.</li>
+                </ol>
+                </p>
+                <p>
+                    Important probability rules include:
+                <ul>
+                    <li><strong>Addition Rule</strong>: Probability of a union b is p(a) + p(b) - p(a and b).</li>
+                    <li><strong>Multiplication Rule</strong>: For independent events, p(a) * p(b); for dependent events,
+                        p(a) * p(b|a).</li>
+                    <li><strong>Conditional Probability</strong>: p(b|a) = p(b given a) = p(b intersection a) / p(a).
+                    </li>
+                </ul>
+                </p>
+                <p>
+                    The <strong>Normal Distribution</strong> occurs with many independent events. It resembles the
+                    Pascal distribution in how different points are reached.
+                </p>
+                <p>
+                    <strong>Moments</strong> characterize the shape of a distribution. The equation is the integration
+                    of x^k * density(x). They come from moment generating functions that converge, though some do not.
+                    Important moments include:
+                <ul>
+                    <li>1st (raw): E[x] = balancing point (centered on origin).</li>
+                    <li>2nd (centralized): Variance (subtracting mean).</li>
+                    <li>3rd (centralized): Cubed deviation (indicates symmetry).</li>
+                    <li>4th (centralized): Kurtosis (describes tail heaviness compared to normal distribution).</li>
+                </ul>
+                There are more than five moments, with the Edgeworth series using hyper-skew moments (5th power) as an
+                example.
                 </p>
             </section>
 
