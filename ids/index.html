@@ -47,61 +47,77 @@
                 <h2>Introduction</h2>
                 <p>Notes covering basic data science topics.</p>
             </section>
-            <section id="probability">
-                <h2>Probability</h2>
-                <p><strong>Inference</strong> means making conclusions from data. We need probability because formal
-                    logic has limitations in describing real-life situations where everything is uncertain. Natural
-                    language is too subjective, so we use math to describe uncertainty through probability.</p>
+            <div class="collapsible-section" id="probability">
+                <h2 class="section-header">Significance Testing</h2>
+                <div class="section-content">
+                    <p><strong>Inference</strong> means making conclusions from data. We need probability because formal
+                        logic has limitations in describing real-life situations where everything is uncertain. Natural
+                        language is too subjective, so we use math to describe uncertainty through probability.</p>
 
-                <p><strong>Sample Space</strong> (Omega) is the set of all possible outcomes from one random experiment.
-                    An <strong>experiment</strong> is something repeatable. The <strong>event space</strong> is the set
-                    of all events possible, while an <strong>event</strong> is a set of outcomes. A <strong>probability
-                        measure</strong> maps the event space to a number from 0 to 1. The <strong>probability
-                        space</strong> consists of the sample space, event space, and probability measure.</p>
+                    <p><strong>Sample Space</strong> (Omega) is the set of all possible outcomes from one random
+                        experiment.
+                        An <strong>experiment</strong> is something repeatable. The <strong>event space</strong> is the
+                        set
+                        of all events possible, while an <strong>event</strong> is a set of outcomes. A
+                        <strong>probability
+                            measure</strong> maps the event space to a number from 0 to 1. The <strong>probability
+                            space</strong> consists of the sample space, event space, and probability measure.
+                    </p>
 
-                <p>A <strong>random variable</strong> is a function that maps the sample space to real numbers.
-                    <strong>Axioms</strong> are things we assume to be true.
-                </p>
+                    <p>A <strong>random variable</strong> is a function that maps the sample space to real numbers.
+                        <strong>Axioms</strong> are things we assume to be true.
+                    </p>
 
-                <p><strong>Three Axioms of Probability:</strong></p>
-                <p><strong>Axiom 1:</strong> Probabilities are positive real numbers, greater than or equal to 0.</p>
-                <p><strong>Axiom 2:</strong> The probability that an outcome is in the sample space (Omega) equals 1.
-                </p>
-                <p><strong>Axiom 3:</strong> For disjoint subsets, the probability of their union is the sum of their
-                    individual probabilities.</p>
+                    <p><strong>Three Axioms of Probability:</strong></p>
+                    <p><strong>Axiom 1:</strong> Probabilities are positive real numbers, greater than or equal to 0.
+                    </p>
+                    <p><strong>Axiom 2:</strong> The probability that an outcome is in the sample space (Omega) equals
+                        1.
+                    </p>
+                    <p><strong>Axiom 3:</strong> For disjoint subsets, the probability of their union is the sum of
+                        their
+                        individual probabilities.</p>
 
-                <p><strong>Addition rule:</strong> The probability of a union b is p(a) + p(b) - p(a and b).</p>
+                    <p><strong>Addition rule:</strong> The probability of a union b is p(a) + p(b) - p(a and b).</p>
 
-                <p><strong>Multiplication rule:</strong> If events are independent, it's p(a) * p(b). If not
-                    independent, it's p(a) * p(b|a).</p>
+                    <p><strong>Multiplication rule:</strong> If events are independent, it's p(a) * p(b). If not
+                        independent, it's p(a) * p(b|a).</p>
 
-                <p><strong>Conditional probability:</strong> p(b | a) is the probability of b given a, calculated as p(b
-                    intersection a) / p(a). The sample space shrinks to a, so of all probability of a, we need the part
-                    where b also happens.</p>
+                    <p><strong>Conditional probability:</strong> p(b | a) is the probability of b given a, calculated as
+                        p(b
+                        intersection a) / p(a). The sample space shrinks to a, so of all probability of a, we need the
+                        part
+                        where b also happens.</p>
 
-                <p><strong>Normal distribution</strong> occurs if there are lots of events and each are independent
-                    events. The way to get to different points in a Pascal distribution is like a normal distribution.
-                </p>
+                    <p><strong>Normal distribution</strong> occurs if there are lots of events and each are independent
+                        events. The way to get to different points in a Pascal distribution is like a normal
+                        distribution.
+                    </p>
 
-                <p><strong>Moments</strong> characterize the shape of a distribution. The equation is the integration of
-                    x^k * density(x). Moments come from moment generating functions that converge, though some do not.
-                </p>
+                    <p><strong>Moments</strong> characterize the shape of a distribution. The equation is the
+                        integration of
+                        x^k * density(x). Moments come from moment generating functions that converge, though some do
+                        not.
+                    </p>
 
-                <p><strong>First moment (raw):</strong> E[x] is the balancing point. These are raw because they're
-                    centered on the origin.</p>
+                    <p><strong>First moment (raw):</strong> E[x] is the balancing point. These are raw because they're
+                        centered on the origin.</p>
 
-                <p><strong>Second moment (centralized):</strong> Variance, calculated by subtracting the mean.</p>
+                    <p><strong>Second moment (centralized):</strong> Variance, calculated by subtracting the mean.</p>
 
-                <p><strong>Third moment (centralized):</strong> Cubed deviation. If equal, it's symmetric; otherwise,
-                    it's asymmetric.</p>
+                    <p><strong>Third moment (centralized):</strong> Cubed deviation. If equal, it's symmetric;
+                        otherwise,
+                        it's asymmetric.</p>
 
-                <p><strong>Fourth moment (centralized):</strong> Kurtosis, which indicates heavy tails compared to a
-                    normal distribution. In a normal distribution, it drops off extremely and exponentially with
-                    increasing n.</p>
+                    <p><strong>Fourth moment (centralized):</strong> Kurtosis, which indicates heavy tails compared to a
+                        normal distribution. In a normal distribution, it drops off extremely and exponentially with
+                        increasing n.</p>
 
-                <p>There are 5+ moments, but these are the most common. For example, the Edgeworth series has hyper skew
-                    moments to the 5th power.</p>
-            </section>
+                    <p>There are 5+ moments, but these are the most common. For example, the Edgeworth series has hyper
+                        skew
+                        moments to the 5th power.</p>
+                </div>
+            </div>
 
 
             <section id="hypothesis_testing">
@@ -149,7 +165,7 @@
 
             <section id="significance-testing">
                 <h2>Significance Testing</h2>
-                text
+
                 <p>In real-life scenarios, we implement experiments through A/B tests, as it's often impractical to
                     conduct traditional experiments on humans. A/B testing applies experimental procedures to real-life
                     situations, allowing us to draw causal conclusions.</p>
@@ -187,11 +203,12 @@
                     nCk for all k >= min[10]. This approach is particularly useful when dealing with two possible
                     outcomes (success or failure) and you have an idea about the probability of success[7].</p>
 
-                <h3>Interesting Fact</h3>
-
-                <p>The commonly used significance level of 0.05 (1 in 20 chance) originated from Fisher, who found it
-                    convenient as calculators were not available at the time. This highlights that the choice of alpha
-                    (significance level) is somewhat arbitrary[6].</p>
+                <div class="fact-card">
+                    <h3>Interesting Fact</h3>
+                    <p>The commonly used significance level of 0.05 (1 in 20 chance) originated from Fisher, who found
+                        it convenient as calculators were not available at the time. This highlights that the choice of
+                        alpha (significance level) is somewhat arbitrary[6].</p>
+                </div>
             </section>
 
 
@@ -199,6 +216,7 @@
             <!-- Add other sections as needed -->
         </main>
     </div>
+    <script src="../script.js"></script>
 </body>
 
 </html>
