@@ -560,29 +560,43 @@
                 <div class="section-content">
                     <p>Classification aims to find boundaries that maximize distance between classes, unlike regression
                         which minimizes distance to points.</p>
+                    <h3>Logistic Regression</h3>
+                    <p>Maps continuous inputs to binary outcomes using a nonlinear function (sigmoid). It computes the
+                        odds of two classes and predicts the inverse of the logit.</p>
+
+                    <h3>ROC Curve</h3>
+                    <p>A metric for classification performance that plots True Positive Rate against False Positive
+                        Rate. The Area Under ROC (AUROC) quantifies overall performance, with 0.5 indicating random
+                        guessing.</p>
+
+                    <h3>Support Vector Machines (SVM)</h3>
+                    <p>Finds the line/plane that maximizes the distance between groups. Soft margin SVM allows for some
+                        misclassification with a penalty.</p>
                 </div>
+
             </div>
-            <div class="collapsible-section" id="ml-unsupervised-learning">
-                <h2 class="section-header">Machine Learning - Unsupervised Learning</h2>
-                <div class="section-content">
-                    <h3>Dimensionality Reduction</h3>
-                    <p><strong>Principal Component Analysis (PCA):</strong> Finds orthonormal basis and projects
-                        data onto it, keeping only the most significant components. Variables should be standardized
-                        (z-score) before PCA.</p>
-                    <h3>Clustering</h3>
-                    <p><strong>K-means:</strong> Partitions data into K clusters. The optimal K can be chosen using
-                        the elbow method or silhouette method.</p>
+    </div>
+    <div class="collapsible-section" id="ml-unsupervised-learning">
+        <h2 class="section-header">Machine Learning - Unsupervised Learning</h2>
+        <div class="section-content">
+            <h3>Dimensionality Reduction</h3>
+            <p><strong>Principal Component Analysis (PCA):</strong> Finds orthonormal basis and projects
+                data onto it, keeping only the most significant components. Variables should be standardized
+                (z-score) before PCA.</p>
+            <h3>Clustering</h3>
+            <p><strong>K-means:</strong> Partitions data into K clusters. The optimal K can be chosen using
+                the elbow method or silhouette method.</p>
 
-                    <p><strong>Silhouette Method:</strong> Calculates a score for each datapoint based on its
-                        distance to its own cluster versus other clusters. The K with the highest average silhouette
-                        score is chosen.</p>
+            <p><strong>Silhouette Method:</strong> Calculates a score for each datapoint based on its
+                distance to its own cluster versus other clusters. The K with the highest average silhouette
+                score is chosen.</p>
 
-                    <p><strong>HDBSCAN:</strong> A density-based clustering method that identifies core, edge, and
-                        anomaly points.</p>
-                </div>
-            </div>
+            <p><strong>HDBSCAN:</strong> A density-based clustering method that identifies core, edge, and
+                anomaly points.</p>
+        </div>
+    </div>
 
-        </main>
+    </main>
     </div>
     <script src="../script.js"></script>
 </body>
