@@ -55,17 +55,28 @@
                 <h2 class="section-header">Probability </h2>
                 <div class="section-content">
                     <p><strong>Inference</strong> means making conclusions from data. We need probability because formal
-                        logic has limitations in describing real-life situations where everything is uncertain. Natural
-                        language is too subjective, so we use math to describe uncertainty through probability.</p>
+                        logic describes things as always or never true which is rarely true in real-life situations.
+                        Natural
+                        language is too subjective to describe the uncertainty in life, so we use math to describe
+                        uncertainty through probability.</p>
 
-                    <p><strong>Sample Space</strong> (Omega) is the set of all possible outcomes from one random
-                        experiment.
-                        An <strong>experiment</strong> is something repeatable. The <strong>event space</strong> is the
-                        set
-                        of all events possible, while an <strong>event</strong> is a set of outcomes. A
-                        <strong>probability
-                            measure</strong> maps the event space to a number from 0 to 1. The <strong>probability
+                    <p>An <strong>experiment</strong> is something repeatable.
+                        The <strong>probability
                             space</strong> consists of the sample space, event space, and probability measure.
+                    <ul>
+                        <li>
+                            <strong>Sample Space</strong> (&#937;) is the set of all possible outcomes from one random
+                            experiment.
+                        </li>
+                        <li>The <strong>event space</strong> is the
+                            set
+                            of all events possible, while an <strong>event</strong> is a set of outcomes.</li>
+                        <li>A
+                            <strong>probability
+                                measure</strong> maps the event space to a number from 0 to 1.
+                        </li>
+
+                    </ul>
                     </p>
 
                     <p>A <strong>random variable</strong> is a function that maps the sample space to real numbers.
@@ -73,19 +84,38 @@
                     </p>
 
                     <p><strong>Three Axioms of Probability:</strong></p>
-                    <p><strong>Axiom 1:</strong> Probabilities are positive real numbers, greater than or equal to 0.
-                    </p>
-                    <p><strong>Axiom 2:</strong> The probability that an outcome is in the sample space (Omega) equals
-                        1.
-                    </p>
-                    <p><strong>Axiom 3:</strong> For disjoint subsets, the probability of their union is the sum of
-                        their
-                        individual probabilities.</p>
+                    <ul>
+                        <li>
+                            <p><strong>Axiom 1:</strong> Probabilities are positive real numbers, greater than or equal
+                                to 0.
+                            </p>
+                        </li>
+                        <li>
+                            <p><strong>Axiom 2:</strong> The probability that an outcome is in the sample space (Omega)
+                                equals
+                                1.
+                            </p>
+                        </li>
+                        <li>
+                            <p><strong>Axiom 3:</strong> For disjoint subsets, the probability of their union is the sum
+                                of
+                                their
+                                individual probabilities.</p>
+                        </li>
+                    </ul>
 
-                    <p><strong>Addition rule:</strong> The probability of a union b is p(a) + p(b) - p(a and b).</p>
 
-                    <p><strong>Multiplication rule:</strong> If events are independent, it's p(a) * p(b). If not
-                        independent, it's p(a) * p(b|a).</p>
+                    <p>Probability Rules</p>
+                    <ul>
+                        <li>
+                            <p><strong>Addition rule:</strong> The probability of a union b is p(a) + p(b) - p(a and b).
+                            </p>
+                        </li>
+                        <li>
+                            <p><strong>Multiplication rule:</strong> If events are independent, it's p(a) * p(b). If not
+                                independent, it's p(a) * p(b|a).</p>
+                        </li>
+                    </ul>
 
                     <p><strong>Conditional probability:</strong> p(b | a) is the probability of b given a, calculated as
                         p(b
@@ -93,44 +123,62 @@
                         part
                         where b also happens.</p>
 
-                    <p><strong>Normal distribution</strong> occurs if there are lots of events and each are independent
-                        events. The way to get to different points in a Pascal distribution is like a normal
-                        distribution.
+                    <p><strong>Normal distribution</strong> occurs if 1) there are lots of events and 2) each event is
+                        independent
+                        of each other.
                     </p>
 
-                    <p><strong>Moments</strong> characterize the shape of a distribution. The equation is the
-                        integration of
-                        x^k * density(x). Moments come from moment generating functions that converge, though some do
-                        not.
+                    <p><strong>Moments</strong> characterize the shape of a distribution. Moments come from moment
+                        generating functions that converge (as some do
+                        not).
                     </p>
-
-                    <p><strong>First moment (raw):</strong> E[x] is the balancing point. These are raw because they're
-                        centered on the origin.</p>
-
-                    <p><strong>Second moment (centralized):</strong> Variance, calculated by subtracting the mean.</p>
-
-                    <p><strong>Third moment (centralized):</strong> Cubed deviation. If equal, it's symmetric;
-                        otherwise,
-                        it's asymmetric.</p>
-
-                    <p><strong>Fourth moment (centralized):</strong> Kurtosis, which indicates heavy tails compared to a
-                        normal distribution. In a normal distribution, it drops off extremely and exponentially with
-                        increasing n.</p>
+                    <p>The moment generating function (MGF) of a random variable \(X\) is defined as:</p>
+                    <p>
+                        \[M_X(t) = E[e^{tX}] = \int_{-\infty}^{\infty} e^{tx} f_X(x) dx\]
+                    </p>
+                    <p><strong>Example of a distribution that does not converge:</strong> The Cauchy distribution. It
+                        has undefined
+                        expected value and variance, with higher raw moments also undefined. It is characterized by fat
+                        tails. This becomes relevant when dealing with black swan
+                        events.</p>
+                    <ul>
+                        <li>
+                            <p><strong>First (raw) moment:</strong> E[x], or the "balancing point". These are raw
+                                because
+                                they're
+                                centered on the origin.</p>
+                        </li>
+                        <li>
+                            <p><strong>Second (centralized) moment:</strong> Variance. These are centralised as they are
+                                calculated by subtracting the
+                                mean.</p>
+                        </li>
+                        <li>
+                            <p><strong>Third (centralized) moment:</strong> Cubed deviation. If equal, it's symmetric;
+                                otherwise,
+                                it's asymmetric.</p>
+                        </li>
+                        <li>
+                            <p><strong>Fourth moment (centralized):</strong> Kurtosis, which indicates heavy tails
+                                compared to a
+                                normal distribution. In a normal distribution, it drops off extremely and exponentially
+                                with
+                                increasing n.</p>
+                        </li>
+                    </ul>
 
                     <p>There are 5+ moments, but these are the most common. For example, the Edgeworth series has hyper
                         skew
-                        moments to the 5th power.</p>
+                        moment which is the 5th moment.</p>
                 </div>
             </div>
 
             <div class="collapsible-section" id="hypothesis-testing">
                 <h2 class="section-header">Hypothesis Testing</h2>
                 <div class="section-content">
-                    <p><strong>Normal distribution:</strong> Symmetric, only requiring the first two moments. It results
-                        from the combination of independent events.</p>
-                    <p><strong>Distribution that does not converge:</strong> The Cauchy distribution. It has undefined
-                        expected value and variance, with higher raw moments also undefined. It is characterized by fat
-                        tails.</p>
+                    <p><strong>Normal distribution:</strong> Symmetric and fully described by the first two moments. It
+                        results
+                        from the combination of 1) lots of 2) independent events.</p>
 
                     <h3>Hypothesis Testing:</h3>
 
@@ -142,13 +190,17 @@
 
                     <p><strong>Central Limit Theorem (CLT):</strong> With repeated resampling, the distribution of
                         sample means becomes normal as sample size increases, regardless of the underlying population,
-                        provided it has finite mean and variance. This phenomenon occurs due to the cancellation of
+                        provided the underlying population has finite mean and variance. This phenomenon occurs due to
+                        the cancellation of
                         deviations.</p>
 
                     <ul>
                         <li>The CLT applies to the distribution of sample means, not the sample itself.</li>
                         <li>It begins to take effect as soon as the sample size increases.</li>
-                        <li>Increasing sample size beyond 30 decreases the standard error of the mean.</li>
+                        <li>Hence, 30 is not a magic number for a "big" sample size, although there is value going above
+                            a sample size of 30 as the standard error of the mean continues to decrease with larger
+                            sample sizes.
+                        </li>
                     </ul>
 
                     <p><strong>Random Sampling:</strong> Every member of the population has an equal chance of being
@@ -160,16 +212,15 @@
 
                     <p><strong>Practical Implications:</strong> In real-life scenarios, we typically have only one
                         sample, not multiple samples of size n. The CLT is relevant because it ensures that deviations
-                        from the true mean decrease with the square root of the exponential, allowing us to be confident
+                        from the true mean decrease with the square root of the sample size, allowing us to be confident
                         that a single sample is as close as possible to the population mean.</p>
-
-                    <p><strong>Common Misconception:</strong> The CLT doesn't suddenly converge at a sample size of 30.
-                        It begins converging as soon as the sample size increases, even from 1 to 2. The notion that 30
-                        is sufficient isn't universally true, especially for certain unusual distributions.</p>
-
-                    <p><strong>Cauchy Distribution Concerns:</strong> This becomes relevant when dealing with black swan
-                        events.</p>
-
+                    <div class="fact-card">
+                        <p><strong>Common Misconception:</strong> The CLT doesn't suddenly converge at a sample size of
+                            30.
+                            It begins converging as soon as the sample size increases, even from 1 to 2. The notion that
+                            30
+                            is sufficient isn't universally true, especially for certain unusual distributions.</p>
+                    </div>
                     <p><strong>Mean vs. Median:</strong> The mean minimizes the squared L2 distance between points,
                         while the median minimizes the L1 distance (absolute).</p>
                 </div>
@@ -178,23 +229,20 @@
             <div class="collapsible-section" id="significance-testing">
                 <h2 class="section-header">Significance Testing</h2>
                 <div class="section-content">
-                    <p><strong>A/B Testing:</strong> We implement experiments in real life using A/B tests, as it's
-                        often impractical to conduct experiments directly on humans.</p>
-                    text
+
                     <h3>Real Experiments:</h3>
                     <ul>
-                        <li>Create conditions</li>
-                        <li>Randomly assign users to different treatments (Treatments = Independent variable)</li>
-                        <li>Measure outcomes</li>
+                        <li>Create treatment and conditions.</li>
+                        <li><strong>Randomly</strong> assign users to different treatments (Treatments = Independent
+                            variable).</li>
+                        <li>Measure outcomes and analyze.</li>
                     </ul>
 
-                    <p><strong>Randomization:</strong> Given a large number of users, randomization can control for
-                        pre-existing relationships. The underlying theory assumes an equal proportion of confounds in
-                        each treatment, which is more likely with a large sample size.</p>
-
-                    <p><strong>Causality:</strong> Real experiments allow for conclusions about causality. However, in
-                        real life, randomly assigning people is often challenging due to logistics, ethics, or other
-                        constraints.</p>
+                    <p><strong>Randomization: </strong> The important aspect that allows us to establish causality.
+                        Given a large number of users, randomization can control for
+                        pre-existing relationships, as we can assume an equal proportion of confounds in
+                        each treatment. This is also more likely with a large sample size, which is why large sample
+                        size is again important.</p>
 
                     <p><strong>A/B Tests:</strong> These apply experimental procedures to real-life situations, allowing
                         for practical implementation of controlled experiments.</p>
@@ -203,37 +251,48 @@
 
                     <p><strong>Definition:</strong> Given that the null hypothesis is true, the observation is unlikely
                         due to chance alone. This is a statement about data, not a conclusion. It means the probability
-                        of the data is below a chosen level, assuming the null hypothesis is true.</p>
-
-                    <p><strong>Origin:</strong> Invented by Fisher.</p>
+                        of the data is below a chosen level (the "alpha" level), assuming the null hypothesis is true.
+                        (Also invented by <a
+                            href=https://www.washington.edu/news/2016/12/21/documents-that-changed-the-world-sir-ronald-fisher-defines-statistical-significance-1925 />Fischer</a>.)
+                    </p>
 
                     <p><strong>Interpretation:</strong> It represents p(data | null hypothesis), not p(hypothesis |
                         data). However, it can be inverted using Bayes' theorem and prior probabilities.</p>
-
-                    <p><strong>Caution:</strong> There's always a chance that sampling error alone could produce
-                        unlikely data.</p>
+                    <div class="fact-card">
+                        <p><strong>Caution:</strong> There's always a chance that sampling error alone could produce
+                            unlikely data. Hypothesis testing does not <strong>prove</strong> anything.</p>
+                    </div>
 
                     <h3>Null Hypothesis Significance Testing:</h3>
 
-                    <p>Based on falsification, this method assumes the opposite is true, collects data, and then proves
-                        that the result is so unlikely that the null hypothesis must be false, supporting the
-                        alternative hypothesis.</p>
+                    <p>Method based on falsification to test hypothesis. This method assumes the opposite is true (null
+                        hypothesis), collects data, and then shows
+                        that either 1) the result is so unlikely that the null hypothesis is dropped, supporting the
+                        alternative hypothesis. 2) or the result is plausible due to the null hypothesis and nothing is
+                        done.</p>
 
-                    <p><strong>Binomial Example:</strong> Stack all results (details to be added).</p>
+                    <p>The <strong>p-value</strong> is the probability of observing the data assuming the null
+                        hypothesis is true. For countable data, binomial distribution or combinatorics can be used to
+                        find this probability.</p>
 
                     <p><strong>Interesting Fact:</strong> The commonly used significance level of 0.05 (1 in 20 chance)
                         originated from Fisher, who found it convenient in an era without calculators. Thus, the choice
                         of alpha (significance level) is somewhat arbitrary.</p>
+                    <div class="card">
+                        <p>End result is always a p-value for significance tests.</p>
+                    </div>
                 </div>
             </div>
 
             <div class="collapsible-section" id="parametric-tests">
                 <h2 class="section-header">Parametric Significance Tests</h2>
                 <div class="section-content">
-                    <p>In parametric significance tests, you reject the null hypothesis if the difference is too large
-                        to be plausibly consistent with chance. These tests reduce to a distribution with a parameter,
+                    <p>Parametric significance tests is a type of significance test, so you drop the null hypothesis if
+                        the probability of the data is too large
+                        to be plausibly consistent with chance. These tests reduce the data to a distribution with a
+                        parameter,
                         usually the mean.</p>
-                    text
+
                     <h3>Methodology:</h3>
                     <ul>
                         <li>Establish null hypothesis</li>
@@ -241,15 +300,12 @@
                         <li>Determine likelihood of statistic under null hypothesis (p-value)</li>
                     </ul>
 
-                    <p>The <strong>p-value</strong> is the probability of observing the data assuming the null
-                        hypothesis is true. For countable data, binomial distribution or combinatorics can be used to
-                        find this probability.</p>
 
                     <p>All tests measure how far the data is from the population mean in units of Standard Error of the
                         Mean (SEM).</p>
 
                     <p><strong>Misconception:</strong> Normalization doesn't necessarily mean the data becomes normally
-                        distributed. It's primarily used to compare different scores.</p>
+                        distributed. It's primarily used to compare variables different units on the same space.</p>
 
                     <h3>Types of Errors:</h3>
                     <p><strong>Type 1 Error (False Positive):</strong> Concluding significance when there isn't any in
@@ -268,11 +324,19 @@
                         and relies on the Central Limit Theorem.</p>
 
                     <h3>Degrees of Freedom (DOF):</h3>
-                    <p><strong>Misconception:</strong> DOF is not always n-1.</p>
+                    <div class="fact-card">
+                        <p><strong>Misconception:</strong> DOF is not always n-1.</p>
+                    </div>
+                    <p>Why is it called this? Comes from DOF in mechanics- how many ways can an object move.</p>
                     <p>DOF represents the number of independent pieces of information in the dataset. It's calculated as
                         n - k, where k is the number of calculations performed.</p>
+                    <p>Higher DOF, more evidence, more stable estimate is. Only increased if more independent samples
+                        added, ie measurements not calculations. </p>
+                    <p><strong>Marginals:</strong> Are sums of rows / columns. IE total calculation. So if you have 1
+                        marginal, one value is completely determined. </p>
+                    <p>DOF: (r-1)*(c-1) for table (r includes extra row for sum / marginals).</p>
 
-                    <h3>T-test:</h3>
+                    <h3>(Student) T-test:</h3>
                     <p>Used for small sample sizes and unknown population parameters. As DOF increases, the
                         t-distribution approaches the z-distribution.</p>
 
@@ -287,8 +351,9 @@
                     </ul>
 
                     <h3>Welch's t-test:</h3>
-                    <p>Preferred when homogeneity of variance can't be assumed. Unlike Student's t-test, it doesn't pool
-                        variance, leading to fractional DOF.</p>
+                    <p>Preferred when homogeneity of variance can't be assumed. Like Student's t-test, but it doesn't
+                        pool
+                        variance and models them seperately, leading to possible fractional DOF.</p>
 
                     <h3>ANOVA:</h3>
                     <p>Extends t-test logic to more groups. Equivalent to multiple regression.</p>
@@ -298,7 +363,8 @@
             <div class="collapsible-section" id="non-parametric-tests">
                 <h2 class="section-header">Non-parametric Significance Tests</h2>
                 <div class="section-content">
-                    <p>Non-parametric tests are needed when data doesn't lend itself to sample means, such as with
+                    <p>Non-parametric tests are needed when it does not make sense to reduce data to sample means, such
+                        as with
                         categorical data or ratings.</p>
                     <h3>Types of Data:</h3>
                     <ul>
@@ -310,23 +376,26 @@
                     <p><strong>Properties of Numbers:</strong></p>
                     <ul>
                         <li>Nominality</li>
-                        <li>Cardinality (equal distance?)</li>
+                        <li>Cardinality</li>
                         <li>Ordinality</li>
                     </ul>
 
-                    <p>Non-parametric tests typically require higher sample sizes but have fewer assumptions.</p>
+                    <p>Non-parametric tests typically require higher sample sizes / power but have fewer assumptions.
+                    </p>
 
                     <h3>Chi-squared Test:</h3>
                     <p>Used for categorical counts or frequencies. It compares observed data patterns with expected
                         frequency counts under the null hypothesis.</p>
                     <p>Test statistic: sum of ((differences squared) / expected Count)</p>
                     <p>Degrees of freedom (DOF) = number of categories - 1</p>
+                    <p>Both location and spread increases with increasing DF.</p>
 
                     <h3>Mann-Whitney U Test:</h3>
                     <p>Also known as Mann-Whitney Wilcoxon test or ranksum test. It tests whether two samples come from
                         populations with the same median.</p>
                     <p>Procedure: Rank all data from smallest to largest; sum of ranks for both datasets should be
-                        similar.</p>
+                        similar if from populations with same median.</p>
+                    <p>Note: Still possible to have different distributions that happen to have the same median.</p>
 
                     <h3>Kolmogorov-Smirnov (KS) Test:</h3>
                     <p>Compares underlying distributions via the empirical Cumulative Distribution Function (CDF).</p>
@@ -342,9 +411,9 @@
                         <li>Develop a statistic based on domain knowledge</li>
                         <li>Sample without replacement</li>
                         <li>Calculate the statistic for all groups</li>
-                        <li>Determine the p-value</li>
+                        <li>Determine the p-value using statistic of original group</li>
                     </ol>
-                    <p>Results should be robust to details of the test statistic.</p>
+                    <p>Note: Results should be robust to details of the test statistic.</p>
                 </div>
 
             </div>
@@ -352,7 +421,10 @@
                 <h2 class="section-header">Problems with p-values</h2>
                 <div class="section-content">
                     <p>Decisions based solely on statistical significance can be misleading. P-values merely indicate
-                        the unlikelihood of data assuming the null hypothesis is true.</p>
+                        statistical significance, which just says
+                        that assuming null hypothesis (and a proven distribution of data under null hypothesis), data is
+                        unlikely.
+                    </p>
 
                     <h3>Contextualizing p-values:</h3>
                     <p>P-values need to be considered alongside:</p>
@@ -363,26 +435,28 @@
                     </ul>
 
                     <p><strong>Replicability Crisis:</strong> Many results fail to replicate, primarily due to lack of
-                        statistical power. Root causes include small sample sizes, small effects, negative results, and
-                        incentives to publish positive results.</p>
+                        statistical power. Root cause is lack of power, proximal causes are p-hacking and the
+                        incentive to publish statistically significant results.</p>
 
                     <h3>P-hacking:</h3>
                     <ul>
                         <li><strong>Flexible stopping:</strong> Adding observations until reaching the significance
-                            threshold, leading to alpha inflation.</li>
+                            threshold, leading to alpha inflation. P-values are typically just below alpha level as we
+                            stop as soon as significan is reached, as adding more datapoints might push it above
+                            statistically significant level.</li>
                         <li><strong>HARKing (Hypothesis After Results are Known):</strong> Developing hypotheses based
                             on which variables show significance.</li>
-                        <li><strong>Removal of outliers:</strong> Should only be done if the outlier is known to be
+                        <li><strong>Removal of outliers:</strong> (Removing outliers). Should only be done if the
+                            outlier is known to be
                             erroneous.</li>
                     </ul>
 
                     <h3>Effect Size:</h3>
-                    <p>Measures the practical significance of results. For example, Cohen's d = (pop 1 mean - pop mean
-                        2) / sd of population.</p>
+                    <p>Measures the practical significance of / difference. IE The magnitude of the real difference in
+                        populations. For example, Cohen's d = (pop 1 mean - pop 2
+                        mean
+                        ) / sd of population. (Implied sample size of 1)</p>
                     <p>Typical effect sizes in psychology are around 0.2 to 0.25.</p>
-
-                    <p><strong>Effect:</strong> The existence of a difference between treatment and control.</p>
-                    <p><strong>Effect size:</strong> The magnitude of the real difference in populations.</p>
 
                     <p>Effect size is independent of sample size, but the ability to detect it relates to sample size
                         through statistical power.</p>
@@ -395,9 +469,11 @@
                     <h3>Statistical Power</h3>
                     <p><strong>Definition:</strong> The probability of detecting an effect of a given size if the effect
                         exists. Mathematically, it's expressed as 1 - β, where β is the probability of making a Type II
-                        error[1][5].</p>
-                    <p>Typically, a power of at least 0.8 (β = 0.2) is desired. Power is implicitly set by sample size
-                        and effect size[1].</p>
+                        error.</p>
+                    <p>Typically, a power of at least 0.8 (β = 0.2) is desired. Power is implicitly set by your sample
+                        size
+                        and effect size.</p>
+                    <p>Tells you what sample size is large enough if you know what effect size is likely to be.</p>
 
                     <p><strong>Importance of Power:</strong></p>
                     <ul>
@@ -412,82 +488,119 @@
                         <li><strong>Sample size:</strong> Larger samples increase power non-linearly (√n relationship)
                         </li>
                         <li><strong>Effect size:</strong> Larger effects increase power due to greater distance between
-                            means</li>
-                        <li><strong>Type of test:</strong> Pairwise t-test > independent t-test > parametric >
-                            non-parametric</li>
+                            means. (easier to spot difference).</li>
+                        <li><strong>Type of test:</strong> Pairwise t-test > independent t-test (removes variability as
+                            everyone is own control, so better chance of finding effect.) > parametric ( if assumptions
+                            of t-test met its powerful.
+                            ) >
+                            non-parametric (Lot of information in distance between points that parametric can use).
+                        </li>
                     </ul>
 
-                    <p><strong>Power Curve:</strong> In psychology, real effects are typically around 0.2. The rate of
+                    <p><strong>Power Curve:</strong> TODO: INSERT. </p>
+                    <p>In psychology, real effects are typically around 0.2. The rate of
                         significant findings should be 10%-30%, but is often reported as 95% in practice[7].</p>
 
-                    <p><strong>Legitimate Power Increase:</strong> Using a one-tailed test can increase power by
-                        adjusting alpha.</p>
+                    <p><strong>Legitimate way to increase power:</strong> Using a one-tailed test can increase power by
+                        increasing alpha.</p>
 
                     <p><strong>A Priori vs. Post Hoc Power:</strong> Only a priori power analysis is considered valid.
                         Post-hoc (observed) power can be misleading due to potential discrepancies between true and
-                        sample effect sizes[3].</p>
+                        sample effect sizes.</p>
+
 
                     <h3>Confidence Intervals</h3>
-                    <p><strong>Definition:</strong> A range that likely contains the true population parameter[8].</p>
+                    <p><strong>Definition:</strong> A range that likely contains the true population parameter.</p>
 
                     <p>Confidence intervals visualize sampling error. A 95% CI means that if the study were repeated,
-                        95% of the time the parameter would fall within the interval, assuming only sampling error[8].
+                        95% of the time the parameter would fall within the interval, assuming only sampling error.
                     </p>
 
                     <p><strong>Calculation:</strong> CI can be calculated using z*SEM if the Central Limit Theorem (CLT)
-                        holds. If CLT cannot be proven, bootstrap methods are used[6].</p>
+                        holds. If CLT cannot be proven, bootstrap methods are used.</p>
+
+                    <p><strong>Absence of evidence:</strong> CI is very wide. If higher statistical power, shrink CI,
+                        hence evidence of absence. </p>
+
 
                     <h3>Bootstrap</h3>
-                    <p>A resampling technique used to estimate confidence intervals when normal distribution assumptions
-                        don't hold[6].</p>
+                    <p>A resampling with replacement technique used to estimate confidence intervals when normal
+                        distribution assumptions
+                        don't hold.</p>
 
                     <p><strong>Caution:</strong> Bootstrap can be dangerous with small samples as it may overrepresent
                         parameters. It's only effective if the entire sample is representative of the population[6].</p>
 
                     <p><strong>Limitation:</strong> Bootstrapping provides more numbers but not more data, and does not
-                        increase degrees of freedom[6].</p>
+                        increase degrees of freedom. Works only if sample is representative of population.</p>
                 </div>
             </div>
 
             <div class="collapsible-section" id="bayesian-inference">
                 <h2 class="section-header">Bayesian Inference</h2>
                 <div class="section-content">
-                    <p>Bayesian inference is a statistical approach that updates beliefs based on new evidence using
-                        Bayes' theorem:</p>
-                    <p>$$ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} $$</p>
 
-                    <p>Where:</p>
-                    <ul>
-                        <li><strong>Likelihood:</strong> $$P(B|A)$$ - probability of data given the hypothesis</li>
-                        <li><strong>Prior:</strong> $$P(A)$$ - initial belief about the hypothesis</li>
-                        <li><strong>Posterior:</strong> $$P(A|B)$$ - updated belief after observing the data</li>
-                    </ul>
+                    <p>So far we have been taking a frequentist approach. </p>
 
                     <h3>Bayesian vs. Frequentist Approach</h3>
                     <p><strong>Frequentist probability</strong> is based on the long-run frequency of outcomes, while
                         <strong>Bayesian probability</strong> represents a degree of belief. Bayesian inference allows
-                        for updating prior beliefs with new information, which can be advantageous when prior knowledge
-                        is well-founded[1].
+                        for updating prior beliefs with new information, which can be advantageous when prior beliefs
+                        are well-founded.
                     </p>
+                    <p>If prior belief is certain, ie with probability of 1 or 0, no evidence will change the posterior.
+                    </p>
+                    <div class="equation">
+                        <p>\[p(A | B) = \frac{p(B | A) \cdot p(A)}{p(B)}\]</p>
+                    </div>
+                    <div class="component">
+                        <p><strong>Likelihood</strong> = probability of data, \(p(B | A)\)</p>
+                    </div>
+
+                    <div class="component">
+                        <p><strong>Prior</strong> = prior belief, \(p(A)\), \(p(B)\)</p>
+                    </div>
+
+                    <div class="component">
+                        <p><strong>Posterior</strong> = updated belief, \(p(A | B)\)</p>
+                    </div>
+                    <img src="bayes.png" alt="Bayes' Factor Illustration">
+
+                    <p>Now we cover the bayesian version of hypothesis testing, power and confidence intervals.</p>
 
                     <h3>Bayesian Hypothesis Testing</h3>
                     <p>Bayesian hypothesis testing allows for direct comparison of specific hypotheses, unlike the
                         traditional null hypothesis approach. The <strong>Bayes factor</strong> quantifies the relative
-                        evidence for one hypothesis over another, calculated as the ratio of likelihoods[1].</p>
+                        evidence for one hypothesis over another, calculated as the ratio of likelihoods under one
+                        hypothesis over another.</p>
+                    <p>Factor of 100 means p(d | h1) is 100x more than p(d | h0)
+                    </p>
+                    <img>
 
                     <h3>Bayesian Power Analysis</h3>
                     <p>The <strong>Positive Predictive Value (PPV)</strong> represents the post-study probability that a
-                        significant result is true:</p>
+                        significant result is true (p(effect true | significant) = p(True) * p(sig | true) / p(sig)
+                        ):</p>
 
-                    <p>$$ PPV = \frac{P(True) \cdot Power}{P(True) \cdot Power + \alpha \cdot (1 - P(True))} $$</p>
-
+                    <div>
+                        \[= \frac{\frac{\text{true}}{\text{total}} \cdot \text{power}}{\text{power} \cdot
+                        \left(\frac{\text{true}}{\text{total}}\right) + \alpha \cdot
+                        \left(\frac{\text{false}}{\text{total}}\right)}\]
+                    </div>
                     <p>This formula highlights that the false positive rate depends on power, prior probability of a
-                        true effect, and the chosen alpha level[1].</p>
+                        true effect, and is not (necessarily) equal to the false positive rate.</p>
+                    <p>Need higher power (ability to detect affect) to get higher posterior PPV. IE higher ability to
+                        detect effect if present means can get higher post study probability that a significant result
+                        is true. So if studying far fetched stuff make sure you have enough power. Pre-study odds can be
+                        from literature. </p>
 
                     <h3>Bayesian Credible Intervals</h3>
-                    <p>In Bayesian statistics, parameters are treated as random variables with distributions. As sample
+                    <p>In Bayesian statistics, parameters are treated as random variables with distributions
+                        corresponding to our prior beliefs. As sample
                         size increases, the likelihood dominates the prior, converging to frequentist results with
-                        infinite data[1].</p>
+                        infinite data.</p>
+                    <p>Hence if lots of data (high power), just use frequentist approach. If not much data but strong
+                        prior, use bayesian approach.</p>
                 </div>
             </div>
             <div class="collapsible-section" id="machine-learning-regression">
@@ -501,28 +614,49 @@
                     </ul>
                     <h3>Linear Regression</h3>
                     <p><strong>Regression</strong> models correlations, not causation. It minimizes the summed squared
-                        distance (L2 norm) between predictions and actual values[8].</p>
+                        distance (L2 norm) between predictions and actual values.</p>
+                    <div class="fact-card">
+                        <p>Don't interpret regression causally, could be confounders that contribute to both. Regression
+                            is purely correlation.</p>
+                    </div>
+                    <p>Why is it called regression? Rule of 3 was used before, and Galton realised outcomes “regress” to
+                        mean, hence called regression. </p>
 
                     <p><strong>Beta coefficient:</strong></p>
                     <ul>
-                        <li>Scaling factor making independent variable closest to dependent variable</li>
+                        <li>Scaling factor making independent variable closest to dependent variable.</li>
                         <li>Interpreted as the change in standard deviations of DV for one standard deviation change in
                             IV</li>
                         <li>Calculated as $$ \beta = (X^TX)^{-1}X^Ty $$</li>
+                        <li>Equivalent to projecting data points onto subspace A (either, line plane etc. representing
+                            regression model), and finding A that minimises distance to all points. Hence can find beta
+                            in terms of linear algebra.</li>
                     </ul>
+                    <p><strong>Residual:</strong></string>distance from prediction and actual value. (Point: Not
+                        perpendicular distance but vertical to prediction line)
+                    </p>
 
                     <h3>Multiple Regression</h3>
                     <p>Allows comparison of multiple variables by accounting for confounds. It can help control for
-                        variables when experiments are not possible[8].</p>
+                        variables when experiments are not possible, but data is available on known confounds.</p>
 
                     <h3>Model Evaluation</h3>
                     <p><strong>Coefficient of Determination (R²):</strong> Proportion of variance explained by the model
                     </p>
                     <p>$$ R^2 = \frac{\text{Explained Variance}}{\text{Total Variance}} $$</p>
 
-                    <p><strong>R:</strong> Correlation between predicted and actual values</p>
+                    <p><strong>R:</strong> Correlation between predicted and actual values.</p>
 
-                    <p>Plotting predicted vs. actual values helps visualize model performance and R²[8].</p>
+                    <p>Summing all correlation coefficents of features wont add up to explained variance as they
+                        subtract a covariance factor (ie the relationship between the features).</p>
+
+                    <p>Best guess if not taking variable into account is mean, trying regression is seeing how much
+                        better can we do than this mean. Using the mean gives total variance.
+                    </p>
+                    <p><strong>Confound:</strong> something else that links IV and DV.</p>
+
+                    <p>Plotting multiple regression: Plotting predicted vs. actual values helps visualize model
+                        performance (R²).</p>
                 </div>
             </div>
             <div class="collapsible-section" id="ml-regularization">
@@ -532,26 +666,41 @@
                         simple as possible.</p>
                     <h3>Problems with Multiple Regression</h3>
                     <ul>
-                        <li><strong>Multicollinearity:</strong> Predictors are correlated, reducing model reliability.
-                            Solutions include using fewer predictors or regularization.</li>
-                        <li><strong>Curse of dimensionality:</strong> Many predictors require lots of parameters,
-                            leading to coverage issues. This problem diminishes with more data.</li>
-                        <li><strong>Overfitting:</strong> Model fits noise in the data, reducing generalizability.
-                            Cross-validation and checking RMSE on a test set can help detect this.</li>
+                        <li><strong>Multicollinearity:</strong> Predictors are correlated. We want predictors to be
+                            uncorrelated to each other, but each correlated to outcome. Solution: use fewer predictors
+                            or regularization. [Visually vectors go from plane to roughly a line, so projecting onto 2
+                            vectors close to each other means we could draw a plane in many ways and hence
+                            wobbly/unreliable project. IE collinearity reduces a dimension but still projecting on full
+                            space, so could be any full space. EG if projecting onto a plane, if 2 vectors are collinear
+                            (like line), could draw many planes through it. Bad as way too much variance with not much
+                            gain].</li>
+                        <li><strong>Curse of dimensionality:</strong> Many predictors need lots of parameters, so
+                            coverage (some data being in every category possible) becomes an issue. Goes away if lots of
+                            data. </li>
+                        <li><strong>Overfitting:</strong> Model with more variance does not necessarily mean better.
+                            With enough parameters can fit any model perfectly. This is problem as every data point is a
+                            true value plus noise, so the model won't generalise. Need to cross validate and check RMSE
+                            on test set. (Unlike hypothesis testing where you use all data). Doesn't go away with more
+                            data.</li>
                     </ul>
 
                     <h3>One-hot Encoding</h3>
                     <p>Converts categorical variables into separate boolean columns. To avoid the dummy variable trap,
                         one category should be removed to prevent collinearity.</p>
+                    <p><strong>Dummy Variable Trap:</strong>Using all categories from one hot encoding.</p>
 
                     <h3>Bias-Variance Tradeoff</h3>
                     <p><strong>Bias:</strong> Model is too simple to capture the relationship (underfitting).</p>
-                    <p><strong>Variance:</strong> Model doesn't generalize well (overfitting).</p>
+                    <p><strong>Variance:</strong> Model doesn't generalize well (overfitting). Not related to previous
+                        variance. High variance means can explain a lot of the relationship.</p>
+                    <p>Need middle ground as Linear Regression pushes to high variance, low bias, regression pushes it
+                        the other way.</p>
 
                     <h3>Regularization Techniques</h3>
-                    <p><strong>Ridge Regression:</strong> Adds λ * β² to the minimization term, introducing some bias to
+                    <p><strong>Ridge Regression:</strong> Adds sqrt(λ * summation of (β²)) to the minimization term,
+                        introducing some bias to
                         fit better to the population.</p>
-                    <p><strong>Lasso Regression:</strong> Uses L1 norm penalty, which can reduce some coefficients to
+                    <p><strong>Lasso Regression:</strong> Uses L1 norm as penalty, which can reduce some coefficients to
                         zero.</p>
                 </div>
             </div>
@@ -559,19 +708,47 @@
                 <h2 class="section-header">Machine Learning - Classification</h2>
                 <div class="section-content">
                     <p>Classification aims to find boundaries that maximize distance between classes, unlike regression
-                        which minimizes distance to points.</p>
+                        which minimizes distance from boundary to points.</p>
+
                     <h3>Logistic Regression</h3>
-                    <p>Maps continuous inputs to binary outcomes using a nonlinear function (sigmoid). It computes the
-                        odds of two classes and predicts the inverse of the logit.</p>
+                    <p>Maps continuous inputs to binary outcomes using a nonlinear function (sigmoid). It outputs the
+                        odds of two classes and predicts the inverse of the logit (natural log of the odds = sigmoid).
+                        Need to choose threshold over which we pick the class.</p>
+                    <p>Computes odds of two classes. Probability of happening over probability of not happening. </p>
+                    <p>
+                        <strong>Varying beta 0:</strong> shifts inflection point further left as beta 0 increases
+                    </p>
+                    <p><strong> Varying beta 1:</strong>increases how steep cuttoff is as beta 1 increases
+                    </p>
+                    <p>Problems with regression on classification: </p>
+                    <ul>
+                        <li>Residuals are not normal - needed for LR.</li>
+                        <li>RMSE is too high</li>
+                        <li>Most predictions are non-sensical</li>
+                        <li>Regression is not bounded.
+
+                        </li>
+                        <li>Line implies constant increase, but really small range where increase matters a lot for
+                            class but after or before does not matter.
+                        </li>
+                    </ul>
 
                     <h3>ROC Curve</h3>
                     <p>A metric for classification performance that plots True Positive Rate against False Positive
                         Rate. The Area Under ROC (AUROC) quantifies overall performance, with 0.5 indicating random
                         guessing.</p>
+                    <p>Why is accuracy bad for classification? Class imbalance - predicting most common class gets that
+                        proportion of accuracy.
+                    </p>
+                    <p>Called ROC as its from radar usage from WW2. </p>
+                    <p>Threshold does not change AUROC value, just changes proportion of true positive vs false
+                        positives.
+                    </p>
+
 
                     <h3>Support Vector Machines (SVM)</h3>
                     <p>Finds the line/plane that maximizes the distance between groups. Soft margin SVM allows for some
-                        misclassification with a penalty.</p>
+                        misclassification with a penalty, compared to (hard margin) SVMs.</p>
                 </div>
 
             </div>
@@ -579,19 +756,44 @@
             <div class="collapsible-section" id="ml-unsupervised-learning">
                 <h2 class="section-header">Machine Learning - Unsupervised Learning</h2>
                 <div class="section-content">
+                    <p>Conceptually, this is using distance to yield labels.</p>
                     <h3>Dimensionality Reduction</h3>
-                    <p><strong>Principal Component Analysis (PCA):</strong> Finds orthonormal basis and projects
-                        data onto it, keeping only the most significant components. Variables should be standardized
+                    <p>Takes advantage of correlation of columns. We create new columns that only represent the
+                        independent cols. ! Note: DOF refers to independent rows not columns. This is not feature
+                        selection, we are creating new columns.
+                    </p>
+                    <p><strong>Principal Component Analysis (PCA):</strong> Finding an orthonormal basis and projecting
+                        data onto that, then we can keep only the biggest independent values, and these preserve most of
+                        the data. In other words, we keep projecting onto directions with most variance. Variables
+                        should be standardized
                         (z-score) before PCA.</p>
+                    <p>Scree plot: plot of eigenvalues in order of decreasing.
+                    </p>
                     <h3>Clustering</h3>
-                    <p><strong>K-means:</strong> Partitions data into K clusters. The optimal K can be chosen using
+                    <p><strong>K-means:</strong> Partitions data into K clusters. </p>
+                    <p>Description in <a href="../ml/index.html">machine learning page</a>.</p>
+                    <p>The optimal K can be chosen using
                         the elbow method or silhouette method.</p>
+                    <p>Elbow Method: See <a href="../ml/index.html">Machine learning page</a>.</p>
 
                     <p><strong>Silhouette Method:</strong> Calculates a score for each datapoint based on its
                         distance to its own cluster versus other clusters. The K with the highest average silhouette
                         score is chosen.</p>
+                    <ul>
+                        <li>For each datapoint calculate silhouette coefficient = (ave distance of points to nearest
+                            cluster) - (ave distance of point to points in own cluster) / max(of above 2). (We want a
+                            bigger fraction as it represents a better classification). Negative means misclassification.
+                        </li>
+                        <li>Sum up silhouette coefficient for all data points. Max sum is number of datapoints as max
+                            for each score is 1. </li>
+                        <li>Compare sum for different K, choose one with max score.
+                        </li>
+                    </ul>
+                    <div class="fact-card">
+                        <p>Error always goes down with increased K!</p>
+                    </div>
 
-                    <p><strong>HDBSCAN:</strong> A density-based clustering method that identifies core, edge, and
+                    <p><strong>HDBSCAN:</strong> Cluster by repeatedly identifying points as core, edge, or
                         anomaly points.</p>
                 </div>
             </div>

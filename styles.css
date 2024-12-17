@@ -220,3 +220,11 @@ section {
 .collapsible-section.active .section-content {
     display: block;
 }
+
+.equation {
+    margin-bottom: 20px;
+}
+
+.component {
+    margin-left: 20px;
+}
