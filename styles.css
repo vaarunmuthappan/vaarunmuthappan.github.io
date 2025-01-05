@@ -11,6 +11,11 @@ header {
     margin-bottom: 2rem;
 }
 
+img {
+    width: 50%;
+    height: auto;
+}
+
 .header-nav {
     max-width: 1200px;
     margin: 0 auto;
