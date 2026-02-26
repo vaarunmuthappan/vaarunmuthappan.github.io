@@ -1,52 +1,530 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vaarun Muthappan</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaarun Muthappan</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;}
+:root{--bg:#fafaf8;--text:#111;--text-2:#555;--text-3:#999;--rule:#e5e5e5;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);margin:0;-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.7;}
+
+/* Nav */
+header{padding:0 3rem;border-bottom:1px solid var(--rule);}
+nav{max-width:1020px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:56px;}
+.logo{font-size:.875rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:.04em;text-transform:uppercase;}
+.nav-links{display:flex;gap:2rem;}
+.nav-links a{color:var(--text-2);font-size:.8125rem;text-decoration:none;letter-spacing:.01em;transition:color .15s;}
+.nav-links a:hover{color:var(--text);}
+
+/* Two-col hero */
+.hero{max-width:1020px;margin:0 auto;padding:4rem 3rem 4rem;display:grid;grid-template-columns:1fr 460px;gap:5rem;align-items:start;}
+
+/* Left */
+.hero h1{font-family:'Playfair Display',Georgia,serif;font-size:3rem;font-weight:700;letter-spacing:-.02em;margin:0 0 1.75rem;line-height:1.08;}
+.bio{color:var(--text-2);margin:0 0 .875rem;font-size:.9375rem;line-height:1.72;}
+
+/* Nav cards */
+.cards{display:flex;flex-direction:column;gap:0;margin-top:2.5rem;border-top:1px solid var(--rule);}
+.card{display:flex;align-items:center;justify-content:space-between;padding:1.0625rem 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--text);transition:transform .1s ease,opacity .1s ease;position:relative;overflow:hidden;cursor:pointer;}
+.card:active{transform:scale(.97) translateX(2px);opacity:.75;}
+.card-title{font-size:.9375rem;font-weight:600;}
+.card-desc{font-size:.8125rem;color:var(--text-3);margin-top:.1rem;}
+.arrow{color:var(--text-3);font-size:.875rem;transition:transform .2s;}
+.card:hover .arrow{transform:translateX(4px);}
+.ripple{position:absolute;border-radius:50%;background:rgba(0,0,0,.06);transform:scale(0);animation:rpl .55s linear;pointer-events:none;}
+@keyframes rpl{to{transform:scale(4);opacity:0;}}
+
+/* ── Building blocks grid ── */
+.blocks{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:130px 155px 155px;
+  grid-template-areas:
+    "clt clt"
+    "km  sig"
+    "km  lln";
+  gap:6px;
+}
+.block{overflow:hidden;outline:.5px solid rgba(0,0,0,0.07);}
+.block canvas{display:block;width:100%;height:100%;}
+#b-clt{grid-area:clt;}
+#b-km {grid-area:km;}
+#b-sig{grid-area:sig;}
+#b-lln{grid-area:lln;}
+
+/* Responsive */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:2.5rem;padding:2.5rem 1.5rem;}
+  .blocks{grid-template-columns:1fr 1fr;grid-template-rows:120px 140px 140px;}
+  header{padding:0 1.5rem;}
+}
+</style>
 </head>
-
 <body>
-    <header>
-        <nav class="header-nav">
-            <a href="index.html" class="logo">Vaarun Muthappan</a>
-            <div class="nav-right">
-                <a href="courses.html">Concept Notes</a>
-                <a href="projects.html">Project Notes</a>
-            </div>
-        </nav>
-    </header>
 
-    <main class="hero">
-        <h1>Vaarun Muthappan</h1>
-        <p class="hero-bio">
-            NYU Masters in Data Science student interested in working with alternate data, machine learning and building things.
-            My previous coursework includes Machine Learning in Finance, Reinforcement Learning, Causal Inference, Computer Vision.
-        </p>
-        <p class="hero-bio">
-            I am currently also a teaching assistant for the Principles of Data Science class at NYU.
-        </p>
+<header>
+  <nav>
+    <a href="index.html" class="logo">Vaarun Muthappan</a>
+    <div class="nav-links">
+      <a href="courses.html">Concept Notes</a>
+      <a href="projects.html">Project Notes</a>
+    </div>
+  </nav>
+</header>
 
-        <div class="section-cards">
-            <a href="courses.html" class="section-card">
-                <div class="section-card-body">
-                    <div class="section-card-title">Concept Notes</div>
-                    <div class="section-card-desc">Notes on topics like statistics, machine learning, and data science.</div>
-                </div>
-                <div class="section-card-arrow">&rarr;</div>
-            </a>
-            <a href="projects.html" class="section-card">
-                <div class="section-card-body">
-                    <div class="section-card-title">Project Notes</div>
-                    <div class="section-card-desc">Write-ups and analyses from projects and coursework.</div>
-                </div>
-                <div class="section-card-arrow">&rarr;</div>
-            </a>
-        </div>
-    </main>
+<div class="hero">
+  <!-- ── Left ── -->
+  <div>
+    <h1>Vaarun<br>Muthappan</h1>
+    <p class="bio">I am an NYU Masters in Data Science student interested in working with alternate data, machine learning and building things. I have completed a bachelors in Data Science with a minor in Business at the University of Michigan.</p>
+    <p class="bio">My previous coursework includes Machine Learning in Finance, Reinforcement Learning, Causal Inference, Computer Vision, Big Data and Databases.</p>
+    <p class="bio">I am currently also a teaching assistant for the Principles of Data Science class at NYU.</p>
+    <div class="cards">
+      <a href="courses.html" class="card">
+        <div><div class="card-title">Concept Notes</div><div class="card-desc">Statistics, machine learning, data science.</div></div>
+        <div class="arrow">&rarr;</div>
+      </a>
+      <a href="projects.html" class="card">
+        <div><div class="card-title">Project Notes</div><div class="card-desc">Write-ups and analyses from projects.</div></div>
+        <div class="arrow">&rarr;</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Right: blocks ── -->
+  <div class="blocks">
+    <div class="block" id="b-clt"><canvas id="clt"></canvas></div>
+    <div class="block" id="b-km"><canvas id="km"></canvas></div>
+    <div class="block" id="b-sig"><canvas id="sig"></canvas></div>
+    <div class="block" id="b-lln"><canvas id="lln"></canvas></div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// Helpers
+// ─────────────────────────────────────────────────────────────
+function lerp(a,b,t){return a+(b-a)*t;}
+function randNorm(mu=0,sd=1){
+  let u=0,v=0;
+  while(!u)u=Math.random();while(!v)v=Math.random();
+  return mu+sd*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+}
+function normPDF(x,mu,sigma){
+  return (1/(sigma*Math.sqrt(2*Math.PI)))*Math.exp(-.5*((x-mu)/sigma)**2);
+}
+function normCDF(z){
+  const t=1/(1+.2316419*Math.abs(z));
+  const d=.3989423*Math.exp(-z*z/2);
+  const p=d*t*(.3193815+t*(-.3565638+t*(1.7814779+t*(-1.8212560+t*1.3302744))));
+  return z>0?1-p:p;
+}
+
+// Ripple on cards
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('click',e=>{
+    const r=document.createElement('span');r.className='ripple';
+    const rect=card.getBoundingClientRect();
+    const size=Math.max(rect.width,rect.height);
+    r.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+    card.appendChild(r);setTimeout(()=>r.remove(),700);
+  });
+});
+
+function fitCanvas(canvas){
+  canvas.width=canvas.offsetWidth;
+  canvas.height=canvas.offsetHeight;
+}
+
+// ─────────────────────────────────────────────────────────────
+// 1. CLT — correct version: accumulate sample means
+// ─────────────────────────────────────────────────────────────
+(function(){
+  const canvas=document.getElementById('clt');
+  const ctx=canvas.getContext('2d');
+  const FIXED_N=30;   // datapoints per sample — fixed
+  const MAX_SAMPLES=600;
+  const BINS=36;
+
+  let means=[];
+  let binCounts=new Array(BINS).fill(0);
+  let displayHeights=new Array(BINS).fill(0); // lerped display
+  let animId;
+
+  function addSample(){
+    let s=0;for(let i=0;i<FIXED_N;i++)s+=Math.random();
+    const m=s/FIXED_N; // mean is in [0,1] ≈ 0.5
+    means.push(m);
+    const b=Math.min(BINS-1,Math.floor(m*BINS));
+    binCounts[b]++;
+  }
+
+  function reset(){
+    means=[];binCounts=new Array(BINS).fill(0);
+  }
+
+  function draw(){
+    const W=canvas.width,H=canvas.height;
+    ctx.clearRect(0,0,W,H);
+    const pad={l:4,r:4,t:6,b:4};
+    const maxC=Math.max(1,...binCounts);
+    const bw=(W-pad.l-pad.r)/BINS;
+
+    // Update lerped heights toward targets
+    for(let i=0;i<BINS;i++){
+      const target=(binCounts[i]/maxC)*(H-pad.t-pad.b);
+      displayHeights[i]=lerp(displayHeights[i],target,0.09);
+    }
+
+    // Bars
+    const progress=means.length/MAX_SAMPLES;
+    for(let i=0;i<BINS;i++){
+      const x=pad.l+i*bw;
+      const bh=displayHeights[i];
+      const y=H-pad.b-bh;
+      ctx.fillStyle=`rgba(17,17,17,${0.12+progress*0.62})`;
+      ctx.fillRect(x+.5,y,bw-1,bh);
+    }
+
+    // Normal overlay — fades in as samples accumulate
+    if(means.length>60){
+      const alpha=Math.min(.9,(means.length-60)/200);
+      const mu=0.5,sd=1/(Math.sqrt(12*FIXED_N));
+      const peakD=normPDF(mu,mu,sd);
+      ctx.beginPath();
+      ctx.setLineDash([3,4]);
+      ctx.strokeStyle=`rgba(17,17,17,${alpha*0.45})`;
+      ctx.lineWidth=1.2;
+      for(let px=0;px<W;px++){
+        const xval=((px-pad.l)/(W-pad.l-pad.r));
+        const d=normPDF(xval,mu,sd);
+        const py=H-pad.b-((d/peakD)*(H-pad.t-pad.b)*0.92);
+        px===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+      }
+      ctx.stroke();ctx.setLineDash([]);
+    }
+  }
+
+  let frameCount=0;
+  function tick(){
+    // 1 sample per frame = ~60 samples/sec → 10s to fill 600
+    if(means.length<MAX_SAMPLES){
+      addSample();
+    } else {
+      // hold for 90 frames then reset
+      frameCount++;
+      if(frameCount>90){frameCount=0;reset();}
+    }
+    draw();
+    animId=requestAnimationFrame(tick);
+  }
+
+  function init(){fitCanvas(canvas);displayHeights=new Array(BINS).fill(0);tick();}
+  window.addEventListener('load',init);
+  window.addEventListener('resize',()=>{fitCanvas(canvas);});
+})();
+
+// ─────────────────────────────────────────────────────────────
+// 2. K-means — 4 clusters, monochrome, no controls
+// ─────────────────────────────────────────────────────────────
+(function(){
+  const canvas=document.getElementById('km');
+  const ctx=canvas.getContext('2d');
+  const K=4;
+  const PAL=['#111','#595959','#a0a0a0','#d4d4d4'];
+  const N_PTS=80;
+  let points=[],centroids=[],assign=[],centDisplay=[],centTarget=[];
+  let phase='wait_start',lerpT=0,iter=0,holdFrames=0,animId;
+
+  function randBlobs(){
+    const pts=[];
+    // 4 well-separated blob centers
+    const centers=[[.22,.25],[.75,.22],[.20,.75],[.76,.76]];
+    for(let k=0;k<K;k++){
+      const [cx,cy]=centers[k];
+      for(let i=0;i<N_PTS/K;i++){
+        pts.push([
+          Math.max(.03,Math.min(.97,cx+randNorm(0,.1))),
+          Math.max(.03,Math.min(.97,cy+randNorm(0,.1)))
+        ]);
+      }
+    }
+    return pts;
+  }
+
+  function initCents(){
+    // k-means++ style: pick spread out starts
+    const first=Math.floor(Math.random()*points.length);
+    const cents=[[...points[first]]];
+    while(cents.length<K){
+      const dists=points.map(p=>Math.min(...cents.map(c=>(p[0]-c[0])**2+(p[1]-c[1])**2)));
+      const sum=dists.reduce((a,b)=>a+b,0);
+      let r=Math.random()*sum,acc=0;
+      for(let i=0;i<points.length;i++){acc+=dists[i];if(acc>=r){cents.push([...points[i]]);break;}}
+    }
+    return cents;
+  }
+
+  function assignPts(){
+    return points.map(p=>{
+      let best=0,bestD=Infinity;
+      centroids.forEach((c,i)=>{const d=(p[0]-c[0])**2+(p[1]-c[1])**2;if(d<bestD){bestD=d;best=i;}});
+      return best;
+    });
+  }
+
+  function updateCents(){
+    return Array.from({length:K},(_,k)=>{
+      const cl=points.filter((_,i)=>assign[i]===k);
+      if(!cl.length)return[Math.random(),Math.random()];
+      return[cl.reduce((s,p)=>s+p[0],0)/cl.length,cl.reduce((s,p)=>s+p[1],0)/cl.length];
+    });
+  }
+
+  function startFresh(){
+    points=randBlobs();
+    centroids=initCents();
+    assign=points.map(()=>0);
+    centDisplay=centroids.map(c=>[...c]);
+    centTarget=centroids.map(c=>[...c]);
+    iter=0;phase='assign';lerpT=0;holdFrames=0;
+  }
+
+  function draw(){
+    const W=canvas.width,H=canvas.height;
+    ctx.clearRect(0,0,W,H);
+    const p=12;
+    const tx=x=>p+x*(W-p*2),ty=y=>p+y*(H-p*2);
+
+    // Points
+    points.forEach((pt,i)=>{
+      ctx.beginPath();ctx.arc(tx(pt[0]),ty(pt[1]),2.5,0,Math.PI*2);
+      ctx.fillStyle=PAL[assign[i]%K];ctx.fill();
+    });
+
+    // Centroids
+    centDisplay.forEach((c,i)=>{
+      const cx=tx(c[0]),cy=ty(c[1]);
+      ctx.strokeStyle=PAL[i%K];ctx.lineWidth=2;
+      ctx.beginPath();ctx.moveTo(cx-8,cy);ctx.lineTo(cx+8,cy);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(cx,cy-8);ctx.lineTo(cx,cy+8);ctx.stroke();
+    });
+  }
+
+  let pauseFrames=0;
+  function tick(){
+    if(phase==='assign'){
+      const newAssign=assignPts();
+      assign=newAssign;
+      centTarget=updateCents();
+      iter++;
+      // pause before moving centroids
+      phase='pause_before_move';pauseFrames=0;
+    } else if(phase==='pause_before_move'){
+      pauseFrames++;
+      if(pauseFrames>48){phase='move';lerpT=0;} // ~0.8s at 60fps
+    } else if(phase==='move'){
+      lerpT=Math.min(1,lerpT+0.03); // slow glide
+      centDisplay=centDisplay.map((c,i)=>[
+        lerp(c[0],centTarget[i][0],0.03),
+        lerp(c[1],centTarget[i][1],0.03)
+      ]);
+      if(lerpT>=1){
+        centroids=centTarget.map(c=>[...c]);
+        centDisplay=centroids.map(c=>[...c]);
+        // check convergence
+        const newA=assignPts();
+        const changed=newA.some((a,i)=>a!==assign[i]);
+        if(!changed){phase='hold';holdFrames=0;}
+        else{phase='assign';}
+      }
+    } else if(phase==='hold'){
+      holdFrames++;
+      if(holdFrames>150)startFresh(); // hold ~2.5s
+    }
+    draw();
+    animId=requestAnimationFrame(tick);
+  }
+
+  function init(){fitCanvas(canvas);startFresh();tick();}
+  window.addEventListener('load',init);
+  window.addEventListener('resize',()=>fitCanvas(canvas));
+})();
+
+// ─────────────────────────────────────────────────────────────
+// 3. Significance testing — p-value inside canvas
+// ─────────────────────────────────────────────────────────────
+(function(){
+  const canvas=document.getElementById('sig');
+  const ctx=canvas.getContext('2d');
+  let stat=0,dir=1,pauseFrames=0,pausing=false,animId;
+  const Z_CRIT=1.96;
+  const XMIN=-3.8,XMAX=3.8,STEPS=300;
+
+  function draw(z){
+    const W=canvas.width,H=canvas.height;
+    ctx.clearRect(0,0,W,H);
+    const pad={l:6,r:6,t:8,b:6};
+    const pval=2*normCDF(-Math.abs(z));
+    const sig=pval<.05;
+
+    const toX=v=>pad.l+((v-XMIN)/(XMAX-XMIN))*(W-pad.l-pad.r);
+    const toY=v=>{
+      const maxD=normPDF(0,0,1);
+      return H-pad.b-(v/maxD)*(H-pad.t-pad.b)*.9;
+    };
+
+    // Rejection region fill
+    function shadedTail(from,to,alpha){
+      ctx.beginPath();let first=true;
+      for(let i=0;i<=STEPS;i++){
+        const xv=XMIN+i/STEPS*(XMAX-XMIN);
+        if(xv>=from&&xv<=to){
+          const y=toY(normPDF(xv,0,1));
+          first?(ctx.moveTo(toX(xv),y),first=false):ctx.lineTo(toX(xv),y);
+        }
+      }
+      ctx.lineTo(toX(Math.min(to,XMAX)),H-pad.b);
+      ctx.lineTo(toX(Math.max(from,XMIN)),H-pad.b);
+      ctx.closePath();ctx.fillStyle=`rgba(17,17,17,${alpha})`;ctx.fill();
+    }
+
+    // Fixed rejection regions
+    shadedTail(XMIN,-Z_CRIT,0.10);
+    shadedTail(Z_CRIT,XMAX,0.10);
+
+    // P-value tail highlight (beyond |stat|)
+    if(Math.abs(z)>.1){
+      const alpha=sig?.28:.07;
+      shadedTail(Math.abs(z),XMAX,alpha);
+      shadedTail(XMIN,-Math.abs(z),alpha);
+    }
+
+    // Normal curve
+    ctx.beginPath();ctx.strokeStyle='#111';ctx.lineWidth=1.5;
+    for(let i=0;i<=STEPS;i++){
+      const xv=XMIN+i/STEPS*(XMAX-XMIN);
+      i===0?ctx.moveTo(toX(xv),toY(normPDF(xv,0,1))):ctx.lineTo(toX(xv),toY(normPDF(xv,0,1)));
+    }
+    ctx.stroke();
+
+    // Stat line
+    if(Math.abs(z)>.05){
+      ctx.strokeStyle=sig?'rgba(17,17,17,.85)':'rgba(17,17,17,.3)';
+      ctx.lineWidth=1.2;ctx.setLineDash([3,3]);
+      ctx.beginPath();ctx.moveTo(toX(z),pad.t+14);ctx.lineTo(toX(z),H-pad.b);
+      ctx.stroke();ctx.setLineDash([]);
+    }
+
+    // ── P-value text inside canvas ──
+    const pStr=pval<.001?'p < 0.001':`p = ${pval.toFixed(3)}`;
+    const sigStr=sig?'significant':'not sig.';
+    ctx.font=`600 12px 'Inter',sans-serif`;
+    ctx.fillStyle=sig?'rgba(17,17,17,.88)':'rgba(17,17,17,.38)';
+    ctx.textAlign='center';
+    ctx.fillText(pStr,W/2,pad.t+12);
+    ctx.font=`10px 'Inter',sans-serif`;
+    ctx.fillStyle=sig?'rgba(17,17,17,.55)':'rgba(17,17,17,.25)';
+    ctx.fillText(sigStr,W/2,pad.t+24);
+  }
+
+  function tick(){
+    if(pausing){
+      pauseFrames++;
+      if(pauseFrames>32){pausing=false;dir*=-1;}
+    } else {
+      stat+=dir*.85; // ~8s full sweep
+      if(stat>340||stat<-340){pausing=true;pauseFrames=0;}
+    }
+    draw(stat/100);
+    animId=requestAnimationFrame(tick);
+  }
+
+  function init(){fitCanvas(canvas);tick();}
+  window.addEventListener('load',init);
+  window.addEventListener('resize',()=>fitCanvas(canvas));
+})();
+
+// ─────────────────────────────────────────────────────────────
+// 4. LLN — coin flips, labeled axes inside canvas
+// ─────────────────────────────────────────────────────────────
+(function(){
+  const canvas=document.getElementById('lln');
+  const ctx=canvas.getContext('2d');
+  const MAX_FLIPS=400;
+  let flips=[],animId,frameCount=0,flipInterval=12; // flip every 12 frames ≈ 5/sec
+
+  function addFlip(){flips.push(Math.random()<.5?1:0);}
+
+  function draw(){
+    const W=canvas.width,H=canvas.height;
+    ctx.clearRect(0,0,W,H);
+    const pad={l:34,r:10,t:10,b:28};
+    const n=flips.length;
+
+    // Axes
+    ctx.strokeStyle='rgba(0,0,0,0.15)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad.l,pad.t);ctx.lineTo(pad.l,H-pad.b);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(pad.l,H-pad.b);ctx.lineTo(W-pad.r,H-pad.b);ctx.stroke();
+
+    // Y-axis labels
+    ctx.fillStyle='rgba(0,0,0,0.38)';ctx.font=`9px 'Inter',sans-serif`;ctx.textAlign='right';
+    [[0,'0'],[.5,'0.5'],[1,'1']].forEach(([v,lbl])=>{
+      const y=H-pad.b-(v*(H-pad.t-pad.b));
+      ctx.fillText(lbl,pad.l-4,y+3.5);
+      // tick
+      ctx.strokeStyle='rgba(0,0,0,0.1)';ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(pad.l-3,y);ctx.lineTo(pad.l,y);ctx.stroke();
+    });
+
+    // Y-axis title (rotated)
+    ctx.save();ctx.translate(10,H/2);ctx.rotate(-Math.PI/2);
+    ctx.fillStyle='rgba(0,0,0,0.32)';ctx.font=`9px 'Inter',sans-serif`;ctx.textAlign='center';
+    ctx.fillText('P(heads)',0,0);ctx.restore();
+
+    // X-axis label
+    ctx.fillStyle='rgba(0,0,0,0.32)';ctx.font=`9px 'Inter',sans-serif`;ctx.textAlign='center';
+    ctx.fillText('flips',W/2+pad.l/2,H-2);
+
+    // 0.5 dashed line
+    const y05=H-pad.b-.5*(H-pad.t-pad.b);
+    ctx.setLineDash([4,4]);ctx.strokeStyle='rgba(0,0,0,0.13)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad.l,y05);ctx.lineTo(W-pad.r,y05);ctx.stroke();
+    ctx.setLineDash([]);
+
+    if(n===0)return;
+
+    // Running average line
+    ctx.beginPath();ctx.strokeStyle='#111';ctx.lineWidth=1.4;
+    let sum=0;
+    flips.forEach((f,i)=>{
+      sum+=f;const avg=sum/(i+1);
+      const x=pad.l+(i/Math.max(n-1,1))*(W-pad.l-pad.r);
+      const y=H-pad.b-avg*(H-pad.t-pad.b);
+      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    });
+    ctx.stroke();
+  }
+
+  function tick(){
+    frameCount++;
+    if(frameCount%flipInterval===0){
+      if(flips.length<MAX_FLIPS) addFlip();
+      else{
+        // hold for ~2.5s (150 frames) then reset
+        if(frameCount%(flipInterval*13)===0){flips=[];frameCount=0;}
+      }
+    }
+    draw();
+    animId=requestAnimationFrame(tick);
+  }
+
+  function init(){fitCanvas(canvas);tick();}
+  window.addEventListener('load',init);
+  window.addEventListener('resize',()=>fitCanvas(canvas));
+})();
+</script>
 </body>
-
 </html>
