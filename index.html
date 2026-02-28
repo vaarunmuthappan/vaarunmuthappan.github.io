@@ -360,7 +360,6 @@ function fitCanvas(canvas){
   const canvas=document.getElementById('sig');
   const ctx=canvas.getContext('2d');
   let stat=0,dir=1,pauseFrames=0,pausing=false,animId;
-  const Z_CRIT=1.96;
   const XMIN=-3.8,XMAX=3.8,STEPS=300;
 
   function draw(z){
@@ -368,7 +367,6 @@ function fitCanvas(canvas){
     ctx.clearRect(0,0,W,H);
     const pad={l:6,r:6,t:8,b:6};
     const pval=2*normCDF(-Math.abs(z));
-    const sig=pval<.05;
 
     const toX=v=>pad.l+((v-XMIN)/(XMAX-XMIN))*(W-pad.l-pad.r);
     const toY=v=>{
@@ -376,7 +374,7 @@ function fitCanvas(canvas){
       return H-pad.b-(v/maxD)*(H-pad.t-pad.b)*.9;
     };
 
-    // Rejection region fill
+    // Shade the p-value tail area (beyond current |stat|)
     function shadedTail(from,to,alpha){
       ctx.beginPath();let first=true;
       for(let i=0;i<=STEPS;i++){
@@ -391,15 +389,10 @@ function fitCanvas(canvas){
       ctx.closePath();ctx.fillStyle=`rgba(17,17,17,${alpha})`;ctx.fill();
     }
 
-    // Fixed rejection regions
-    shadedTail(XMIN,-Z_CRIT,0.10);
-    shadedTail(Z_CRIT,XMAX,0.10);
-
     // P-value tail highlight (beyond |stat|)
     if(Math.abs(z)>.1){
-      const alpha=sig?.28:.07;
-      shadedTail(Math.abs(z),XMAX,alpha);
-      shadedTail(XMIN,-Math.abs(z),alpha);
+      shadedTail(Math.abs(z),XMAX,0.15);
+      shadedTail(XMIN,-Math.abs(z),0.15);
     }
 
     // Normal curve
@@ -412,22 +405,18 @@ function fitCanvas(canvas){
 
     // Stat line
     if(Math.abs(z)>.05){
-      ctx.strokeStyle=sig?'rgba(17,17,17,.85)':'rgba(17,17,17,.3)';
+      ctx.strokeStyle='rgba(17,17,17,.55)';
       ctx.lineWidth=1.2;ctx.setLineDash([3,3]);
       ctx.beginPath();ctx.moveTo(toX(z),pad.t+14);ctx.lineTo(toX(z),H-pad.b);
       ctx.stroke();ctx.setLineDash([]);
     }
 
     // ── P-value text inside canvas ──
-    const pStr=pval<.001?'p < 0.001':`p = ${pval.toFixed(3)}`;
-    const sigStr=sig?'significant':'not sig.';
-    ctx.font=`600 12px 'Inter',sans-serif`;
-    ctx.fillStyle=sig?'rgba(17,17,17,.88)':'rgba(17,17,17,.38)';
+    const pStr=pval<.001?'p(data|H₀) < 0.001':`p(data|H₀) = ${pval.toFixed(3)}`;
+    ctx.font=`500 11px 'Inter',sans-serif`;
+    ctx.fillStyle='rgba(17,17,17,.6)';
     ctx.textAlign='center';
-    ctx.fillText(pStr,W/2,pad.t+12);
-    ctx.font=`10px 'Inter',sans-serif`;
-    ctx.fillStyle=sig?'rgba(17,17,17,.55)':'rgba(17,17,17,.25)';
-    ctx.fillText(sigStr,W/2,pad.t+24);
+    ctx.fillText(pStr,W/2,pad.t+14);
   }
 
   function tick(){
