@@ -1,0 +1,476 @@
+/* home.css: landing page layout and the Posterior Ridge figure (INDEX.FIG001) */
+
+/* ---------- Hero layout ---------- */
+.hero {
+    --h1: 80px;
+    max-width: calc(var(--container) + 2 * var(--gutter));
+    margin: 0 auto;
+    padding: 48px var(--gutter) 96px;
+}
+
+.hero-name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--h1);
+    line-height: .92;
+    letter-spacing: -.015em;
+    color: var(--ink);
+    margin: 0 0 28px;
+}
+
+.lead {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0 0 20px;
+}
+
+.bio {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin: 0 0 12px;
+}
+
+.bio-last { margin-bottom: 32px; }
+
+@media (min-width: 1100px) {
+    .hero {
+        --h1: clamp(86px, 7.8vw, 112px);
+        display: grid;
+        grid-template-columns: minmax(360px, 456px) minmax(0, 1fr);
+        grid-template-rows: auto auto auto auto 1fr;
+        column-gap: 72px;
+    }
+    .hero > * { grid-column: 1; }
+    .hero > .ridge {
+        grid-column: 2;
+        grid-row: 1 / 6;
+        /* align the figure's top rule with the h1 cap line */
+        margin-top: calc(var(--h1) * .08);
+    }
+    .sections { align-self: start; }
+}
+
+@media (min-width: 1100px) and (max-height: 820px) {
+    .hero { padding-top: 28px; }
+    .hero .ridge-plot { margin-bottom: 4px; }
+}
+
+@media (max-width: 1099px) {
+    .ridge { max-width: 672px; margin-bottom: 32px; }
+    .lead { margin-bottom: 28px; }
+}
+
+@media (min-width: 720px) and (max-width: 1099px) {
+    .lead, .bio, .sections { max-width: 620px; }
+}
+
+@media (max-width: 719px) {
+    .hero {
+        --h1: clamp(52px, 15.4vw, 64px);
+        padding-top: 24px;
+        padding-bottom: 64px;
+    }
+    .ridge { padding-top: 8px; }
+    .hero-name { margin-bottom: 16px; }
+    .lead { font-size: 18px; margin-bottom: 24px; }
+}
+
+/* ---------- Link rows ---------- */
+.sections { border-top: 1px solid var(--rule); }
+
+.sections .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 64px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.row-text { display: flex; flex-direction: column; min-width: 0; }
+
+.row-title {
+    font-size: 17px;
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--ink);
+    transition: color var(--dur-hover) var(--ease-out);
+}
+
+.row-desc {
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--muted);
+}
+
+.row-arrow {
+    color: var(--muted);
+    font-size: 16px;
+    transition: transform var(--dur-hover) var(--ease-out);
+}
+
+.sections .row:hover .row-title { color: var(--accent); }
+.sections .row:hover .row-arrow { transform: translateX(6px); }
+
+/* ---------- Figure ---------- */
+.ridge {
+    margin: 0;
+    min-width: 0;
+    padding: 12px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    container-type: inline-size;
+    font-variant-numeric: tabular-nums;
+}
+
+.ridge-title,
+.ridge-values dt,
+.ridge-prior legend {
+    font-family: var(--font-text);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.ridge-title { line-height: 20px; margin: 0 0 8px; }
+
+.ridge-readout { margin-bottom: 12px; }
+
+.ridge-static {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-2);
+}
+
+.ridge-values {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 28px;
+    row-gap: 6px;
+    margin: 0;
+}
+
+.ridge-values dt { line-height: 14px; margin-bottom: 4px; }
+
+.ridge-values dd {
+    margin: 0;
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+}
+
+.rv-seen dd, .rv-yn dd { min-width: 3.6em; }
+.rv-post dd { min-width: 6.2em; }
+.rv-mean dd { min-width: 3em; }
+
+@container (max-width: 559px) {
+    .ridge-values {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        column-gap: 20px;
+    }
+    .ridge-values { row-gap: 4px; }
+    .ridge-values dt { line-height: 13px; margin-bottom: 2px; }
+    .ridge-values dd { font-size: 17px; line-height: 20px; }
+    .rv-ci { grid-column: span 2; }
+}
+
+/* Slider and observation tape */
+.ridge-scrub {
+    --inset: 10px;
+    position: relative;
+    touch-action: pan-y;
+    height: 44px;
+    margin-bottom: 8px;
+}
+
+.ridge-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 34px;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    touch-action: pan-y;
+    cursor: pointer;
+}
+
+.ridge-slider::-webkit-slider-runnable-track {
+    height: 1px;
+    background: var(--track);
+    border: 0;
+}
+
+.ridge-slider::-moz-range-track {
+    height: 1px;
+    background: var(--track);
+    border: 0;
+}
+
+.ridge-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    margin-top: -9.5px;
+    border-radius: 999px;
+    background: var(--ink);
+    border: 2px solid var(--paper);
+}
+
+.ridge-slider::-moz-range-thumb {
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    background: var(--ink);
+    border: 2px solid var(--paper);
+}
+
+/* focus shows on the thumb only: its 2px paper border plus a 2px paper and a 2px accent ring */
+.ridge-slider:focus-visible { outline: none; }
+.ridge-slider:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--accent); }
+.ridge-slider:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--accent); }
+@media (forced-colors: active) {
+    .ridge-slider:focus-visible { outline: 2px solid CanvasText; outline-offset: 2px; }
+}
+
+.ridge-tape {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 34px;
+    height: 10px;
+    pointer-events: none;
+}
+
+.ridge-tape .mk {
+    position: absolute;
+    top: 50%;
+    left: calc(var(--inset) + (var(--i) - .5) / 48 * (100% - 2 * var(--inset)));
+    width: 2px;
+    height: 2px;
+    margin: -1px 0 0 -1px;
+    border-radius: 50%;
+    background: var(--ghost);
+}
+
+.ridge-tape .mk.on {
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    background: transparent;
+    border: 1.25px solid var(--ink);
+}
+
+.ridge-tape .mk.on.y { background: var(--ink); }
+
+/* Coarse pointers: the track ignores touches; only the thumb (44px hit area) drags.
+   The hit area overlaps the tape row, so it adds no layout height. */
+.ridge-thumbhit { display: none; }
+
+@media (pointer: coarse) {
+    .ridge-scrub { --inset: 12px; }
+    .ridge-slider { pointer-events: none; }
+    .ridge-slider::-webkit-slider-thumb { width: 24px; height: 24px; margin-top: -11.5px; }
+    .ridge-slider::-moz-range-thumb { width: 24px; height: 24px; }
+    .ridge-thumbhit {
+        display: block;
+        position: absolute;
+        top: -5px;
+        left: calc(var(--inset) + var(--n, 48) / 48 * (100% - 2 * var(--inset)) - 22px);
+        width: 44px;
+        height: 44px;
+        touch-action: pan-y;
+    }
+}
+
+/* Plot */
+.ridge-plot {
+    position: relative;
+    aspect-ratio: 672 / 512;
+    margin-bottom: 8px;
+    touch-action: pan-y;
+}
+
+.ridge-fallback,
+.ridge-svg {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: visible;
+}
+
+.ridge-fallback { object-fit: contain; object-position: left top; }
+
+.ridge-svg {
+    cursor: ns-resize;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: var(--font-text);
+}
+
+.ridge-svg text { fill: var(--muted); font-size: 11px; font-weight: 500; }
+.ridge-svg .tag { fill: var(--accent); font-size: 12px; font-weight: 600; }
+.ridge-svg .t.hid { display: none; }
+
+.ridge-svg .f { fill: var(--paper); }
+.ridge-svg .l,
+.ridge-svg .m,
+.ridge-svg .g,
+.ridge-svg .ref { fill: none; vector-effect: non-scaling-stroke; }
+.ridge-svg .l { stroke: var(--ink); stroke-width: 1; stroke-linejoin: round; }
+.ridge-svg .cur .l { stroke: var(--accent); stroke-width: 2; }
+.ridge-svg .b { fill: var(--accent); fill-opacity: .18; display: none; }
+.ridge-svg .m { stroke: var(--accent); stroke-width: 1.5; display: none; }
+.ridge-svg .cur .b,
+.ridge-svg .cur .m { display: inline; }
+.ridge-svg .g { stroke: var(--ghost); stroke-width: 1; display: none; }
+.ridge-svg .un .g { display: inline; }
+.ridge-svg .ref { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 4; opacity: .7; }
+
+.ridge-svg .c { opacity: 0; transition: opacity var(--dur-reveal) var(--ease-out); }
+.ridge-svg .on .c { opacity: 1; }
+.ridge-svg .rg { transition: opacity 100ms linear; }
+.ridge-svg.instant .c,
+.ridge-svg.instant .rg { transition: none; }
+
+/* Options row */
+.ridge-options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 16px;
+    min-height: 32px;
+    margin-bottom: 8px;
+}
+
+.ridge-prior {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+}
+
+.ridge-prior legend {
+    float: left;
+    padding: 0;
+    margin-right: 12px;
+    line-height: 32px;
+}
+
+.seg { display: flex; flex-wrap: wrap; }
+
+.seg label { position: relative; display: inline-flex; }
+.seg label + label { margin-left: -1px; }
+
+.seg input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.seg span,
+.ridge-replay {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 12px;
+    border: 1px solid var(--track);
+    font-family: var(--font-text);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--ink-2);
+    white-space: nowrap;
+}
+
+.seg input:checked + span {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+}
+
+.seg input:focus-visible + span {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    position: relative;
+}
+
+.ridge-replay {
+    border-radius: 2px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color var(--dur-hover);
+}
+
+.ridge-replay:hover { border-color: var(--ink); }
+
+.ridge figcaption {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+@media (max-width: 719px) {
+    .ridge-tape .mk.on { width: 4px; height: 4px; margin: -2px 0 0 -2px; border-width: 1px; }
+    .ridge-svg .tag { font-size: 10px; }
+    html.js .ridge-plot { aspect-ratio: 350 / 372; }
+    .seg span, .ridge-replay { height: 44px; }
+    .ridge-prior legend { float: none; line-height: 20px; margin-bottom: 4px; }
+}
+
+@media (max-width: 479px) {
+    .seg span, .ridge-replay { padding: 0 10px; font-size: 12px; }
+}
+
+/* ---------- JS states ----------
+   no JS: static readout + static SVG; controls stay [hidden].
+   js, before init: controls reserve their space invisibly (no layout shift).
+   ridge-failed (not initialised within 1500ms): back to the static fallback. */
+html:not(.js) .ridge [hidden] { display: none !important; }
+html.js .ridge [hidden] { visibility: hidden; }
+html.ridge-live .ridge [hidden] { display: none; }
+html.js .ridge-static,
+html.js .ridge-fallback { display: none; }
+html.js.ridge-live .ridge-svg { display: block; }
+
+html.ridge-failed .ridge-static,
+html.ridge-failed .ridge-fallback { display: block; }
+html.ridge-failed .ridge-values,
+html.ridge-failed .ridge-scrub,
+html.ridge-failed .ridge-options,
+html.ridge-failed .ridge-svg { display: none !important; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .ridge-svg .c,
+    .ridge-svg .rg,
+    .row-arrow,
+    .row-title { transition: none; }
+    .sections .row:hover .row-arrow { transform: none; }
+}

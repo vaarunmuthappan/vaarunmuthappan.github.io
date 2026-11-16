@@ -1,6 +1,24 @@
-/* styles.css — Editorial Theme */
+/* styles.css — shared tokens, fonts, base type, header */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+/* ============================================================
+   Fonts (SIL OFL 1.1; licences in assets/fonts/)
+   ============================================================ */
+@font-face {
+    font-family: 'Instrument Serif';
+    src: url('assets/fonts/InstrumentSerif-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('assets/fonts/InterVariable.woff2') format('woff2-variations'),
+         url('assets/fonts/InterVariable.woff2') format('woff2');
+    font-weight: 400 600;
+    font-style: normal;
+    font-display: swap;
+}
 
 /* ============================================================
    Reset & Base
@@ -10,20 +28,52 @@
 }
 
 :root {
-    --bg:     #fafaf8;
-    --text:   #111111;
-    --text-2: #555555;
-    --text-3: #999999;
-    --rule:   #e5e5e5;
-    --accent: #111111;
+    /* Colour */
+    --paper:  #F6F3EC;
+    --ink:    #14161A;
+    --ink-2:  #474A50;
+    --muted:  #63676E;
+    --rule:   #DDD8CC;
+    --ghost:  #CFC9BB;
+    --track:  #8A8578;
+    --accent: #2438D8;
+    --signal: var(--accent);
     --highlight-bg: rgba(180,140,11,0.08);
     --highlight:    #b8860b;
+
+    /* Old names, aliased so existing rules resolve */
+    --bg:     var(--paper);
+    --text:   var(--ink);
+    --text-2: var(--ink-2);
+    --text-3: var(--muted);
+
+    /* Type */
+    --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+    --font-text: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+    /* Layout */
+    --container: 1200px;
+    --gutter: 48px;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --dur-reveal: 110ms;
+    --dur-hover: 160ms;
+    --dur-swap: 200ms;
+}
+
+@media (max-width: 1099px) {
+    :root { --gutter: 32px; }
+}
+
+@media (max-width: 719px) {
+    :root { --gutter: 20px; }
 }
 
 body {
-    font-family: 'Inter', -apple-system, sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
+    font-family: var(--font-text);
+    font-size: 16px;
+    line-height: 1.65;
     color: var(--text);
     background: var(--bg);
     margin: 0;
@@ -32,66 +82,117 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Global focus ring: never removed */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* ============================================================
    Header & Navigation
    ============================================================ */
 header {
-    padding: 0 3rem;
+    padding: 0 var(--gutter);
     border-bottom: 1px solid var(--rule);
     background: var(--bg);
 }
 
 .header-nav {
-    max-width: 1020px;
+    max-width: var(--container);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 56px;
+    height: 64px;
 }
 
 .logo {
-    font-size: .875rem;
+    font-size: 14px;
     font-weight: 600;
-    color: var(--text);
+    line-height: 1.3;
+    color: var(--ink);
     text-decoration: none;
-    letter-spacing: .04em;
+    letter-spacing: .06em;
     text-transform: uppercase;
 }
 
 .logo:hover {
-    color: var(--text);
+    color: var(--ink);
     text-decoration: none;
 }
 
 .nav-right {
     display: flex;
-    gap: 2rem;
+    gap: 32px;
 }
 
 .nav-right a {
-    color: var(--text-2);
-    font-size: .8125rem;
+    color: var(--ink-2);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
     text-decoration: none;
-    letter-spacing: .01em;
-    transition: color .15s;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 1px;
+    transition: color var(--dur-hover);
 }
 
-.nav-right a:hover {
-    color: var(--text);
+.nav-right a:hover,
+.nav-right a[aria-current="page"] {
+    color: var(--ink);
+    text-decoration: underline;
+}
+
+@media (max-width: 479px) {
+    .header-nav {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        height: 48px;
+    }
+
+    .nav-right {
+        height: 40px;
+        gap: 24px;
+        align-items: center;
+    }
+
+    .nav-right a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        margin: -2px 0;
+    }
 }
 
 /* ============================================================
    Typography
    ============================================================ */
 h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 2.25rem;
-    font-weight: 700;
-    letter-spacing: -.02em;
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -.015em;
     color: var(--text);
     margin: 0 0 .875rem;
-    line-height: 1.12;
+    line-height: 1.1;
 }
 
 h2 {
@@ -128,84 +229,119 @@ li {
 }
 
 a {
-    color: var(--text);
+    color: var(--ink);
     text-decoration: underline;
     text-underline-offset: 2px;
+    transition: color var(--dur-hover);
 }
 
 a:hover {
-    color: var(--text-2);
+    color: var(--accent);
+}
+
+/* ============================================================
+   Shared container: content starts under the logo
+   ============================================================ */
+.page-header,
+.listing,
+.page-layout,
+.container {
+    max-width: calc(var(--container) + 2 * var(--gutter));
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+}
+
+.container {
+    padding-top: 56px;
+    padding-bottom: 80px;
 }
 
 /* ============================================================
    Listing Pages  (courses.html / projects.html)
    ============================================================ */
 .page-header {
+    padding-top: 56px;
+}
+
+/* header rule shares the 760px list column */
+.page-header::after {
+    content: "";
+    display: block;
     max-width: 760px;
-    margin: 0 auto;
-    padding: 3.5rem 3rem 0;
+    margin-top: 24px;
     border-bottom: 1px solid var(--rule);
-    padding-bottom: 1.5rem;
-    margin-bottom: 0;
 }
 
 .page-header h1 {
-    font-size: 2rem;
-    margin-bottom: .25rem;
+    font-size: 48px;
+    line-height: 1.05;
+    margin-bottom: 8px;
 }
 
 .page-header p {
-    color: var(--text-3);
+    color: var(--muted);
     margin: 0;
-    font-size: .875rem;
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 760px;
 }
 
-/* Listing rows */
+/* Listing rows: same component as the landing link rows */
 .listing {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 3rem 5rem;
+    padding-bottom: 80px;
 }
 
 .list-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: 1.125rem 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 16px;
+    max-width: 760px;
+    min-height: 64px;
+    padding: 10px 0;
     border-bottom: 1px solid var(--rule);
     text-decoration: none;
-    color: var(--text);
-    transition: color .15s;
-    gap: 2rem;
+    color: var(--ink);
 }
 
-.list-row:first-child {
-    border-top: none;
+.list-row::after {
+    content: "\2192";
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    color: var(--muted);
+    font-size: 16px;
+    transition: transform var(--dur-hover) var(--ease-out);
 }
 
 .list-row:hover {
-    color: var(--text-2);
+    color: var(--ink);
     text-decoration: none;
 }
 
-.list-row:hover .list-title {
-    color: var(--text-2);
-}
-
 .list-title {
-    font-size: .9375rem;
-    font-weight: 500;
-    color: var(--text);
-    flex: 1;
+    grid-column: 1;
+    font-size: 17px;
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--ink);
     min-width: 0;
-    transition: color .15s;
+    transition: color var(--dur-hover) var(--ease-out);
 }
 
 .list-meta {
-    font-size: .8125rem;
-    color: var(--text-3);
-    flex-shrink: 0;
-    white-space: nowrap;
+    grid-column: 1;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--muted);
+}
+
+.list-row:hover .list-title { color: var(--accent); }
+.list-row:hover::after { transform: translateX(6px); }
+
+@media (prefers-reduced-motion: reduce) {
+    a, .list-title, .list-row::after { transition: none; }
+    .list-row:hover::after { transform: none; }
 }
 
 /* Legacy card-grid / card-link (fallback, kept for compat) */
@@ -249,15 +385,14 @@ a:hover {
    ============================================================ */
 .page-layout {
     display: flex;
-    max-width: 1020px;
-    margin: 0 auto;
-    padding: 2.5rem 3rem 5rem;
-    gap: 3.5rem;
+    padding-top: 40px;
+    padding-bottom: 80px;
+    gap: 56px;
     align-items: flex-start;
 }
 
 .sidebar {
-    width: 190px;
+    width: 220px;
     flex-shrink: 0;
     position: sticky;
     top: 72px;
@@ -323,7 +458,8 @@ a:hover {
 
 .course-header h1 {
     margin-bottom: .375rem;
-    font-size: 2rem;
+    font-size: 40px;
+    line-height: 1.1;
 }
 
 .course-meta {
@@ -448,30 +584,38 @@ section {
    Responsive
    ============================================================ */
 @media (max-width: 768px) {
-    header {
-        padding: 0 1.25rem;
-    }
-
     .page-header {
-        padding: 2.5rem 1.25rem 1.25rem;
+        padding-top: 40px;
     }
 
     .listing {
-        padding: 0 1.25rem 3rem;
+        padding-bottom: 48px;
     }
 
     .page-layout {
         flex-direction: column;
-        gap: 1.5rem;
-        padding: 1.5rem 1.25rem 3rem;
+        gap: 24px;
+        padding-top: 24px;
+        padding-bottom: 48px;
+    }
+
+    .content {
+        width: 100%;
     }
 
     .sidebar {
         width: 100%;
         position: static;
     }
+}
 
-    h1 {
-        font-size: 1.75rem;
+@media (max-width: 719px) {
+    h1,
+    .course-header h1 {
+        font-size: 32px;
+    }
+
+    .page-header h1 {
+        font-size: 36px;
     }
 }
