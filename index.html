@@ -5,81 +5,102 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vaarun Muthappan — Data scientist, Bayesian statistics</title>
 <meta name="description" content="Vaarun Muthappan is a data scientist at Paramount working on Bayesian statistics. Notes and projects in statistics, machine learning, and data science.">
-<script>document.documentElement.className+=' js';setTimeout(function(){var d=document.documentElement;if(!/\bridge-live\b/.test(d.className))d.className+=' ridge-failed'},1500)</script>
-<link rel="preload" href="assets/fonts/InstrumentSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css">
+<script>(function(d){d.className+=' js';setTimeout(function(){if(/\bsheet-live\b/.test(d.className))return;d.className+=' sheet-failed';[].forEach.call(document.querySelectorAll('[data-still]'),function(e){if(e.querySelector('img.still'))return;var i=new Image(),n=e.getAttribute('data-still-n');i.alt='';i.className='still';i.src=n&&matchMedia('(max-width: 719px)').matches?n:e.getAttribute('data-still');e.appendChild(i)})},1500)})(document.documentElement)</script>
+<link rel="preload" href="assets/fonts/EBGaramond-Roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="sheet.css">
 <link rel="stylesheet" href="home.css">
+<script src="bayes.js" defer></script>
+<script src="hand.js" defer></script>
+<script src="studies.js" defer></script>
 <script src="home.js" defer></script>
 </head>
 <body class="home">
+<a class="skip" href="#main">Skip to content</a>
 
-<header>
-  <nav class="header-nav" aria-label="Primary">
-    <a href="index.html" class="logo">Vaarun Muthappan</a>
-    <div class="nav-right">
-      <a href="courses.html">Concept Notes</a>
-      <a href="projects.html">Project Notes</a>
-    </div>
-  </nav>
-</header>
+<main class="sheet" id="main">
+  <!-- Field I -->
+  <h1 class="name"><a href="index.html"><span class="bl"></span>Vaarun <br><span class="bl"></span>Muthappan</a><span class="guides" aria-hidden="true"></span></h1>
 
-<main class="hero">
-  <h1 class="hero-name">Vaarun<br>Muthappan</h1>
   <p class="lead">I'm a data scientist at Paramount, working on Bayesian statistics. This site collects my notes and projects in statistics, machine learning, and data science.</p>
 
+  <div class="study mini" aria-hidden="true" data-still="assets/studies/s1-mini.svg"><noscript><img class="still" src="assets/studies/s1-mini.svg" alt=""></noscript></div>
+
+  <nav class="dests" aria-label="Sections">
+    <a class="dest dest-c" href="courses.html">
+      <span class="study s3" aria-hidden="true" data-still="assets/studies/s3-icosahedron.svg"><noscript><img class="still" src="assets/studies/s3-icosahedron.svg" alt=""></noscript></span>
+      <span class="dl"><span class="dt">Concept Notes</span><span class="dd">Statistics, machine learning, data science.</span><span class="ir" aria-hidden="true"></span></span>
+    </a>
+    <a class="dest dest-p" href="projects.html">
+      <span class="study s4" aria-hidden="true" data-still="assets/studies/s4-hoist.svg"><noscript><img class="still" src="assets/studies/s4-hoist.svg" alt=""></noscript></span>
+      <span class="dl"><span class="dt">Project Notes</span><span class="dd">Write-ups and analyses from projects.</span><span class="ir" aria-hidden="true"></span></span>
+    </a>
+  </nav>
+
+  <!-- Field II -->
   <figure class="ridge" id="ridge" aria-labelledby="ridge-title">
     <h2 class="ridge-title" id="ridge-title">Bayesian updating on synthetic data</h2>
+    <p class="ridge-static">After all 48 observations (14 yes, 34 no), a flat prior gives the posterior Beta(15, 35), mean 0.30.</p>
 
-    <div class="ridge-readout">
-      <p class="ridge-static">After all 48 observations (14 yes, 34 no), a flat prior gives the posterior Beta(15, 35), mean 0.30.</p>
+    <div class="frame" data-still="assets/studies/s1-apparatus-wide.svg" data-still-n="assets/studies/s1-apparatus-narrow.svg">
+      <noscript><picture><source media="(max-width: 719px)" srcset="assets/studies/s1-apparatus-narrow.svg"><img class="still" src="assets/studies/s1-apparatus-wide.svg" alt=""></picture></noscript>
+      <div class="hud" aria-hidden="true">
+        <span class="xt" style="--t:0">0</span>
+        <span class="xt" style="--t:0.25">0.25</span>
+        <span class="xt" style="--t:0.5">0.5</span>
+        <span class="xt" style="--t:0.75">0.75</span>
+        <span class="xt" style="--t:1">1</span>
+        <span class="axt">θ, the underlying rate</span>
+        <span class="rt" style="--r:0">0</span>
+        <span class="rt" style="--r:12">12</span>
+        <span class="rt" style="--r:24">24</span>
+        <span class="rt" style="--r:36">36</span>
+        <span class="rt" style="--r:48">48</span>
+        <span class="handle">n = 48</span>
+      </div>
       <dl class="ridge-values" hidden>
-        <div class="rv rv-seen"><dt>Seen</dt><dd data-out="seen">48 / 48</dd></div>
-        <div class="rv rv-yn"><dt>Yes / no</dt><dd data-out="yn">14 / 34</dd></div>
-        <div class="rv rv-post"><dt>Posterior</dt><dd data-out="post">Beta(15, 35)</dd></div>
-        <div class="rv rv-mean"><dt>Mean</dt><dd data-out="mean">0.300</dd></div>
-        <div class="rv rv-ci"><dt>90% credible interval</dt><dd data-out="ci">0.20 – 0.41</dd></div>
+        <div class="rv rv-seen"><dt><svg class="key" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><rect x="5.5" y="1.5" width="5" height="10" fill="none"/><path d="M8 1.5v10M8 11.5v1.5"/><circle cx="8" cy="14.2" r="1.3" fill="none"/></svg>Seen</dt><dd data-out="seen">48 / 48</dd></div>
+        <div class="rv rv-yn"><dt><svg class="key" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><circle cx="4.5" cy="8" r="3" class="fill"/><circle cx="11.5" cy="8" r="3" fill="none"/></svg>Yes / no</dt><dd data-out="yn">14 / 34</dd></div>
+        <div class="rv rv-post"><dt><svg class="key" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path d="M1 8C4 3.2 10.5 2.6 15 8C10.5 13.4 4 12.8 1 8Z" fill="none"/><path d="M6.4 4.4A1 3.6 0 0 0 6.4 11.6M10 4.1A1 3.9 0 0 0 10 11.9" fill="none" stroke-opacity=".6"/></svg>Posterior</dt><dd data-out="post">Beta(15, 35)</dd></div>
+        <div class="rv rv-mean"><dt><svg class="key" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path d="M2 3.5H14" /><path d="M8 3.5L12 9H4Z M6.5 9V13M9.5 9V13M4.5 13H11.5V14.5H4.5Z" fill="none"/></svg>Mean</dt><dd data-out="mean">0.300</dd></div>
+        <div class="rv rv-ci"><dt><svg class="key" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path class="sang" d="M1.5 2.5V13.5M14.5 2.5V13.5M1.5 8H14.5M4.5 6L1.5 8L4.5 10M11.5 6L14.5 8L11.5 10" fill="none"/></svg>90% credible interval</dt><dd data-out="ci">0.20 – 0.41</dd></div>
       </dl>
-    </div>
-
-    <div class="ridge-scrub" hidden>
-      <label class="sr-only" for="ridge-n">Observations seen</label>
-      <input class="ridge-slider" type="range" id="ridge-n" min="0" max="48" step="1" value="48">
-      <div class="ridge-tape" aria-hidden="true"></div>
-      <span class="ridge-thumbhit" aria-hidden="true"></span>
-    </div>
-
-    <div class="ridge-plot">
-      <img class="ridge-fallback" src="assets/ridge-flat-48.svg" alt="" width="672" height="512" loading="lazy" decoding="async">
+      <span class="plinth-hit" aria-hidden="true"></span>
+      <div class="ridge-scrub" hidden>
+        <label class="sr-only" for="ridge-n">Observations seen</label>
+        <input class="ridge-slider" type="range" id="ridge-n" min="0" max="48" step="1" value="48">
+        <span class="rail-hit" aria-hidden="true"></span>
+      </div>
+      <div class="plumb" aria-hidden="true" data-still="assets/studies/s5-plumb.svg"><span class="gen">generating rate 0.30</span><noscript><img class="still" src="assets/studies/s5-plumb.svg" alt=""></noscript></div>
     </div>
 
     <div class="ridge-options" hidden>
       <fieldset class="ridge-prior">
         <legend>Prior</legend>
-        <div class="seg">
-          <label><input type="radio" name="ridge-prior" value="flat" checked><span>Flat, Beta(1, 1)</span></label>
-          <label><input type="radio" name="ridge-prior" value="centred"><span>Centred on 0.5, Beta(10, 10)</span></label>
+        <div class="lever-row">
+          <svg class="lever" aria-hidden="true" focusable="false" viewBox="0 0 72 72"><path class="quad" d="M53 11.62A46 46 0 0 1 53 60.38" fill="none"/><path class="notch" d="M56.65 18.77L60.36 17.27M56.65 53.23L60.36 54.73" fill="none"/><g class="arm"><path d="M19 36H49" fill="none"/><path d="M19 34.6L49 35.2M19 37.4L49 36.8" fill="none" stroke-opacity=".5"/><circle class="knob" cx="54" cy="36" r="5"/></g><circle cx="14" cy="36" r="5" class="pivot"/><circle cx="14" cy="36" r="1.4" class="fill"/></svg>
+          <label class="p-flat"><input type="radio" name="ridge-prior" value="flat" checked><span>Flat, Beta(1, 1)</span></label>
+          <label class="p-cent"><input type="radio" name="ridge-prior" value="centred"><span>Centred on 0.5, Beta(10, 10)</span></label>
         </div>
       </fieldset>
-      <button class="ridge-replay" type="button">Replay</button>
+      <button class="ridge-replay" type="button"><svg class="crank" aria-hidden="true" focusable="false" viewBox="0 0 44 44"><circle cx="22" cy="22" r="5" fill="none"/><circle cx="22" cy="22" r="1.4" class="fill"/><g class="carm"><path d="M27 22H37" fill="none"/><circle cx="37" cy="22" r="2.2" class="fill"/><path d="M37 22V30" fill="none" stroke-width="2"/></g></svg><span>Replay</span></button>
     </div>
 
     <p class="sr-only ridge-announce" aria-live="polite"></p>
     <figcaption>Each line is the posterior for an unknown rate θ after one more yes/no observation, starting from the prior at the top. The 48 observations are synthetic: generated once at a rate of 0.30, then fixed. Shading marks the central 90% of the current posterior.</figcaption>
   </figure>
 
-  <p class="bio">My previous coursework includes Machine Learning in Finance, Reinforcement Learning, Causal Inference, Computer Vision, Big Data and Databases.</p>
-  <p class="bio bio-last">My background is in data science: I studied at the University of Michigan (bachelors, with a minor in Business) and at NYU (Masters).</p>
+  <!-- Field III -->
+  <p class="bio bio-a"><span class="brule" aria-hidden="true"></span>My previous coursework includes Machine Learning in Finance, Reinforcement Learning, Causal Inference, Computer Vision, Big Data and Databases.</p>
+  <p class="bio bio-b"><span class="brule" aria-hidden="true"></span>My background is in data science: I studied at the University of Michigan (bachelors, with a minor in Business) and at NYU (Masters).</p>
 
-  <nav class="sections" aria-label="Sections">
-    <a href="courses.html" class="row">
-      <span class="row-text"><span class="row-title">Concept Notes</span><span class="row-desc">Statistics, machine learning, data science.</span></span>
-      <span class="row-arrow" aria-hidden="true">&rarr;</span>
-    </a>
-    <a href="projects.html" class="row">
-      <span class="row-text"><span class="row-title">Project Notes</span><span class="row-desc">Write-ups and analyses from projects.</span></span>
-      <span class="row-arrow" aria-hidden="true">&rarr;</span>
-    </a>
+  <div class="study s2" aria-hidden="true" data-still="assets/studies/s2-golden.svg"><noscript><img class="still" src="assets/studies/s2-golden.svg" alt=""></noscript></div>
+
+  <div class="study s6-slot" aria-hidden="true" data-still="assets/studies/s6-toss.svg"><noscript><img class="still" src="assets/studies/s6-toss.svg" alt=""></noscript></div>
+
+  <nav class="closing" aria-label="Primary">
+    <a class="cl cl-c" href="courses.html"><span class="glyph" aria-hidden="true"></span><span class="cl-t">Concept Notes</span><span class="ir" aria-hidden="true"></span></a>
+    <a class="cl cl-p" href="projects.html"><span class="glyph" aria-hidden="true"></span><span class="cl-t">Project Notes</span><span class="ir" aria-hidden="true"></span></a>
   </nav>
 </main>
 

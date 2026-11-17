@@ -6,17 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction to DS</title>
+    <link rel="preload" href="../assets/fonts/EBGaramond-Roman.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../tokens.css">
+    <link rel="stylesheet" href="../sheet.css">
     <link rel="stylesheet" href="../styles.css">
+    <script>(function(d){d.className+=' js';setTimeout(function(){var c=d.className;if(!/\bsheet-live\b/.test(c))c+=' sheet-failed';if(!/\bnotes-live\b/.test(c))c=c.replace(/\bjs\b/,'');d.className=c},1500)})(document.documentElement)</script>
+    <script src="../bayes.js" defer></script>
+    <script src="../hand.js" defer></script>
+    <script src="../studies.js" defer></script>
+    <script src="../vignettes.js" defer></script>
+    <script src="../script.js" defer></script>
 </head>
 
-<body>
-    <header>
-        <nav class="header-nav">
-            <a href="../index.html" class="logo">Vaarun Muthappan</a>
-            <div class="nav-right">
-                <a href="../courses.html">Concept Notes</a>
-                <a href="../projects.html">Project Notes</a>
-            </div>
+<body class="article notes-page ids">
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="folio">
+        <a href="../index.html" class="name">Vaarun Muthappan<span class="ul" aria-hidden="true"></span></a>
+        <nav class="folio-nav" aria-label="Primary">
+            <a href="../courses.html" class="fl fl-c"><span class="glyph" aria-hidden="true"></span><span class="fl-t">Concept Notes</span><span class="ir" aria-hidden="true"></span></a>
+            <a href="../projects.html" class="fl fl-p"><span class="glyph" aria-hidden="true"></span><span class="fl-t">Project Notes</span><span class="ir" aria-hidden="true"></span></a>
         </nav>
     </header>
 
@@ -38,8 +46,9 @@
             </div>
         </aside>
 
-        <main class="content notes">
+        <main class="content notes" id="main">
             <div class="course-header">
+                <div class="hstudy" aria-hidden="true"></div>
                 <h1>Introduction to DS</h1>
                 <div class="course-meta">
                     <span>December 2024</span> ·
@@ -564,7 +573,7 @@
                     <div class="component">
                         <p><strong>Posterior</strong> = updated belief, \(p(A | B)\)</p>
                     </div>
-                    <img src="bayes.png" alt="Bayes' Factor Illustration">
+                    <span class="plate"><img src="bayes.png" alt="Bayes' Factor Illustration"></span>
 
                     <p>Now we cover the bayesian version of hypothesis testing, power and confidence intervals.</p>
 
@@ -797,9 +806,10 @@
                 </div>
             </div>
 
+            <div class="tailpiece" aria-hidden="true"></div>
         </main>
+        <div class="plumb-col" aria-hidden="true"><div class="plumb"></div></div>
     </div>
-    <script src="../script.js"></script>
 </body>
 
 </html>

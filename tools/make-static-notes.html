@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>make-static-notes: no-JS stills for the inner leaves (not linked from the site)</title>
+<style>body{font:14px/1.4 Georgia,serif;margin:24px;background:#F5F1E8;color:#2A2521}textarea{width:100%;height:70px;font:11px ui-monospace,monospace}figure{margin:0 0 24px;display:inline-block;vertical-align:top;width:300px}img{max-width:100%;height:auto;border:1px solid #d8d0c2;background:#F5F1E8}</style>
+</head>
+<body>
+<h1>Inner-leaf stills</h1>
+<p>Finished drawings from the generators the inner pages run (<code>hand.js</code>, <code>studies.js</code>, <code>vignettes.js</code>, <code>bayes.js</code>), for <code>assets/studies/</code> (files <code>v-*</code> and <code>p-*</code>). Deterministic. Read <code>window.STILLS</code> (name → SVG text) from a script, or copy each textarea.</p>
+<div id="out"></div>
+<script src="../bayes.js"></script>
+<script src="../hand.js"></script>
+<script src="../studies.js"></script>
+<script src="../vignettes.js"></script>
+<script>
+(function () {
+  var S = window.Studies, H = window.Hand, V = window.Vignettes, list = [
+    ['p-icosa.svg', S.icosa, 606], ['p-golden.svg', S.golden, 228], ['p-hoist.svg', S.hoist, 672],
+    ['p-icosa-256.svg', S.icosa, 256], ['p-hoist-256.svg', S.hoist, 256],
+    ['p-corner-tl.svg', V.corner('tl'), 28], ['p-corner-tr.svg', V.corner('tr'), 28], ['p-corner-bl.svg', V.corner('bl'), 28], ['p-corner-br.svg', V.corner('br'), 28]
+  ], out = document.getElementById('out');
+  Object.keys(V.ASSIGN).forEach(function (id) { list.push(['v-' + id + '.svg', V.vignette(id), 160]); });
+  window.STILLS = {};
+  list.forEach(function (it) {
+    var svg = H.still(it[1], it[2]).replace(/^<svg /, '<svg xmlns="http://www.w3.org/2000/svg" ').replace(/(<svg[^>]*?) xmlns="http:\/\/www.w3.org\/2000\/svg"([^>]*xmlns=)/, '$1$2');
+    window.STILLS[it[0]] = svg;
+    var f = document.createElement('figure'), t = document.createElement('textarea'), c = document.createElement('figcaption'), im = new Image();
+    c.textContent = 'assets/studies/' + it[0] + ' (' + svg.length + ' bytes)'; t.value = svg; im.alt = ''; im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    f.appendChild(c); f.appendChild(im); f.appendChild(t); out.appendChild(f);
+  });
+})();
+</script>
+</body>
+</html>

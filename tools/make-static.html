@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>make-static: no-JS stills for the sheet (not linked from the site)</title>
+<style>body{font:14px/1.4 Georgia,serif;margin:24px;background:#F5F1E8;color:#2A2521}textarea{width:100%;height:90px;font:11px ui-monospace,monospace}figure{margin:0 0 28px}img{max-width:100%;height:auto;border:1px solid #d8d0c2;background:#F5F1E8}</style>
+</head>
+<body>
+<h1>Sheet stills</h1>
+<p>Generates the finished drawings from the same generators the site runs (<code>hand.js</code>, <code>studies.js</code>, <code>bayes.js</code>), for <code>assets/studies/</code>. Each still is deterministic: the same file on every run. Save each textarea to its file name, or read <code>window.STILLS</code> (name → SVG text) from a script.</p>
+<div id="out"></div>
+<script src="../bayes.js"></script>
+<script src="../hand.js"></script>
+<script src="../studies.js"></script>
+<script>
+(function () {
+  var S = window.Studies, H = window.Hand, list = [
+    ['s2-golden.svg', S.golden, 380],
+    ['s3-icosahedron.svg', S.icosa, 360],
+    ['s4-hoist.svg', S.hoist, 448],
+    ['s5-plumb.svg', S.plumb(1, 100, true), 60],
+    ['s6-toss.svg', S.toss, 640],
+    ['s1-mini.svg', S.apparatus(false, { prior: 'flat', n: 48 }, { mini: true }), 380],
+    ['s1-apparatus-wide.svg', S.apparatus(false, { prior: 'flat', n: 48 }), 900],
+    ['s1-apparatus-narrow.svg', S.apparatus(true, { prior: 'flat', n: 48 }), 390]
+  ], out = document.getElementById('out');
+  window.STILLS = {};
+  list.forEach(function (it) {
+    var svg = H.still(it[1], it[2]).replace(/^<svg /, '<svg xmlns="http://www.w3.org/2000/svg" ').replace(/(<svg[^>]*?) xmlns="http:\/\/www.w3.org\/2000\/svg"([^>]*xmlns=)/, '$1$2');
+    // lighter files: drop what never renders (hidden layers, empty paths) and keep one decimal
+    var doc = new DOMParser().parseFromString(svg, 'image/svg+xml');
+    doc.querySelectorAll('[visibility="hidden"]').forEach(function (e) { e.remove(); });
+    doc.querySelectorAll('path').forEach(function (e) { var d = e.getAttribute('d'); if (!d) { e.remove(); return; } e.setAttribute('d', d.replace(/-?\d+\.\d+/g, function (m) { return String(Math.round(+m * 10) / 10); })); });
+    doc.querySelectorAll('[data-in]').forEach(function (e) { e.removeAttribute('data-in'); });
+    // hatch lines wholly outside their clip region never render: measure and drop them
+    var host = document.createElement('div'); host.style.cssText = 'position:absolute;left:-99999px;top:0';
+    var live = document.importNode(doc.documentElement, true); host.appendChild(live); document.body.appendChild(host);
+    live.querySelectorAll('g[clip-path]').forEach(function (g) {
+      var id = g.getAttribute('clip-path').replace(/^url\(#|\)$/g, ''), cp = live.getElementById ? live.querySelector('[id="' + id + '"]') : null;
+      if (!cp || !cp.firstElementChild) return;
+      var c = cp.firstElementChild.getBBox();
+      g.querySelectorAll('path').forEach(function (e) {
+        var b = e.getBBox();
+        if (b.x > c.x + c.width + 1 || b.x + b.width < c.x - 1 || b.y > c.y + c.height + 1 || b.y + b.height < c.y - 1) e.remove();
+        else { // hatch lines are near-straight: keep every second on-curve point as a polyline
+          var v = e.getAttribute('d').split(/[MC ]/).filter(Boolean), q = [v[0]];
+          for (var i = 3; i < v.length; i += 3) if ((i / 3) % 2 === 0 || i + 3 >= v.length) q.push(v[i]);
+          e.setAttribute('d', 'M' + q.join('L'));
+        }
+      });
+    });
+    document.body.removeChild(host); doc = { documentElement: live };
+    svg = new XMLSerializer().serializeToString(doc.documentElement);
+    window.STILLS[it[0]] = svg;
+    var f = document.createElement('figure'), t = document.createElement('textarea'), c = document.createElement('figcaption'), im = new Image();
+    c.textContent = 'assets/studies/' + it[0] + ' (' + svg.length + ' bytes)'; t.value = svg; im.alt = ''; im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    f.appendChild(c); f.appendChild(im); f.appendChild(t); out.appendChild(f);
+  });
+})();
+</script>
+</body>
+</html>

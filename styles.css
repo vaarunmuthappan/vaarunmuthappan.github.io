@@ -1,621 +1,275 @@
-/* styles.css — shared tokens, fonts, base type, header */
+/* styles.css: the inner leaves of the sheet (SPEC-5 §2.8, §2.10, §2.11, §2.12). Loaded after tokens.css
+   and sheet.css. Index pages (courses, projects): one leaf with a plate by the same hand as the landing
+   sheet. Notes pages (ids/, Capstone/): folio line, contents column with a drawn rule and sliding index,
+   a 640 px reading column, the fixed plumb line of reading progress, margin figures and plates.
+   stats/: folio line and tokens only. New tokens only (SPEC-5 §2.2); no boxes, shadows or radii. */
+[hidden] { display: none !important; }
 
-/* ============================================================
-   Fonts (SIL OFL 1.1; licences in assets/fonts/)
-   ============================================================ */
-@font-face {
-    font-family: 'Instrument Serif';
-    src: url('assets/fonts/InstrumentSerif-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+/* ---- folio line (every inner page) ---------------------------------------------------------- */
+.folio { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 4px 32px; position: relative; z-index: 6; }
+.folio .name { position: relative; display: inline-block; padding: 9px 0 11px; font: italic 400 22px/1.2 var(--garamond); color: var(--ink); text-decoration: none; view-transition-name: folio-name; }
+.folio .name .ul { position: absolute; left: 0; right: 0; bottom: 5px; height: 6px; display: block; pointer-events: none; }
+.folio .name .ul svg { display: block; width: 100%; height: 6px; overflow: visible; }
+.folio .name .ul path { stroke-dasharray: 1 1; stroke-dashoffset: 1; transition: stroke-dashoffset 200ms var(--ease-pen); }
+.folio .name:hover .ul path, .folio .name:focus-visible .ul path { stroke-dashoffset: 0; }
+.folio-nav { display: flex; gap: 32px; }
+.fl { display: block; width: 172px; padding-top: 4px; color: var(--ink); text-decoration: none; }
+.fl .glyph { display: inline-block; width: 28px; height: 28px; margin-right: 10px; vertical-align: middle; }
+.fl-t { font-size: 13px; font-weight: 500; font-variant-caps: all-small-caps; letter-spacing: 0.08em; vertical-align: middle; }
+.fl .ir { margin-top: 2px; width: 100%; }
+.fl .glyph .rot { transition: transform 300ms var(--ease-mech); transform-box: view-box; transform-origin: 50% 50%; }
+.fl-c:hover .glyph .rot, .fl-c:focus-visible .glyph .rot { transform: rotate(36deg); }
+.fl-p:hover .glyph .rot, .fl-p:focus-visible .glyph .rot { transform: rotate(30deg); }
+.fl[aria-current] .ir .idx { transform: translateX(var(--run)); }
+.fl[aria-current] .ir .ticks path { stroke: var(--ink); }
+.fl[aria-current] .ir .knob { fill: var(--ink); }
+html:not(.js) .fl .ir, .sheet-failed .fl .ir { height: 8px; border-bottom: 1px solid var(--ink); }
+html:not(.js) .fl .glyph, .sheet-failed .fl .glyph { display: none; }
+
+/* ---- index pages ---------------------------------------------------------------------------- */
+body.index { overflow-x: hidden; }
+.index-main h1 { font-weight: 400; letter-spacing: -0.005em; }
+.index-main .page-header p { color: var(--ink); }
+.list-row { display: block; color: var(--ink); text-decoration: none; }
+.list-title { display: block; font-size: 34px; line-height: 1.1; }
+.list-meta { display: block; margin-top: 6px; font-size: 17px; line-height: 1.5; color: var(--ink-2); }
+.list-row .ir { margin-top: 10px; }
+.pc-ico { view-transition-name: study-concept; }
+.pc-hoist { view-transition-name: study-project; }
+.plate-study .study { position: absolute; }
+.leaving .plate-study .study:not(.keep) { opacity: 0.35; transition: opacity 180ms linear; }
+html:not(.js) .pc-ico, .sheet-failed .pc-ico { background: url("assets/studies/p-icosa.svg") center / contain no-repeat; }
+html:not(.js) .pc-gold, .sheet-failed .pc-gold { background: url("assets/studies/p-golden.svg") center / contain no-repeat; }
+html:not(.js) .pc-hoist, .sheet-failed .pc-hoist { background: url("assets/studies/p-hoist.svg") center / contain no-repeat; }
+html:not(.js) .ix .plumb::after, .sheet-failed .ix .plumb::after {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 60px; height: 100px; background: url("assets/studies/s5-plumb.svg") no-repeat;
 }
+html:not(.js) .list-row .ir, .sheet-failed .list-row .ir { height: 8px; border-bottom: 1px solid var(--ink); }
 
-@font-face {
-    font-family: 'Inter';
-    src: url('assets/fonts/InterVariable.woff2') format('woff2-variations'),
-         url('assets/fonts/InterVariable.woff2') format('woff2');
-    font-weight: 400 600;
-    font-style: normal;
-    font-display: swap;
+/* broad sheet: positions in sheet units u (SPEC-5 §2.10 at 1440 x 900) */
+@media (min-width: 1200px) {
+  body.index { --u: clamp(0.84px, calc(100vw / 1440), 1.2px); }
+  .ix { position: relative; max-width: 1728px; margin: 0 auto; height: calc(900 * var(--u)); min-height: 760px; }
+  .ix .folio { position: absolute; left: calc(96 * var(--u)); right: calc(96 * var(--u)); top: calc(40 * var(--u) - 9px); }
+  .ix .plumb { left: calc(590 * var(--u)); top: calc(50 * var(--u)); height: calc(788 * var(--u)); }
+  .index-main h1 { position: absolute; left: calc(96 * var(--u)); top: calc(200 * var(--u) - 0.17em); white-space: nowrap; letter-spacing: -0.012em; font-size: max(75px, calc(88 * var(--u))); line-height: 0.95; }
+  .index-main .page-header p { position: absolute; left: calc(96 * var(--u)); top: calc(320 * var(--u)); width: calc(460 * var(--u)); font-size: max(19px, calc(22 * var(--u))); line-height: 1.4; }
+  .listing { position: absolute; left: calc(96 * var(--u)); top: calc(470 * var(--u)); width: calc(460 * var(--u)); }
+  .list-title { font-size: max(29px, calc(34 * var(--u))); }
+  .pc-ico { left: calc(707 * var(--u)); top: calc(147 * var(--u)); width: calc(606 * var(--u)); height: calc(606 * var(--u)); }
+  .pc-gold { left: calc(660 * var(--u)); top: calc(600 * var(--u)); width: calc(228 * var(--u)); height: calc(158.4 * var(--u)); }
+  .pc-hoist { left: calc(680 * var(--u)); top: calc(200 * var(--u)); width: calc(672 * var(--u)); height: calc(496 * var(--u)); }
 }
-
-/* ============================================================
-   Reset & Base
-   ============================================================ */
-*, *::before, *::after {
-    box-sizing: border-box;
+/* half sheet and pocket book: folio, h1, paragraph, entry, then the plate below */
+@media (max-width: 1199px) {
+  .ix { max-width: 640px; margin: 0 auto; padding: 24px 0 64px; }
+  .ix .plumb { display: none; }
+  .index-main h1 { margin-top: 56px; font-size: 88px; line-height: 0.95; }
+  .index-main .page-header p { margin-top: 24px; font-size: 22px; line-height: 1.4; max-width: 460px; }
+  .listing { margin-top: 40px; max-width: 460px; }
+  .plate-study { position: relative; margin-top: 40px; width: min(100%, 560px); }
+  .ix-c .plate-study { aspect-ratio: 1; }
+  .ix-p .plate-study { aspect-ratio: 420 / 310; }
+  .pc-ico { left: 0; top: 0; width: 100%; height: 100%; }
+  .pc-gold { left: 0; top: auto; bottom: 0; width: 37.6%; aspect-ratio: 380 / 264; height: auto; }
+  .pc-hoist { left: 0; top: 0; width: 100%; height: 100%; }
 }
-
-:root {
-    /* Colour */
-    --paper:  #F6F3EC;
-    --ink:    #14161A;
-    --ink-2:  #474A50;
-    --muted:  #63676E;
-    --rule:   #DDD8CC;
-    --ghost:  #CFC9BB;
-    --track:  #8A8578;
-    --accent: #2438D8;
-    --signal: var(--accent);
-    --highlight-bg: rgba(180,140,11,0.08);
-    --highlight:    #b8860b;
-
-    /* Old names, aliased so existing rules resolve */
-    --bg:     var(--paper);
-    --text:   var(--ink);
-    --text-2: var(--ink-2);
-    --text-3: var(--muted);
-
-    /* Type */
-    --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-    --font-text: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-
-    /* Layout */
-    --container: 1200px;
-    --gutter: 48px;
-
-    /* Motion */
-    --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
-    --dur-reveal: 110ms;
-    --dur-hover: 160ms;
-    --dur-swap: 200ms;
-}
-
-@media (max-width: 1099px) {
-    :root { --gutter: 32px; }
-}
-
 @media (max-width: 719px) {
-    :root { --gutter: 20px; }
+  body.index { --pu: calc(100vw / 390); }
+  .ix { padding: 16px calc(20 * var(--pu)) 0; }
+  .index-main h1 { margin-top: 40px; font-size: 48px; line-height: 1; }
+  .index-main .page-header p { margin-top: 18px; font-size: 19.5px; line-height: 1.42; }
+  .listing { margin-top: 32px; }
+  .list-title { font-size: 26px; line-height: 1.15; }
+  .plate-study { margin: 32px 0; width: min(100%, calc(350 * var(--pu))); }
 }
 
-body {
-    font-family: var(--font-text);
-    font-size: 16px;
-    line-height: 1.65;
-    color: var(--text);
-    background: var(--bg);
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+/* ---- notes pages ------------------------------------------------------------------------------- */
+.notes-page { --vw: clamp(150px, calc(160px + (100vw - 1100px) * 0.4235), 240px); --hw: clamp(150px, calc(160px + (100vw - 1100px) * 0.4235), 256px); }
+.notes-page .folio { max-width: 1440px; margin: 0 auto; padding: 30px 20px 0; }
+.notes { font-size: 20px; line-height: 1.6; font-variant-numeric: oldstyle-nums proportional-nums; color: var(--ink); min-width: 0; }
+.notes b, .notes strong { font-weight: 600; }
+.notes p { margin: 0 0 0.8em; }
+.notes ul, .notes ol { margin: 0 0 0.9em; padding-left: 1.25em; }
+.notes li { margin: 0 0 0.3em; }
+.notes li::marker { color: var(--ink-2); }
+.notes a { color: var(--sanguine-deep); text-decoration-line: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.notes a:hover { text-decoration-thickness: 2px; }
+.notes h3 { margin: 1.3em 0 0.45em; font-size: 23px; line-height: 1.3; font-style: italic; font-weight: 400; }
+.course-header { position: relative; padding: 4px 0 24px; }
+.course-header h1 { font-size: 56px; line-height: 1.05; font-weight: 400; letter-spacing: -0.005em; }
+.course-meta { margin-top: 14px; font-size: 17px; line-height: 1.5; color: var(--ink-2); display: flex; flex-wrap: wrap; align-items: center; column-gap: 0.4em; }
+.course-meta a { color: var(--sanguine-deep); }
+.hstudy { display: block; }
+.ids .hstudy { view-transition-name: study-concept; }
+.capstone .hstudy { view-transition-name: study-project; }
+html:not(.js) .ids .hstudy, .sheet-failed .ids .hstudy { background: url("../assets/studies/p-icosa-256.svg") center / contain no-repeat; }
+html:not(.js) .capstone .hstudy, .sheet-failed .capstone .hstudy { background: url("../assets/studies/p-hoist-256.svg") center / contain no-repeat; }
+
+/* sections: a hand rule above each, the dividers toggle in the gutter, a rule under an open heading */
+.notes > section, .collapsible-section { position: relative; padding-top: 30px; margin-top: 10px; scroll-margin-top: 16px; }
+.notes h2 { margin: 0 0 0.4em; font-size: 30px; line-height: 1.2; font-weight: 500; }
+.srule { position: absolute; left: 0; top: 4px; width: 100%; height: 8px; display: block; pointer-events: none; }
+.section-header { position: relative; }
+.js .collapsible-section > .section-header { margin-bottom: 0; }
+.sec-btn { display: block; width: 100%; min-height: 44px; margin: 0; padding: 2px 0 12px; border: 0; background: none; font: inherit; letter-spacing: inherit; color: inherit; text-align: left; cursor: pointer; }
+.sec-btn > .dv { position: absolute; left: -44px; top: calc(2px + 0.6em - 14px); }
+.hrule { position: absolute; left: 0; right: 0; bottom: 3px; height: 6px; display: block; pointer-events: none; }
+.hrule svg { display: block; width: 100%; height: 6px; overflow: visible; }
+.hrule path { stroke-dasharray: 1 1; stroke-dashoffset: 1; transition: stroke-dashoffset 200ms var(--ease-pen); }
+.collapsible-section.active > .section-header .hrule path { stroke-dashoffset: 0; transition-duration: 360ms; }
+.js .collapsible-section:not(.active) > .section-content { display: none; }
+.js .collapsible-section.active > .section-content { animation: sc-in 180ms linear; padding-top: 14px; }
+@keyframes sc-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* the dividers (SPEC-5 §2.8): hinge (14,5), legs to (14 -/+ d, 25); angle = atan(d / 20) */
+.dv { display: block; width: 28px; height: 28px; pointer-events: none; }
+.dv.dv2 { width: 38px; }
+.dv svg { overflow: visible; }
+.dv .dv-l, .dv .dv-r { transform-box: view-box; transform-origin: 14px 5px; transition: transform 260ms var(--ease-mech); }
+.dv .p1 .dv-l, .dv .p1 .dv-r { transform-origin: 24px 5px; }
+.dv .dv-l { transform: rotate(var(--dva)); }
+.dv .dv-r { transform: rotate(calc(-1 * var(--dva))); }
+.sec-btn, .toc-btn, .expand-all { --dva: 4.29deg; }
+.sec-btn:hover, .sec-btn:focus-visible, .toc-btn:hover, .toc-btn:focus-visible, .expand-all:hover, .expand-all:focus-visible { --dva: 9.93deg; }
+.sec-btn[aria-expanded="true"], .toc-btn[aria-expanded="true"], .expand-all[data-open="true"] { --dva: 21.8deg; }
+.sec-btn[aria-expanded="true"]:hover, .sec-btn[aria-expanded="true"]:focus-visible, .toc-btn[aria-expanded="true"]:hover,
+.toc-btn[aria-expanded="true"]:focus-visible, .expand-all[data-open="true"]:hover, .expand-all[data-open="true"]:focus-visible { --dva: 25.41deg; }
+.expand-all { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-left: 12px; padding: 0 6px 0 0; border: 0; background: none; font: inherit; color: var(--ink); cursor: pointer; }
+.expand-all .ea-t { font-size: 13px; font-weight: 500; font-variant-caps: all-small-caps; letter-spacing: 0.08em; }
+
+/* margin vignettes (>= 1100): a column the height of the section with a sticky 240px figure */
+.vig { display: none; }
+.tailpiece { display: block; width: min(100%, 380px); margin: 72px 0 0; }
+.ids .tailpiece { aspect-ratio: 380 / 264; }
+.capstone .tailpiece { aspect-ratio: 640 / 260; }
+html:not(.js) .ids .tailpiece, .sheet-failed .ids .tailpiece { background: url("../assets/studies/s2-golden.svg") center / contain no-repeat; }
+html:not(.js) .capstone .tailpiece, .sheet-failed .capstone .tailpiece { background: url("../assets/studies/s6-toss.svg") center / contain no-repeat; }
+
+/* plates: images at column width, multiplied into the paper, four drawn corner ticks */
+.plate { display: block; position: relative; margin: 36px 0 32px; }
+.plate img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
+.plate-ticks { position: absolute; inset: -10px; display: block; pointer-events: none; }
+html:not(.js) .plate::before, .sheet-failed .plate::before {
+  content: ""; position: absolute; inset: -10px; pointer-events: none;
+  background: url("../assets/studies/p-corner-tl.svg") left top / 28px 28px no-repeat, url("../assets/studies/p-corner-tr.svg") right top / 28px 28px no-repeat,
+    url("../assets/studies/p-corner-bl.svg") left bottom / 28px 28px no-repeat, url("../assets/studies/p-corner-br.svg") right bottom / 28px 28px no-repeat;
+}
+/* plate numeral fixed per image (q1 ... q10), whichever sections are open */
+.capstone .plate[data-n]::after { content: attr(data-n) / ""; position: absolute; right: -6px; top: -32px; font: italic 400 18px/1 var(--garamond); font-variant-numeric: lining-nums; color: var(--ink-2); }
+
+/* other blocks of the notes, as rules and indents, never boxes */
+.fact-card { margin: 24px 0; padding: 2px 0 2px 22px; border-left: 1px solid var(--silver); }
+.card { margin: 24px 0; padding: 14px 0; border-top: 1px solid var(--silver); border-bottom: 1px solid var(--silver); }
+.fact-card > :last-child, .card > :last-child, .component > :last-child { margin-bottom: 0; }
+.equation { margin: 20px 0; padding-left: 24px; overflow-x: auto; font-style: italic; }
+.component { margin: 0 0 10px 24px; }
+
+/* contents: a vertical hand rule, one tick per entry, an index frame on the current section */
+.notes-page .toc h2 { margin: 0 0 10px; font-size: 13px; line-height: 1.4; font-weight: 500; font-variant-caps: all-small-caps; letter-spacing: 0.08em; color: var(--ink-2); }
+.toc ul { position: relative; list-style: none; margin: 0; padding: 0 0 0 20px; }
+.toc li { position: relative; padding: 6px 0; font-size: 14.5px; line-height: 1.4; }
+.toc li::before { content: ""; position: absolute; left: -20px; top: calc(6px + 0.7em); width: 4px; border-top: 1px solid var(--ink); transition: width 120ms linear; }
+.toc li:hover::before, .toc li:focus-within::before { width: 10px; }
+.notes-page .toc li a { display: block; color: var(--ink-2); text-decoration: none; }
+.toc li a:hover { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.toc li a[aria-current] { color: var(--sanguine-deep); }
+.toc-rule { position: absolute; left: -6px; top: 0; bottom: 0; width: 12px; display: block; pointer-events: none; }
+html:not(.js) .toc ul, .sheet-failed .toc ul { border-left: 1px solid var(--ink); }
+.toc-idx { position: absolute; left: -16px; top: -6px; width: 30px; height: 12px; display: block; opacity: 0; pointer-events: none; transition: transform 300ms var(--ease-mech), opacity 120ms linear; }
+.toc-idx svg { display: block; overflow: visible; }
+.toc-idx.on { opacity: 1; }
+.toc-btn { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 44px; margin: 0; padding: 0; border: 0; background: none; font: inherit; letter-spacing: inherit; color: inherit; text-align: left; cursor: pointer; }
+.js .toc.closed ul { display: none; }
+.js .toc h2:has(.toc-btn) { margin: 0; }
+
+/* the plumb line of reading progress (fixed; no sway) */
+.notes-page .plumb { position: fixed; top: 0; height: 100vh; width: 60px; z-index: 5; }
+.notes-page .plumb .bob { position: absolute; left: 0; top: 0; width: 60px; will-change: transform; }
+html:not(.js) .notes-page .plumb::after, .sheet-failed .notes-page .plumb::after {
+  content: ""; position: absolute; left: 0; bottom: 0; width: 60px; height: 100px; background: url("../assets/studies/s5-plumb.svg") no-repeat;
 }
 
-/* Global focus ring: never removed */
-:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
+/* broad: contents 96-336, gutter toggle at 356, column 400-1040, plumb 1064, figures 1088-1344 (at 1440) */
+@media (min-width: 1100px) {
+  /* the labels end at the text column's right edge (976 at 1440), so the plumb line (x 1000) hangs clear of them */
+  .notes-page .folio { padding: 30px calc(244px + (min(100%, 1440px) - 1100px) * 0.64706) 0 calc(32px + (min(100%, 1440px) - 1100px) * 0.18824); }
+  .notes-page .page-layout {
+    display: grid; max-width: 1440px; margin: 0 auto; padding: 56px 0 144px;
+    grid-template-columns: calc(32px + (100% - 1100px) * 0.18824) calc(200px + (100% - 1100px) * 0.11765) calc(48px + (100% - 1100px) * 0.04706) 576px 64px calc(160px + (100% - 1100px) * 0.42353) minmax(0, 1fr);
+  }
+  .sidebar { grid-column: 2; grid-row: 1; }
+  .notes { grid-column: 4; grid-row: 1; }
+  .plumb-col { grid-column: 5; grid-row: 1; position: relative; }
+  .notes-page .plumb { margin-left: -6px; }
+  .toc { position: sticky; top: 96px; max-height: calc(100vh - 120px); overflow-y: auto; margin-left: -18px; padding: 0 0 8px 18px; scrollbar-width: thin; }
+  .hstudy { position: absolute; left: calc(100% + 64px); top: 0; width: min(var(--hw), 256px); height: min(var(--hw), 256px); }
+  .vig { display: block; position: absolute; left: calc(100% + 64px); top: 34px; bottom: 0; width: var(--vw); pointer-events: none; transition: opacity 150ms linear; }
+  .vig-in { display: block; position: sticky; top: 120px; width: var(--vw); height: var(--vw); }
+  .collapsible-section:not(.active) > .vig { opacity: 0; visibility: hidden; transition: opacity 150ms linear, visibility 0s linear 150ms; }
+  html:not(.js) .collapsible-section::after, .sheet-failed .collapsible-section.active::after {
+    content: ""; position: absolute; left: calc(100% + 64px); top: 34px; width: var(--vw); height: var(--vw); background: center / contain no-repeat; pointer-events: none;
+  }
+  #probability::after { background-image: url("../assets/studies/v-probability.svg"); }
+  #hypothesis-testing::after { background-image: url("../assets/studies/v-hypothesis-testing.svg"); }
+  #significance-testing::after { background-image: url("../assets/studies/v-significance-testing.svg"); }
+  #parametric-tests::after { background-image: url("../assets/studies/v-parametric-tests.svg"); }
+  #non-parametric-tests::after { background-image: url("../assets/studies/v-non-parametric-tests.svg"); }
+  #p-value-problems::after { background-image: url("../assets/studies/v-p-value-problems.svg"); }
+  #power-and-confidence::after { background-image: url("../assets/studies/v-power-and-confidence.svg"); }
+  #bayesian-inference::after { background-image: url("../assets/studies/v-bayesian-inference.svg"); }
+  #machine-learning-regression::after { background-image: url("../assets/studies/v-machine-learning-regression.svg"); }
+  #ml-regularization::after { background-image: url("../assets/studies/v-ml-regularization.svg"); }
+  #ml-classification::after { background-image: url("../assets/studies/v-ml-classification.svg"); }
+  #ml-unsupervised-learning::after { background-image: url("../assets/studies/v-ml-unsupervised-learning.svg"); }
+  #q1::after { background-image: url("../assets/studies/v-q1.svg"); }
+  #q2::after { background-image: url("../assets/studies/v-q2.svg"); }
+  #q3::after { background-image: url("../assets/studies/v-q3.svg"); }
+  #q4::after { background-image: url("../assets/studies/v-q4.svg"); }
+  #q5::after { background-image: url("../assets/studies/v-q5.svg"); }
+  #q6::after { background-image: url("../assets/studies/v-q6.svg"); }
+  #q7::after { background-image: url("../assets/studies/v-q7.svg"); }
+  #q8::after { background-image: url("../assets/studies/v-q8.svg"); }
+  #q9::after { background-image: url("../assets/studies/v-q9.svg"); }
+  #q10::after { background-image: url("../assets/studies/v-q10.svg"); }
+}
+/* half sheet: one centred 640 column; contents under the h1 with its toggle; header study 160 */
+@media (max-width: 1099px) {
+  .notes-page .folio { max-width: 576px; padding: 30px 0 0; }
+  .notes-page .page-layout { max-width: 576px; margin: 0 auto; padding: 40px 0 120px; }
+  .notes-page .plumb { left: min(calc(50% + 282px), calc(100% - 44px)); }
+  .sidebar { margin-bottom: 24px; }
+  .toc { margin: 8px 0 12px; }
+  .course-header { padding-right: 176px; min-height: 176px; }
+  .hstudy { position: absolute; right: 0; top: 0; width: 160px; height: 160px; }
+  .sec-btn { padding-left: 40px; }
+  .sec-btn > .dv { left: 0; }
+}
+@media (min-width: 720px) and (max-width: 1099px) {
+  .notes-page .folio, .notes-page .page-layout { width: 576px; }
+}
+@media (max-width: 719px) {
+  .notes-page .folio { padding: 20px 30px 0 20px; }
+  .notes-page .page-layout { padding: 28px 30px 96px 20px; }
+  .notes { font-size: 19px; line-height: 1.58; }
+  .course-header { padding-right: 104px; min-height: 104px; }
+  .course-header h1 { font-size: 38px; line-height: 1.1; }
+  .hstudy { width: 96px; height: 96px; }
+  .notes h2 { font-size: 24px; line-height: 1.25; }
+  .notes h3 { font-size: 20.5px; line-height: 1.3; }
+  .notes-page .plumb .bob { left: 0; }
+  html:not(.js) .notes-page .plumb, .sheet-failed .notes-page .plumb { --bob: 28px; }
+  html:not(.js) .notes-page .plumb::after, .sheet-failed .notes-page .plumb::after { left: 15px; width: 30px; height: 50px; background-size: 30px 50px; }
+  .folio-nav { gap: 20px; }
+  .fl { width: 150px; }
 }
 
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* ============================================================
-   Header & Navigation
-   ============================================================ */
-header {
-    padding: 0 var(--gutter);
-    border-bottom: 1px solid var(--rule);
-    background: var(--bg);
-}
-
-.header-nav {
-    max-width: var(--container);
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 64px;
-}
-
-.logo {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.3;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-}
-
-.logo:hover {
-    color: var(--ink);
-    text-decoration: none;
-}
-
-.nav-right {
-    display: flex;
-    gap: 32px;
-}
-
-.nav-right a {
-    color: var(--ink-2);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.3;
-    text-decoration: none;
-    text-underline-offset: 6px;
-    text-decoration-thickness: 1px;
-    transition: color var(--dur-hover);
-}
-
-.nav-right a:hover,
-.nav-right a[aria-current="page"] {
-    color: var(--ink);
-    text-decoration: underline;
-}
-
-@media (max-width: 479px) {
-    .header-nav {
-        height: auto;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        height: 48px;
-    }
-
-    .nav-right {
-        height: 40px;
-        gap: 24px;
-        align-items: center;
-    }
-
-    .nav-right a {
-        display: inline-flex;
-        align-items: center;
-        min-height: 44px;
-        margin: -2px 0;
-    }
-}
-
-/* ============================================================
-   Typography
-   ============================================================ */
-h1 {
-    font-family: var(--font-display);
-    font-size: 40px;
-    font-weight: 400;
-    letter-spacing: -.015em;
-    color: var(--text);
-    margin: 0 0 .875rem;
-    line-height: 1.1;
-}
-
-h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: .9375rem;
-    font-weight: 600;
-    color: var(--text);
-    letter-spacing: -.005em;
-    margin: 1.75rem 0 .625rem;
-    line-height: 1.3;
-}
-
-h3 {
-    font-family: 'Inter', sans-serif;
-    font-size: .875rem;
-    font-weight: 600;
-    color: var(--text);
-    margin: 1.25rem 0 .375rem;
-    letter-spacing: -.005em;
-}
-
-p {
-    margin: 0 0 .875rem;
-    color: var(--text);
-}
-
-ul, ol {
-    padding-left: 1.375rem;
-    margin: 0 0 .875rem;
-}
-
-li {
-    margin-bottom: .25rem;
-}
-
-a {
-    color: var(--ink);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    transition: color var(--dur-hover);
-}
-
-a:hover {
-    color: var(--accent);
-}
-
-/* ============================================================
-   Shared container: content starts under the logo
-   ============================================================ */
-.page-header,
-.listing,
-.page-layout,
-.container {
-    max-width: calc(var(--container) + 2 * var(--gutter));
-    margin: 0 auto;
-    padding-left: var(--gutter);
-    padding-right: var(--gutter);
-}
-
-.container {
-    padding-top: 56px;
-    padding-bottom: 80px;
-}
-
-/* ============================================================
-   Listing Pages  (courses.html / projects.html)
-   ============================================================ */
-.page-header {
-    padding-top: 56px;
-}
-
-/* header rule shares the 760px list column */
-.page-header::after {
-    content: "";
-    display: block;
-    max-width: 760px;
-    margin-top: 24px;
-    border-bottom: 1px solid var(--rule);
-}
-
-.page-header h1 {
-    font-size: 48px;
-    line-height: 1.05;
-    margin-bottom: 8px;
-}
-
-.page-header p {
-    color: var(--muted);
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.5;
-    max-width: 760px;
-}
-
-/* Listing rows: same component as the landing link rows */
-.listing {
-    padding-bottom: 80px;
-}
-
-.list-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    column-gap: 16px;
-    max-width: 760px;
-    min-height: 64px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--rule);
-    text-decoration: none;
-    color: var(--ink);
-}
-
-.list-row::after {
-    content: "\2192";
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    color: var(--muted);
-    font-size: 16px;
-    transition: transform var(--dur-hover) var(--ease-out);
-}
-
-.list-row:hover {
-    color: var(--ink);
-    text-decoration: none;
-}
-
-.list-title {
-    grid-column: 1;
-    font-size: 17px;
-    line-height: 1.3;
-    font-weight: 600;
-    color: var(--ink);
-    min-width: 0;
-    transition: color var(--dur-hover) var(--ease-out);
-}
-
-.list-meta {
-    grid-column: 1;
-    font-size: 14px;
-    line-height: 1.4;
-    color: var(--muted);
-}
-
-.list-row:hover .list-title { color: var(--accent); }
-.list-row:hover::after { transform: translateX(6px); }
+/* ---- stats/: folio and tokens only --------------------------------------------------------------- */
+.stats .folio { max-width: 640px; margin: 0 auto; padding: 30px 20px 0; }
+.stats .container { max-width: 640px; margin: 72px auto 96px; padding: 0 20px; }
+.stats .container h1 { font-size: 56px; line-height: 1.05; font-weight: 400; }
+@media (max-width: 719px) { .stats .container h1 { font-size: 38px; line-height: 1.1; } }
 
 @media (prefers-reduced-motion: reduce) {
-    a, .list-title, .list-row::after { transition: none; }
-    .list-row:hover::after { transform: none; }
-}
-
-/* Legacy card-grid / card-link (fallback, kept for compat) */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: .875rem;
-    padding: 0 3rem 5rem;
-    max-width: 760px;
-    margin: 0 auto;
-}
-
-.card-link {
-    display: block;
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--rule);
-    text-decoration: none;
-    color: var(--text);
-    transition: color .15s;
-}
-
-.card-link:hover {
-    color: var(--text-2);
-    text-decoration: none;
-}
-
-.card-link .card-title {
-    font-size: .9375rem;
-    font-weight: 500;
-    color: var(--text);
-    margin: 0 0 .2rem;
-}
-
-.card-link .card-meta {
-    font-size: .8125rem;
-    color: var(--text-3);
-}
-
-/* ============================================================
-   Notes Page — Sidebar + Content Layout
-   ============================================================ */
-.page-layout {
-    display: flex;
-    padding-top: 40px;
-    padding-bottom: 80px;
-    gap: 56px;
-    align-items: flex-start;
-}
-
-.sidebar {
-    width: 220px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 72px;
-    height: fit-content;
-}
-
-.toc {
-    border-top: 2px solid var(--text);
-    padding-top: .75rem;
-}
-
-.toc h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: .625rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    color: var(--text-3);
-    margin: 0 0 .75rem;
-}
-
-.toc ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.toc li {
-    margin-bottom: 0;
-}
-
-.toc a {
-    display: block;
-    text-decoration: none;
-    color: var(--text-2);
-    font-size: .8125rem;
-    padding: .25rem 0;
-    line-height: 1.4;
-    letter-spacing: -.005em;
-    border-left: none;
-    transition: color .15s;
-}
-
-.toc a:hover {
-    color: var(--text);
-    text-decoration: none;
-}
-
-/* ============================================================
-   Notes Content Area
-   ============================================================ */
-.content {
-    flex: 1;
-    min-width: 0;
-    max-width: 680px;
-}
-
-.course-header {
-    margin-bottom: 2.5rem;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 1.5rem;
-}
-
-.course-header h1 {
-    margin-bottom: .375rem;
-    font-size: 40px;
-    line-height: 1.1;
-}
-
-.course-meta {
-    font-size: .8125rem;
-    color: var(--text-3);
-}
-
-.course-portal {
-    color: var(--text-2);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
-
-.course-portal:hover {
-    color: var(--text);
-}
-
-/* ============================================================
-   Collapsible Sections
-   ============================================================ */
-.collapsible-section {
-    border-bottom: 1px solid var(--rule);
-    margin-bottom: 0;
-    overflow: hidden;
-}
-
-.section-header {
-    background: transparent;
-    padding: .9375rem 0;
-    cursor: pointer;
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    font-size: .9375rem;
-    font-weight: 600;
-    color: var(--text);
-    letter-spacing: -.005em;
-    user-select: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: color .15s;
-}
-
-.section-header::after {
-    content: "+";
-    font-size: 1.125rem;
-    font-weight: 300;
-    color: var(--text-3);
-    line-height: 1;
-    flex-shrink: 0;
-    width: 1.25rem;
-    text-align: center;
-}
-
-.collapsible-section.active .section-header {
-    color: var(--text);
-}
-
-.collapsible-section.active .section-header::after {
-    content: "−";
-    color: var(--text-2);
-}
-
-.section-content {
-    padding: 0 0 1.5rem;
-    display: none;
-}
-
-.collapsible-section.active .section-content {
-    display: block;
-}
-
-/* ============================================================
-   Fact / Callout Cards
-   ============================================================ */
-.fact-card {
-    background: var(--highlight-bg);
-    border-left: 2px solid var(--highlight);
-    padding: .875rem 1.125rem;
-    margin: 1.125rem 0;
-}
-
-.fact-card h3 {
-    margin-top: 0;
-}
-
-.fact-card p {
-    margin-bottom: 0;
-}
-
-/* ============================================================
-   Images
-   ============================================================ */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 1.25rem 0;
-}
-
-/* ============================================================
-   Equations & Components
-   ============================================================ */
-.equation {
-    margin: 1rem 0;
-    overflow-x: auto;
-}
-
-.component {
-    margin-left: 1.5rem;
-    margin-bottom: .5rem;
-}
-
-/* ============================================================
-   Section spacing
-   ============================================================ */
-section {
-    margin-bottom: 2rem;
-}
-
-/* ============================================================
-   Responsive
-   ============================================================ */
-@media (max-width: 768px) {
-    .page-header {
-        padding-top: 40px;
-    }
-
-    .listing {
-        padding-bottom: 48px;
-    }
-
-    .page-layout {
-        flex-direction: column;
-        gap: 24px;
-        padding-top: 24px;
-        padding-bottom: 48px;
-    }
-
-    .content {
-        width: 100%;
-    }
-
-    .sidebar {
-        width: 100%;
-        position: static;
-    }
-}
-
-@media (max-width: 719px) {
-    h1,
-    .course-header h1 {
-        font-size: 32px;
-    }
-
-    .page-header h1 {
-        font-size: 36px;
-    }
+  .js .collapsible-section.active > .section-content { animation: none; }
 }

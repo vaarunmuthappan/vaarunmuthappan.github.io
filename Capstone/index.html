@@ -6,17 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analysing professor reviews project</title>
+    <link rel="preload" href="../assets/fonts/EBGaramond-Roman.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../tokens.css">
+    <link rel="stylesheet" href="../sheet.css">
     <link rel="stylesheet" href="../styles.css">
+    <script>(function(d){d.className+=' js';setTimeout(function(){var c=d.className;if(!/\bsheet-live\b/.test(c))c+=' sheet-failed';if(!/\bnotes-live\b/.test(c))c=c.replace(/\bjs\b/,'');d.className=c},1500)})(document.documentElement)</script>
+    <script src="../bayes.js" defer></script>
+    <script src="../hand.js" defer></script>
+    <script src="../studies.js" defer></script>
+    <script src="../vignettes.js" defer></script>
+    <script src="../script.js" defer></script>
 </head>
 
-<body>
-    <header>
-        <nav class="header-nav">
-            <a href="../index.html" class="logo">Vaarun Muthappan</a>
-            <div class="nav-right">
-                <a href="../courses.html">Concept Notes</a>
-                <a href="../projects.html">Project Notes</a>
-            </div>
+<body class="article notes-page capstone">
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="folio">
+        <a href="../index.html" class="name">Vaarun Muthappan<span class="ul" aria-hidden="true"></span></a>
+        <nav class="folio-nav" aria-label="Primary">
+            <a href="../courses.html" class="fl fl-c"><span class="glyph" aria-hidden="true"></span><span class="fl-t">Concept Notes</span><span class="ir" aria-hidden="true"></span></a>
+            <a href="../projects.html" class="fl fl-p"><span class="glyph" aria-hidden="true"></span><span class="fl-t">Project Notes</span><span class="ir" aria-hidden="true"></span></a>
         </nav>
     </header>
 
@@ -46,8 +54,9 @@
             </div>
         </aside>
 
-        <main class="content notes">
+        <main class="content notes" id="main">
             <div class="course-header">
+                <div class="hstudy" aria-hidden="true"></div>
                 <h1>Analyzing rate my professor ratings</h1>
                 <div class="course-meta">
                     <span>December 2024</span> ·
@@ -76,7 +85,7 @@
                         “proportion retaking” variable were dropped, resulting in a
                         dataset with 919 rows (569 male and 350 female
                         professors).</p>
-                    <img src="q1.jpg">
+                    <span class="plate" data-n="1"><img src="q1.jpg"></span>
                     <p><b>What we found: </b>The OLS results indicate no statistically
                         significant gender bias in average ratings. The coefficient
                         for ‘male gender’ (-0.0057, p=0.800) suggests that, after
@@ -125,7 +134,7 @@
                         whether these differences in variance were significant.
                         Levene's test is suitable for comparing variances between
                         groups as it is robust to deviations from normality.</p>
-                    <img src="q2.jpg">
+                    <span class="plate" data-n="2"><img src="q2.jpg"></span>
                     <p><b>What we found: </b>The results of Levene's test showed a test statistic of 1.87 with a p-value
                         of 0.172. Since the
                         p-value is greater than the standard significance threshold of 0.005, we do not obtain evidence
@@ -156,7 +165,7 @@
                         females as the population “means”. To calculate Cohen’s D for
                         the average rating, we used the sample means as the population
                         means.</p>
-                    <img src="q3.jpg">
+                    <span class="plate" data-n="3"><img src="q3.jpg"></span>
                     <p><b>What we found: </b>Cohen’s D for gender bias in the average
                         rating was -0.11, with a 95% confidence interval of -0.023 to
                         0.237, which means that the difference in average ratings
@@ -187,7 +196,7 @@
                         between males and females in the median number of normalized tags per category, whereas our
                         alternative
                         hypothesis was that there exists a significant difference.</p>
-                    <img src="q4.jpg">
+                    <span class="plate" data-n="4"><img src="q4.jpg"></span>
                     <p><b>What we found: </b>The 3 most gendered (lowest
                         p-value) tags are ‘Hilarious’ (U Statistic = 140543.5,
                         p-value = 7.343214e-13), ‘Respected’ (U Statistic =
@@ -231,7 +240,7 @@
                         and females in the median score of average difficulty,
                         whereas our alternative hypothesis was that there exists a
                         significant difference.</p>
-                    <img src="q5.jpg">
+                    <span class="plate" data-n="5"><img src="q5.jpg"></span>
                     <p><b>What we found: </b>We found a U Statistic of 112107.5 and
                         a p-value of 0.6858. Given a p-value above our alpha
                         threshold, there is insufficient evidence to conclude that
@@ -258,7 +267,7 @@
                         95% confidence, we calculated Cohen’s d. To calculate
                         Cohen’s d for the average difficulty, we used the sample
                         means in place of the population means.</p>
-                    <img src="q6.jpg">
+                    <span class="plate" data-n="6"><img src="q6.jpg"></span>
                     <p><b>What we found: </b>Cohen’s d for gender difference in the
                         average difficulty was 0.0289, with a 95% confidence
                         interval of -0.1009 to 0.1587, which means that the
@@ -300,7 +309,7 @@
                         shown in the heatmap) also supports this, with the highest correlation coefficient between
                         “pepper” and
                         “proportion retaking” approximately at 0.4.</p>
-                    <img src="q7.jpg">
+                    <span class="plate" data-n="7"><img src="q7.jpg"></span>
                     <p><b>What we found: </b>The regression models demonstrated strong predictive performance, with all
                         three achieving
                         an R² of approximately 0.87 and an RMSE around 0.31 on the test data. Across all models,
@@ -348,7 +357,7 @@
                         and 350 females. The remaining tags were used as predictors to train and evaluate the models. We
                         conducted
                         hyperparameter tuning for Ridge and Lasso models to determine the best parameters.</p>
-                    <img src="q8.jpg">
+                    <span class="plate" data-n="8"><img src="q8.jpg"></span>
                     <p><b>What we found: </b>As the above table shows, all
                         three models performed similarly, explaining
                         roughly 80% of the variances in average ratings.
@@ -390,7 +399,7 @@
                         (without ‘caring’ and ‘respected’) and average difficulty. For
                         ridge and lasso regression, we tried alpha parameters of 0.1,
                         1.0, 10.0, 100.0 and 200.0.</p>
-                    <img src="q9.jpg">
+                    <span class="plate" data-n="9"><img src="q9.jpg"></span>
                     <p><b>What we found: </b>We found that it was much harder to predict
                         average difficulty from the tags alone, as the R2 for the OLS, Ridge and LASSO models were 0.65,
                         0.65 and
@@ -423,7 +432,7 @@
                         collinearity problems if combined as a feature with the
                         “Male” column. Both numerical and the tags were scaled
                         according to the normalisation described at the start.</p>
-                    <img src="q10.jpg">
+                    <span class="plate" data-n="10"><img src="q10.jpg"></span>
                     <p><b>What we found: </b>The logistic model produced an AUROC
                         of 0.9085, indicating a good model. (The AUROC curve is
                         shown below). The features that had the highest coefficients
@@ -447,9 +456,10 @@
                     target="_blank">link</a>.
             </p>
 
+            <div class="tailpiece" aria-hidden="true"></div>
         </main>
+        <div class="plumb-col" aria-hidden="true"><div class="plumb"></div></div>
     </div>
-    <script src="../script.js"></script>
 </body>
 
 </html>

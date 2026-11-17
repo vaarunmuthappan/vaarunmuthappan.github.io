@@ -1,0 +1,57 @@
+/* sheet.css: shared by every leaf of the sheet (SPEC-5 §2.2, §2.3, §2.8): the drawing engine's
+   animation states, type roles, the rule with a sliding index, the plumb line, stills and focus. */
+
+/* ---- type roles --------------------------------------------------------- */
+:root {
+  --f-name: 104px; --f-lead: 25px; --f-dt: 34px; --f-fig: 28px; --f-ann: 18px; --f-cap: 17px;
+  --f-lab: 13px; --f-val: 23px; --f-num: 12px;
+}
+.label, .lab { font-size: var(--f-lab); font-weight: 500; font-variant-caps: all-small-caps; letter-spacing: 0.08em; font-variant-numeric: lining-nums; }
+.num { font-variant-numeric: lining-nums tabular-nums; }
+
+/* ---- the drawing engine (hand.js) ----------------------------------------
+   .hs  stroke drawn by stroke-dashoffset (pathLength = 1), per-path --t delay and --d duration
+   .hm  stroke whose dashoffset is driven by script (the compass arc)
+   .hf  element that fades in;  .hz  element that scales in */
+.hd { display: block; width: 100%; height: 100%; overflow: visible; }
+.hd .hs, .hd .hm { stroke-dasharray: 1 1; stroke-dashoffset: 1; visibility: hidden; }
+.hd .hf { opacity: 0; }
+.hd .hz { transform: scale(0); transform-box: fill-box; transform-origin: center; }
+.hd.drawing .hs { stroke-dashoffset: 0; visibility: visible;
+  transition: stroke-dashoffset var(--d, 300ms) var(--ease-pen) var(--t, 0ms), visibility 0s linear var(--t, 0ms); }
+.hd.drawing .hf { opacity: 1; transition: opacity var(--d, 160ms) linear var(--t, 0ms); }
+.hd.drawing .hz { transform: none; transition: transform var(--d, 120ms) var(--ease-mech) var(--t, 0ms); }
+.hd .hm.on { visibility: visible; }
+.hd.live .hs, .hd.live .hm { stroke-dasharray: none; stroke-dashoffset: 0; visibility: visible; transition: none; }
+.hd.live .hf { opacity: 1; transition: none; }
+.hd.live .hz { transform: none; transition: none; }
+
+/* ---- stills: no JS, or the 1500 ms failsafe ------------------------------ */
+.study { display: block; }
+.still { display: block; width: 100%; height: 100%; object-fit: contain; }
+.sheet-failed .hd { display: none; }
+
+/* ---- the rule with a sliding index (SPEC-5 §2.8) ------------------------- */
+.ir { display: block; width: 100%; height: 40px; margin-top: 8px; pointer-events: none; } /* pass 1c: 14x26 index frame */
+.ir .hd { height: 40px; }
+.ir .idx { transition: transform 300ms var(--ease-mech); }
+.ir .ticks path { transition: stroke 120ms linear 0ms; }
+.ir .knob { transition: fill 120ms linear; }
+.hd.live .idx.hf { transition: transform 300ms var(--ease-mech); }
+a:hover .ir .idx, a:focus-visible .ir .idx { transform: translateX(var(--run)); transition-duration: 420ms; }
+a:hover .ir .ticks path, a:focus-visible .ir .ticks path { stroke: var(--ink); transition-delay: var(--dl); }
+a:hover .ir .knob, a:focus-visible .ir .knob { fill: var(--ink); }
+a.tap .ir .idx { transform: translateX(var(--run)); transition-duration: 160ms; }
+
+/* ---- plumb line (S5) ------------------------------------------------------ */
+.plumb { position: absolute; width: 60px; pointer-events: none; z-index: 5; view-transition-name: plumb; }
+.plumb .hd { width: 60px; }
+html:not(.js) .plumb::before, .sheet-failed .plumb::before {
+  content: ""; position: absolute; left: 29.6px; top: 13px; bottom: calc(20px + var(--bob, 58px));
+  border-left: 0.8px solid rgb(42 37 33 / 0.9);
+}
+.plumb .still { position: absolute; left: 0; bottom: 0; width: 60px; height: auto; }
+
+/* ---- links and focus ------------------------------------------------------ */
+a { text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.sheet a:focus-visible { outline: 2px solid var(--sanguine-deep); outline-offset: 4px; }
