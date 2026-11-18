@@ -98,7 +98,7 @@ export function createRegress() {
     const sb = $(p, '[data-k="slope"]'), si = $(p, '[data-k="icpt"]');
     if (sb && document.activeElement !== sb) sb.value = b.toFixed(2);
     if (si && document.activeElement !== si) si.value = b0.toFixed(2);
-    const st = total - MIN < 0.005 ? 'At rest on the least-squares line.' : S.hold || S.grab ? 'Held away from the minimum.' : 'Springs pulling the rod in.';
+    const st = total - MIN < 0.005 ? 'At the minimum.' : S.hold || S.grab ? 'Held.' : 'Settling.';
     out(p, 'state', st);
   }
   function setHold(h) { S.hold = h; const c = S.panel && $(S.panel, '[data-k="hold"]'); if (c) c.checked = h; if (!h) { S.va = S.vb = 0; } }

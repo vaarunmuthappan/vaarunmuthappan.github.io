@@ -23,10 +23,9 @@
   <a class="name" href="#">Vaarun Muthappan</a>
   <nav class="topnav" aria-label="Portfolio">
     <a href="#about">About</a>
-    <a href="#background">Background</a>
     <a href="#notes">Notes</a>
     <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+    <a href="https://www.linkedin.com/in/vaarunm/" target="_blank" rel="noopener me">Contact</a>
   </nav>
 </header>
 
@@ -37,7 +36,6 @@
 
   <div class="intro">
     <p class="lead">I'm a data scientist at Paramount, working with Bayesian statistics. This site has my notes and projects in statistics, machine learning, and data science.</p>
-    <p class="hint"><span>Drag to turn</span><span>Scroll to zoom</span><span>Select a mechanism to work it</span></p>
   </div>
 
   <nav class="figs" aria-label="Mechanisms">
@@ -51,7 +49,7 @@
   </nav>
 
   <div class="rail" id="rail" role="toolbar" aria-label="Machine controls">
-    <button type="button" data-act="auto" aria-pressed="true" aria-label="Stop turning"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15.6 6.6A6.2 6.2 0 1 0 16.2 10"/><path d="M16.3 3.4v3.4h-3.4"/></svg></button>
+    <button type="button" data-act="auto" aria-pressed="true" aria-label="Stop turning"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.2 7.2C4.2 7.9 3 8.9 3 10c0 2 3.1 3.6 7 3.6s7-1.6 7-3.6c0-1.1-1.2-2.100-3.200-2.800"/><path d="M8.300 5.100L6.100 7.200l2.300 1.900"/><circle cx="10" cy="9.2" r="1.500"/></svg></button>
     <button type="button" data-act="pause" aria-pressed="false" aria-label="Pause the mechanisms"><svg class="i-pause" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.2 5v10M12.8 5v10"/></svg><svg class="i-play" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 4.8v10.4l8-5.2z"/></svg></button>
     <button type="button" data-act="speed" class="txt" aria-label="Change speed" title="Speed"><b>1×</b></button>
     <span class="sep" aria-hidden="true"></span>
@@ -59,82 +57,45 @@
     <button type="button" data-act="zin" aria-label="Zoom in" title="Zoom in"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10 5v10"/></svg></button>
     <button type="button" data-act="home" aria-label="Return to the whole machine" title="Return to the whole machine"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7.6V4h3.6M12.4 4H16v3.6M16 12.4V16h-3.6M7.6 16H4v-3.6"/></svg></button>
     <span class="sep" aria-hidden="true"></span>
-    <button type="button" data-act="reset" class="txt" aria-label="Reset the machine to its initial state" title="Reset the machine"><b>Reset</b></button>
+    <button type="button" data-act="reset" aria-label="Reset the machine to its initial state" title="Reset the machine"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.4 6.600A6.200 6.200 0 1 1 3.800 10"/><path d="M3.700 3.400v3.400h3.400"/></svg></button>
   </div>
 </div>
 
 <main id="folio">
-  <div class="sheet-head"><button class="back" type="button" data-close><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M11.5 5l-5 5 5 5"/></svg><span>The machine</span></button></div>
-  <p class="plain-note">This is the plain portfolio. The interactive machine on this page needs WebGL and JavaScript.</p>
+  <div class="sheet-head"><button class="back" type="button" data-close aria-label="Close" title="Close"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5.500 5.500l9 9M14.500 5.500l-9 9"/></svg></button></div>
+  <p class="plain-note">The interactive machine needs WebGL and JavaScript.</p>
 
   <div class="doc">
     <section id="about" class="sec sec-about">
       <h1>Vaarun Muthappan</h1>
-      <p class="big">I'm a data scientist at Paramount, working with Bayesian statistics. This site has my notes and projects in statistics, machine learning, and data science.</p>
-    </section>
-
-    <section id="background" class="sec">
-      <h2>Background</h2>
-      <p>I studied data science at the University of Michigan, where I got a bachelors with a minor in Business. Then I did my Masters in Data Science at NYU.</p>
-      <dl class="cv">
-        <div><dt>Now</dt><dd>Data scientist at Paramount <span>Bayesian statistics</span></dd></div>
-        <div><dt>Masters</dt><dd>NYU <span>Data Science</span></dd></div>
-        <div><dt>Bachelors</dt><dd>University of Michigan <span>Data science, with a minor in Business</span></dd></div>
-      </dl>
-      <p class="small">My previous coursework covers Machine Learning in Finance, Reinforcement Learning, Causal Inference, Computer Vision, Big Data, and Databases.</p>
+      <p class="big">I'm a data scientist at Paramount, working with Bayesian statistics.</p>
+      <p>I studied data science at the University of Michigan, with a minor in Business, then did my Masters in Data Science at NYU.</p>
+      <p class="small">Coursework: Machine Learning in Finance, Reinforcement Learning, Causal Inference, Computer Vision, Big Data, Databases.</p>
     </section>
 
     <section id="notes" class="sec">
       <h2>Notes</h2>
-      <a class="row" href="courses.html"><span class="rt">Concept Notes</span><span class="rd">Notes on topics I've studied: statistics, machine learning, data science.</span><span class="ra" aria-hidden="true"></span></a>
-      <a class="row" href="ids/index.html"><span class="rt">Introduction to Data Science</span><span class="rd">Statistics &amp; Machine Learning · December 2024</span><span class="ra" aria-hidden="true"></span></a>
-      <ul class="chapters" aria-label="Chapters of Introduction to Data Science">
-        <li><a href="ids/index.html#probability">Probability</a></li>
-        <li><a href="ids/index.html#hypothesis-testing">Hypothesis Testing</a></li>
-        <li><a href="ids/index.html#significance-testing">Significance Testing</a></li>
-        <li><a href="ids/index.html#parametric-tests">Parametric Significance Tests</a></li>
-        <li><a href="ids/index.html#non-parametric-tests">Non-parametric Significance Tests</a></li>
-        <li><a href="ids/index.html#p-value-problems">Problems with p-values</a></li>
-        <li><a href="ids/index.html#power-and-confidence">Power and Confidence</a></li>
-        <li><a href="ids/index.html#bayesian-inference">Bayesian Inference</a></li>
-        <li><a href="ids/index.html#machine-learning-regression">Regression</a></li>
-        <li><a href="ids/index.html#ml-regularization">Regularization</a></li>
-        <li><a href="ids/index.html#ml-classification">Classification</a></li>
-        <li><a href="ids/index.html#ml-unsupervised-learning">Unsupervised Learning</a></li>
-      </ul>
+      <a class="row" href="ids/index.html"><span class="rt">Introduction to Data Science</span><span class="rd">Statistics and machine learning.</span><span class="ra" aria-hidden="true"></span></a>
     </section>
 
     <section id="projects" class="sec">
       <h2>Projects</h2>
-      <a class="row" href="projects.html"><span class="rt">Project Notes</span><span class="rd">Write-ups and analyses from projects and coursework.</span><span class="ra" aria-hidden="true"></span></a>
-      <a class="row" href="Capstone/index.html"><span class="rt">Analysing Rate My Professor Ratings</span><span class="rd">Capstone project · December 2024. As a project for class, my team and I analysed ratemyprofessor reviews across ten questions, from gender differences in ratings to regression and classification models.</span><span class="ra" aria-hidden="true"></span></a>
-      <a class="row" href="notebook.html"><span class="rt">Notebook studies</span><span class="rd">Two pen-and-ink experiments from the earlier version of this site: the line of least squares, and from a line to a probability.</span><span class="ra" aria-hidden="true"></span></a>
-    </section>
-
-    <section id="figures" class="sec">
-      <h2>The machine</h2>
-      <p class="small">Five mechanisms, each a working model of the method it is named for. The data in them are synthetic.</p>
-      <a class="row" href="#bayes"><span class="rt"><i>I</i> Bayesian updating</span><span class="rd">48 yes/no observations turn a prior into a posterior, one ball at a time.</span><span class="ra" aria-hidden="true"></span></a>
-      <a class="row" href="#regression"><span class="rt"><i>II</i> Least squares</span><span class="rd">Springs pull a rod to the line with the smallest sum of squared residuals.</span><span class="ra" aria-hidden="true"></span></a>
-      <a class="row" href="#tree"><span class="rt"><i>III</i> Decision tree</span><span class="rd">Rows of a table fall through threshold tests into four leaves.</span><span class="ra" aria-hidden="true"></span></a>
-      <a class="row" href="#shuffle"><span class="rt"><i>IV</i> Randomisation test</span><span class="rd">Shuffle the group labels to see what chance alone would produce.</span><span class="ra" aria-hidden="true"></span></a>
-      <a class="row" href="#clusters"><span class="rt"><i>V</i> k-means</span><span class="rd">Assign, update, repeat: centroids find their clusters.</span><span class="ra" aria-hidden="true"></span></a>
+      <a class="row" href="Capstone/index.html"><span class="rt">Analysing Rate My Professor Ratings</span><span class="rd">Capstone project.</span><span class="ra" aria-hidden="true"></span></a>
     </section>
 
     <section id="contact" class="sec">
       <h2>Contact</h2>
-      <a class="row" href="https://github.com/vaarunmuthappan" rel="me"><span class="rt">GitHub</span><span class="rd">github.com/vaarunmuthappan</span><span class="ra" aria-hidden="true"></span></a>
-      <a class="row" href="https://github.com/vaarunmuthappan/vaarunmuthappan.github.io"><span class="rt">This site's source</span><span class="rd">github.com/vaarunmuthappan/vaarunmuthappan.github.io</span><span class="ra" aria-hidden="true"></span></a>
+      <a class="row" href="https://www.linkedin.com/in/vaarunm/" target="_blank" rel="noopener me"><span class="rt">LinkedIn</span><span class="ra" aria-hidden="true"></span></a>
     </section>
   </div>
 
   <!-- I. Bayesian updating -->
   <section class="fig" id="bayes" aria-labelledby="h-bayes">
     <p class="eyebrow">Fig. I</p>
-    <h2 id="h-bayes">Bayesian updating on synthetic data</h2>
-    <p class="lede">Each ball is one yes/no observation. Every "no" hangs at θ&nbsp;=&nbsp;0 and every "yes" at θ&nbsp;=&nbsp;1, and the beam balances at the posterior mean. Behind it, each paper slice is the posterior after one more observation, from the prior at the back to the current posterior in front.</p>
+    <h2 id="h-bayes">Bayesian updating</h2>
+    <p class="lede">Each ball is a yes or a no. The beam balances at the posterior mean. The slices behind it are the posterior after each observation.</p>
     <div class="bench">
-      <label class="field"><span class="fl">Observations seen</span><input type="range" data-k="n" min="0" max="48" step="1" value="48"><output data-out="seen">48 / 48</output></label>
+      <label class="field"><span class="fl">Observations</span><input type="range" data-k="n" min="0" max="48" step="1" value="48"><output data-out="seen">48 / 48</output></label>
       <fieldset class="seg"><legend>Prior</legend>
         <label><input type="radio" name="bayes-prior" value="flat" checked><span>Flat, Beta(1, 1)</span></label>
         <label><input type="radio" name="bayes-prior" value="centred"><span>Centred on 0.5, Beta(10, 10)</span></label>
@@ -144,119 +105,95 @@
         <div><dt>Yes / no</dt><dd data-out="yn">14 / 34</dd></div>
         <div><dt>Posterior</dt><dd data-out="post">Beta(15, 35)</dd></div>
         <div><dt>Mean</dt><dd data-out="mean">0.300</dd></div>
-        <div><dt>90% credible interval</dt><dd data-out="ci">0.20 – 0.41</dd></div>
+        <div><dt>90% interval</dt><dd data-out="ci">0.20 – 0.41</dd></div>
       </dl>
       <p class="sr-only" aria-live="polite" data-out="say"></p>
     </div>
-    <p class="static">After all 48 observations (14 yes, 34 no), a flat prior gives the posterior Beta(15, 35), mean 0.30, with a central 90% credible interval of 0.20 to 0.41. A prior centred on 0.5, Beta(10, 10), gives Beta(24, 44) instead.</p>
-    <ul class="exact">
-      <li>Each slice is the posterior for an unknown rate θ after one more yes/no observation, starting from the prior. The 48 observations are synthetic: generated once at a rate of 0.30, then fixed. Shading marks the central 90% of the current posterior.</li>
-      <li>The prior counts as observations already in the pans: Beta(1, 1) hangs one ball on each side, Beta(10, 10) hangs ten. With k yes in n observations the posterior is Beta(a₀ + k, b₀ + n − k), and its mean, (a₀ + k) / (a₀ + b₀ + n), is the beam's centre of mass.</li>
-    </ul>
+    <p class="static">After 48 observations (14 yes, 34 no), a flat prior gives Beta(15, 35): mean 0.30, 90% interval 0.20 to 0.41.</p>
+    <p class="fine">48 synthetic observations.</p>
     <a class="more" href="ids/index.html#bayesian-inference">Notes: Bayesian Inference</a>
   </section>
 
   <!-- II. Least squares -->
   <section class="fig" id="regression" aria-labelledby="h-regression">
     <p class="eyebrow">Fig. II</p>
-    <h2 id="h-regression">The line of least squares</h2>
-    <p class="lede">Twelve observations are pinned to the plate and never move. The brass rod is the line. Each spring can only stretch vertically, so its length is a residual, and the square drawn on it has that residual as its side. The springs pull the rod to where the squares' total area is smallest.</p>
+    <h2 id="h-regression">Least squares</h2>
+    <p class="lede">The pins never move. Springs pull the rod to the line with the smallest sum of squared residuals. Drag the rod, then let go.</p>
     <div class="bench">
-      <p class="do">Take hold of the rod on the machine: drag an end to tilt it, the middle to lift it. Let go and the springs take it back.</p>
       <label class="field"><span class="fl">Slope</span><input type="range" data-k="slope" min="-1" max="2" step="0.01" value="0.5"></label>
       <label class="field"><span class="fl">Intercept</span><input type="range" data-k="icpt" min="-3" max="10" step="0.05" value="2"></label>
-      <label class="check"><input type="checkbox" data-k="hold"><span>Hold the rod where I leave it</span></label>
-      <div class="btns"><button type="button" class="btn" data-k="release">Let go</button><button type="button" class="btn" data-k="knock">Knock the rod</button></div>
+      <label class="check"><input type="checkbox" data-k="hold"><span>Hold the rod</span></label>
+      <div class="btns"><button type="button" class="btn" data-k="release">Let go</button><button type="button" class="btn" data-k="knock">Knock</button></div>
       <dl class="read">
-        <div><dt>Line now</dt><dd data-out="eq">—</dd></div>
-        <div><dt>Least-squares line</dt><dd data-out="ols">—</dd></div>
-        <div><dt>Sum of squared residuals</dt><dd data-out="sse">—</dd></div>
-        <div><dt>Least possible</dt><dd data-out="min">—</dd></div>
+        <div><dt>Line</dt><dd data-out="eq">—</dd></div>
+        <div><dt>Least squares</dt><dd data-out="ols">—</dd></div>
+        <div><dt>Sum of squares</dt><dd data-out="sse">—</dd></div>
+        <div><dt>Minimum</dt><dd data-out="min">—</dd></div>
       </dl>
       <p class="state" data-out="state" aria-live="polite"></p>
     </div>
-    <ul class="exact">
-      <li>The observations stay fixed; only the line moves to fit them. The data are synthetic.</li>
-      <li>A spring's energy is proportional to its length squared, so the total energy is the sum of squared residuals. The rod's resting place is the minimum of that sum: slope S<sub>xy</sub> / S<sub>xx</sub>, passing through the point of means. It is the solved equations of motion, not a stored animation.</li>
-    </ul>
-    <a class="more" href="ids/index.html#machine-learning-regression">Notes: Machine Learning - Regression</a>
+    <p class="fine">Synthetic data.</p>
+    <a class="more" href="ids/index.html#machine-learning-regression">Notes: Regression</a>
   </section>
 
   <!-- III. Decision tree -->
   <section class="fig" id="tree" aria-labelledby="h-tree">
     <p class="eyebrow">Fig. III</p>
-    <h2 id="h-tree">A decision tree, sorting rows</h2>
-    <p class="lede">Each ball is one row of a small table: an age, an income and a yes/no label, which is the ball's colour. A row rolls along a rule to its own value and drops. The wedge at the threshold sends it left if its value is at or below the threshold, right if above. Every row takes one path to one leaf.</p>
+    <h2 id="h-tree">Decision tree</h2>
+    <p class="lede">Each ball is a row. At each rule a wedge sends it left or right of the threshold. Drag a wedge and the rows re-sort.</p>
     <div class="bench">
-      <p class="do">Move a threshold here, or drag a red wedge on the machine, and the rows change leaves.</p>
-      <label class="field"><span class="fl">Root: age &gt;</span><input type="range" data-k="t0" min="19" max="58" step="1" value="30"><output data-out="t0">30</output></label>
-      <label class="field"><span class="fl">Left branch: income &gt;</span><input type="range" data-k="t1" min="22" max="98" step="1" value="65"><output data-out="t1">65</output></label>
-      <label class="field"><span class="fl">Right branch: income &gt;</span><input type="range" data-k="t2" min="22" max="98" step="1" value="50"><output data-out="t2">50</output></label>
-      <div class="btns"><button type="button" class="btn" data-k="fit">Fit by Gini impurity</button><button type="button" class="btn" data-k="defaults">Starting thresholds</button><button type="button" class="btn" data-k="again">Release the rows again</button></div>
+      <label class="field"><span class="fl">Age &gt;</span><input type="range" data-k="t0" min="19" max="58" step="1" value="30"><output data-out="t0">30</output></label>
+      <label class="field"><span class="fl">Income &gt; (left)</span><input type="range" data-k="t1" min="22" max="98" step="1" value="65"><output data-out="t1">65</output></label>
+      <label class="field"><span class="fl">Income &gt; (right)</span><input type="range" data-k="t2" min="22" max="98" step="1" value="50"><output data-out="t2">50</output></label>
+      <div class="btns"><button type="button" class="btn" data-k="fit">Fit</button><button type="button" class="btn" data-k="defaults">Reset</button><button type="button" class="btn" data-k="again">Run again</button></div>
       <dl class="read">
-        <div><dt>Training accuracy</dt><dd data-out="acc">—</dd></div>
-        <div><dt>Gini: root → after age → leaves</dt><dd data-out="gini">—</dd></div>
-        <div class="wide"><dt>At the root rule</dt><dd class="sm" data-out="row">—</dd></div>
+        <div><dt>Accuracy</dt><dd data-out="acc">—</dd></div>
+        <div><dt>Gini impurity</dt><dd data-out="gini">—</dd></div>
       </dl>
     </div>
-    <ul class="exact">
-      <li>A leaf predicts the majority label of the training rows that reach it, shown by its flag. Balls of the other colour in a bin are the tree's training errors.</li>
-      <li>"Fit" chooses, for the root and then for each branch, the threshold with the lowest weighted Gini impurity: the greedy rule CART uses, here with the feature at each node fixed.</li>
-      <li>The 36 rows are synthetic, with three labels flipped as noise, so no thresholds sort them perfectly.</li>
-    </ul>
-    <a class="more" href="ids/index.html#ml-classification">Notes: Machine Learning - Classification</a>
+    <p class="fine">36 synthetic rows.</p>
+    <a class="more" href="ids/index.html#ml-classification">Notes: Classification</a>
   </section>
 
   <!-- IV. Randomisation test -->
   <section class="fig" id="shuffle" aria-labelledby="h-shuffle">
     <p class="eyebrow">Fig. IV</p>
-    <h2 id="h-shuffle">A randomisation test</h2>
-    <p class="lede">Two groups of 24, and group B said yes more often. Real difference, or the luck of the split? If the labels A and B mean nothing, every deal of the 48 balls into two trays was equally likely. The drum makes those deals, and each bar counts the differences they produce.</p>
+    <h2 id="h-shuffle">Randomisation test</h2>
+    <p class="lede">B said yes more often than A. Shuffle the labels to see how often chance alone does as well.</p>
     <div class="bench">
-      <label class="field"><span class="fl">Yes answers observed in B</span><input type="range" data-k="obs" min="7" max="14" step="1" value="10"><output data-out="k">10</output></label>
-      <div class="btns"><button type="button" class="btn" data-k="once">Shuffle once</button><button type="button" class="btn" data-k="many">Shuffle 200 times</button><button type="button" class="btn" data-k="clear">Clear</button></div>
+      <label class="field"><span class="fl">Yes in B</span><input type="range" data-k="obs" min="7" max="14" step="1" value="10"><output data-out="k">10</output></label>
+      <div class="btns"><button type="button" class="btn" data-k="once">Shuffle</button><button type="button" class="btn" data-k="many">Shuffle 200</button><button type="button" class="btn" data-k="clear">Clear</button></div>
       <dl class="read">
-        <div class="wide"><dt>Observed</dt><dd class="sm" data-out="obs">—</dd></div>
-        <div><dt>Observed difference, B − A</dt><dd data-out="diff">—</dd></div>
+        <div><dt>Difference, B − A</dt><dd data-out="diff">—</dd></div>
         <div><dt>Shuffles</dt><dd data-out="n">0</dd></div>
-        <div><dt>At least as extreme</dt><dd data-out="ext">0</dd></div>
-        <div><dt>p from the shuffles</dt><dd data-out="psim">—</dd></div>
+        <div><dt>p, shuffled</dt><dd data-out="psim">—</dd></div>
         <div><dt>p, exact</dt><dd data-out="pexact">—</dd></div>
       </dl>
     </div>
-    <ul class="exact">
-      <li>The p-value is the share of shuffles whose difference is at least as far from zero as the observed one (two-sided). Red bars are that share.</li>
-      <li>The outline behind the bars is the exact null distribution: the number of yes answers dealt to B is hypergeometric (48 balls, 14 yes, 24 dealt). The shuffled bars converge on it.</li>
-      <li>These are the same 48 synthetic observations as Fig. I. Their split into A and B is an illustration, not real data.</li>
-    </ul>
-    <a class="more" href="ids/index.html#non-parametric-tests">Notes: Non-parametric Significance Tests</a>
+    <p class="fine">Synthetic data.</p>
+    <a class="more" href="ids/index.html#non-parametric-tests">Notes: Non-parametric Tests</a>
   </section>
 
   <!-- V. k-means -->
   <section class="fig" id="clusters" aria-labelledby="h-clusters">
     <p class="eyebrow">Fig. V</p>
-    <h2 id="h-clusters">k-means, on the table</h2>
-    <p class="lede">Thirty-six points stand on the table as pins; the taller posts are the centroids. The machine repeats two moves until nothing changes: every pin takes the colour of its nearest centroid, then every centroid moves to the mean of its pins. The tinted regions are the nearest-centroid cells.</p>
+    <h2 id="h-clusters">k-means</h2>
+    <p class="lede">Colour each pin by its nearest centroid. Move each centroid to the mean of its pins. Repeat until nothing changes.</p>
     <div class="bench">
-      <fieldset class="seg"><legend>Clusters, k</legend>
+      <fieldset class="seg"><legend>Clusters</legend>
         <button type="button" data-kk="2" aria-pressed="false">2</button><button type="button" data-kk="3" aria-pressed="true">3</button><button type="button" data-kk="4" aria-pressed="false">4</button>
       </fieldset>
-      <div class="btns"><button type="button" class="btn" data-k="step">Step</button><button type="button" class="btn" data-k="run" aria-pressed="true">Run</button><button type="button" class="btn" data-k="seed">New starting centroids</button></div>
+      <div class="btns"><button type="button" class="btn" data-k="step">Step</button><button type="button" class="btn" data-k="run" aria-pressed="true">Run</button><button type="button" class="btn" data-k="seed">New start</button></div>
       <dl class="read">
         <div><dt>Updates</dt><dd data-out="iter">0</dd></div>
-        <div><dt>Within-cluster sum of squares</dt><dd data-out="wcss">—</dd></div>
-        <div class="wide"><dt>Sum of squares after each half-step</dt><dd><svg class="spark" data-k="spark" viewBox="0 0 200 50" role="img" aria-label="Within-cluster sum of squares after each half-step"></svg></dd></div>
+        <div><dt>Sum of squares</dt><dd data-out="wcss">—</dd></div>
+        <div class="wide"><dt>History</dt><dd><svg class="spark" data-k="spark" viewBox="0 0 200 50" role="img" aria-label="Sum of squares after each step"></svg></dd></div>
       </dl>
       <p class="state" data-out="state" aria-live="polite"></p>
     </div>
-    <ul class="exact">
-      <li>This is Lloyd's algorithm. Neither move can increase the within-cluster sum of squares, so the line above only falls, and the machine must stop.</li>
-      <li>Where it stops depends on the start: k data points chosen at random. Try new starting centroids and compare the final sum of squares. The points are synthetic.</li>
-    </ul>
-    <a class="more" href="ids/index.html#ml-unsupervised-learning">Notes: Machine Learning - Unsupervised Learning</a>
+    <p class="fine">Synthetic data.</p>
+    <a class="more" href="ids/index.html#ml-unsupervised-learning">Notes: Unsupervised Learning</a>
   </section>
-
-  <p class="colophon">The machine is drawn live in WebGL. Its data are synthetic and say so where they appear.</p>
 </main>
 </body>
 </html>

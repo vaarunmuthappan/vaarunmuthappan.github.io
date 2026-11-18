@@ -142,8 +142,8 @@ export function createTree() {
       f.userData.b.setText(y + ' yes · ' + n + ' no');
     });
     const p = S.panel; if (!p) return;
-    out(p, 'acc', st.right + ' of ' + N + ' rows  (' + Math.round((100 * st.right) / N) + '%)');
-    out(p, 'gini', st.g0.toFixed(3) + '  →  ' + st.g1.toFixed(3) + '  →  ' + st.g2.toFixed(3));
+    out(p, 'acc', st.right + ' / ' + N);
+    out(p, 'gini', st.g2.toFixed(3));
     ['t0', 't1', 't2'].forEach((k, i) => { const e = $(p, '[data-k="' + k + '"]'); if (e && document.activeElement !== e) e.value = Math.round(S.t[i]); out(p, k, String(Math.round(S.t[i]))); });
   }
   const slotPos = (L, k) => [BIN[L] + ((k % 6) - 2.5) * 0.136, BIN_Y + R + 0.005 + Math.floor(k / 6) * 0.126];

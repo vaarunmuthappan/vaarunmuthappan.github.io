@@ -93,7 +93,7 @@ export function createKmeans() {
     info.setText(S.done ? 'settled after ' + S.iter + ' updates' : S.iter ? 'update ' + S.iter : 'k = ' + S.k);
     const p = S.panel; if (!p) return;
     out(p, 'iter', String(S.iter)); out(p, 'wcss', w === null ? '—' : w.toFixed(2));
-    out(p, 'state', S.done ? 'Settled: the last assign step changed nothing.' : S.step === 'assign' ? 'Next: assign each point to its nearest centroid.' : 'Next: move each centroid to the mean of its points.');
+    out(p, 'state', S.done ? 'Settled.' : S.step === 'assign' ? 'Next: assign.' : 'Next: update.');
     $$(p, '[data-kk]').forEach((b) => b.setAttribute('aria-pressed', +b.dataset.kk === S.k ? 'true' : 'false'));
     const sv = $(p, '[data-k="spark"]');
     if (sv) {

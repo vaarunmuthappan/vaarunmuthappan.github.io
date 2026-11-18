@@ -14,7 +14,7 @@ const root = document.documentElement, body = document.body;
 const canvas = document.getElementById('scene'), folio = document.getElementById('folio');
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FOV = 30, TAN = Math.tan((FOV * Math.PI) / 360);
-const DOC = ['about', 'background', 'notes', 'projects', 'figures', 'contact'];
+const DOC = ['about', 'notes', 'projects', 'contact'];
 
 function fail(err) {
   root.classList.remove('live'); root.classList.add('no-gl');
@@ -82,7 +82,24 @@ async function start() {
   const byId = Object.fromEntries(MECHS.map((m) => [m.id, m]));
 
   /* ---- state ---- */
-  const S = { paused: RM, auto: !RM, speed: 1, focus: null, sheet: '', time: 0, idle: 0, hover: null, intro: RM ? 1 : 0 };
+  const S = { paused: RM, auto: !RM, speed: 1, focus: null, sheet: '', time: 0, idle: 0, hover: null, intro: RM ? 1 : 0, turned: false };
+
+  /* ---- the turn cue: a double-headed arc in front of the machine, in place of written instructions.
+     It stays with the viewer rather than the machine, sways a little, and goes once the machine has been turned. ---- */
+  const cue = new THREE.Group(), cueMat = new THREE.MeshBasicMaterial({ color: PAL.ink, transparent: true, opacity: 0, depthWrite: false, toneMapped: false });
+  {
+    const R = 5.9, A = 0.5, arc = new THREE.TorusGeometry(R, 0.022, 6, 48, 2 * A);
+    arc.rotateZ(Math.PI / 2 - A); arc.rotateX(Math.PI / 2);
+    const a = new THREE.Mesh(arc, cueMat); a.raycast = () => {}; cue.add(a);
+    [[Math.PI / 2 - A, -1], [Math.PI / 2 + A, 1]].forEach(([t, s]) => {
+      const h = new THREE.Mesh(new THREE.ConeGeometry(0.13, 0.4, 16), cueMat); h.raycast = () => {};
+      h.position.set(R * Math.cos(t), 0, R * Math.sin(t));
+      h.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(-Math.sin(t) * s, 0, Math.cos(t) * s));
+      h.translateY(0.16); cue.add(h);
+    });
+    cue.renderOrder = 3; cue.visible = false; scene.add(cue);
+  }
+  let cueO = 0;
   const V = { yaw: -2.2, pitch: 0.42, dist: 60, tx: 0, ty: -2.05, tz: 0, ox: 0, oy: 0 };
   const G = { yaw: -0.5, pitch: 0.22, dist: 30, tx: 0, ty: -2.05, tz: 0, ox: 0, oy: 0 };
   let yawVel = 0, pitchVel = 0, lastYawV = 0, W = 1, H = 1, minD = 7.5, maxD = 60, homeD = 30;
@@ -124,7 +141,7 @@ async function start() {
   function setSheet(kind, id, push) {
     const prev = S.focus;
     S.sheet = kind; S.focus = kind === 'fig' ? byId[id] : null;
-    body.dataset.sheet = kind; body.dataset.fig = S.focus ? id : '';
+    body.dataset.sheet = kind; body.dataset.fig = S.focus ? id : ''; body.dataset.doc = kind === 'doc' ? id : '';
     MECHS.forEach((m) => { if (m.panel) m.panel.hidden = !(S.focus === m); if (m.setFocus) m.setFocus(S.focus === m); });
     $$(document, '[data-fig-link]').forEach((a) => a.classList.toggle('on', !!S.focus && a.dataset.figLink === id));
     $$(document, '.topnav a').forEach((a) => a.classList.toggle('on', kind === 'doc' && a.getAttribute('href') === '#' + id));
@@ -132,7 +149,7 @@ async function start() {
     if (kind) folio.removeAttribute('inert'); else folio.setAttribute('inert', '');
     if (kind === 'doc') {
       const el = document.getElementById(id);
-      requestAnimationFrame(() => { folio.scrollTop = el && id !== 'about' ? el.offsetTop - 76 : 0; });
+      folio.scrollTop = 0;
     } else if (kind === 'fig') folio.scrollTop = 0;
     if (prev && !S.focus) { G.pitch = 0.22; }
     const hash = kind ? '#' + id : ' ';
@@ -200,7 +217,7 @@ async function start() {
     if (mechDrag) { cast(e); mechDrag.pointer('move', local(mechDrag)); return; }
     if (drag) {
       const dx = e.clientX - drag.x, dy = e.clientY - drag.y, now = performance.now(), dtm = Math.max(8, now - drag.t) / 1000;
-      drag.x = e.clientX; drag.y = e.clientY; drag.t = now; drag.moved += Math.abs(dx) + Math.abs(dy);
+      drag.x = e.clientX; drag.y = e.clientY; drag.t = now; drag.moved += Math.abs(dx) + Math.abs(dy); if (drag.moved > 40) S.turned = true;
       const k = 0.0058 * clamp(V.dist / homeD, 0.35, 1);
       G.yaw += dx * k; G.pitch = clamp(G.pitch + dy * k * 0.7, -0.12, 1.25);
       yawVel = lerp(yawVel, (dx * k) / dtm, 0.5); pitchVel = lerp(pitchVel, (dy * k * 0.7) / dtm, 0.5);
@@ -232,7 +249,7 @@ async function start() {
     if (e.key === 'Escape' && S.sheet) { route(''); canvas.focus({ preventScroll: true }); return; }
     if (document.activeElement !== canvas) return;
     const k = e.key; let used = true;
-    if (k === 'ArrowLeft') G.yaw -= 0.26; else if (k === 'ArrowRight') G.yaw += 0.26;
+    if (k === 'ArrowLeft') { G.yaw -= 0.26; S.turned = true; } else if (k === 'ArrowRight') { G.yaw += 0.26; S.turned = true; }
     else if (k === 'ArrowUp') G.pitch = clamp(G.pitch + 0.12, -0.12, 1.25); else if (k === 'ArrowDown') G.pitch = clamp(G.pitch - 0.12, -0.12, 1.25);
     else if (k === '+' || k === '=') ACT.zin(); else if (k === '-' || k === '_') ACT.zout();
     else if (k >= '1' && k <= '5') route('#' + MECHS[+k - 1].id);
@@ -245,7 +262,7 @@ async function start() {
   const tagBox = document.getElementById('tags'), v3 = new THREE.Vector3();
   MECHS.forEach((m) => {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'tag'; b.tabIndex = -1;
-    b.innerHTML = '<i>' + m.fig + '</i><span>' + m.title + '</span>';
+    b.innerHTML = '<span>' + m.title + '</span>';
     b.addEventListener('click', () => route('#' + m.id));
     b.addEventListener('pointerenter', () => setHover(m)); b.addEventListener('pointerleave', () => setHover(null));
     tagBox.appendChild(b); m.tag = b; m.tagO = 0;
@@ -294,6 +311,9 @@ async function start() {
     camera.updateProjectionMatrix();
 
     B.update(dt, S.time, env);
+    cueO = damp(cueO, !S.sheet && !S.turned && S.intro >= 1 ? 0.5 : 0, 4, rdt);
+    cue.visible = cueO > 0.01; cueMat.opacity = cueO;
+    cue.position.y = -3.75 + env.bob; cue.rotation.y = RM ? 0 : Math.sin(now * 0.0017) * 0.16;
     for (const m of MECHS) { env.focused = S.focus === m; m.update(dt, S.time, env); }
 
     // hover
@@ -308,7 +328,7 @@ async function start() {
     for (const m of MECHS) {
       const fc = facing(m);
       if (!m.onTop && fc > best) { best = fc; nearest = m; }
-      const show = !S.focus && S.intro > 0.6 ? sat((fc - 0.22) / 0.3) : 0;
+      const show = !S.sheet && S.intro > 0.6 ? sat((fc - 0.22) / 0.3) : 0;
       m.tagO = damp(m.tagO, show, 8, rdt);
       if (m.tagO > 0.01) {
         v3.set(m.anchor[0], m.anchor[1], m.anchor[2]); m.host.localToWorld(v3); v3.project(camera);
