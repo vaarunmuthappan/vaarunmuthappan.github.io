@@ -1,0 +1,25 @@
+/* logit.css: Fig II, "From a line to a probability" (logit.js). Scoped under .nb-logit; the shell sizes the host. */
+.nb-logit { position: relative; }
+.nb-logit[data-mode="pocket"] { overflow-x: hidden; overflow-y: auto; }
+.nb-logit .nb-logit-in { position: relative; width: 100%; height: 100%; }
+.nb-logit .nb-logit-in > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.nb-logit .nb-logit-sr { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; border: 0; }
+.nb-logit .nb-logit-ctl { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+/* drawn controls: enlarged invisible hit shapes; only draggable parts stop touch scrolling */
+.nb-logit .nb-logit-drag { touch-action: none; -webkit-tap-highlight-color: transparent; }
+.nb-logit .nb-logit-btn { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.nb-logit[data-mode="margin"] .nb-logit-hit, .nb-logit[data-mode="margin"] .nb-logit-hit * { pointer-events: none !important; }
+
+/* the drawing engine's states (as sheet.css), repeated here so the module stands alone */
+.nb-logit .hd { display: block; width: 100%; height: 100%; overflow: visible; }
+.nb-logit .hd .hs, .nb-logit .hd .hm { stroke-dasharray: 1 1; stroke-dashoffset: 1; visibility: hidden; }
+.nb-logit .hd .hf { opacity: 0; }
+.nb-logit .hd.drawing .hs { stroke-dashoffset: 0; visibility: visible;
+  transition: stroke-dashoffset var(--d, 300ms) var(--ease-pen) var(--t, 0ms), visibility 0s linear var(--t, 0ms); }
+.nb-logit .hd.drawing .hf { opacity: 1; transition: opacity var(--d, 160ms) linear var(--t, 0ms); }
+.nb-logit .hd.live .hs, .nb-logit .hd.live .hm { stroke-dasharray: none; stroke-dashoffset: 0; visibility: visible; transition: none; }
+.nb-logit .hd.live .hf { opacity: 1; transition: none; }
+.nb-logit text { user-select: none; -webkit-user-select: none; }
+/* every numeral in the figure lining and tabular (the font's default figures are old style) */
+.nb-logit text, .nb-logit tspan { font-variant-numeric: lining-nums tabular-nums; font-feature-settings: "lnum" 1, "tnum" 1; }

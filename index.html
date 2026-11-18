@@ -2,107 +2,198 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Vaarun Muthappan — Data scientist, Bayesian statistics</title>
-<meta name="description" content="Vaarun Muthappan is a data scientist at Paramount working on Bayesian statistics. Notes and projects in statistics, machine learning, and data science.">
-<script>(function(d){d.className+=' js';setTimeout(function(){if(/\bsheet-live\b/.test(d.className))return;d.className+=' sheet-failed';[].forEach.call(document.querySelectorAll('[data-still]'),function(e){if(e.querySelector('img.still'))return;var i=new Image(),n=e.getAttribute('data-still-n');i.alt='';i.className='still';i.src=n&&matchMedia('(max-width: 719px)').matches?n:e.getAttribute('data-still');e.appendChild(i)})},1500)})(document.documentElement)</script>
+<meta name="description" content="Vaarun Muthappan is a data scientist at Paramount working with Bayesian statistics. Notes and projects in statistics, machine learning, and data science.">
+<meta name="theme-color" content="#F3EFE6">
+<script>(function(d){var c=d.className+' js';try{var k=document.createElement('canvas');if(window.WebGL2RenderingContext&&k.getContext('webgl2'))c+=' live'}catch(e){}d.className=c;setTimeout(function(){if(!/\bready\b/.test(d.className))d.className=d.className.replace(/\blive\b/,'')+' no-gl'},9000)})(document.documentElement)</script>
+<link rel="icon" href="data:,">
 <link rel="preload" href="assets/fonts/EBGaramond-Roman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/EBGaramond-Italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="sheet.css">
-<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="machine.css">
+<link rel="modulepreload" href="machine/three.module.min.js">
 <script src="bayes.js" defer></script>
-<script src="hand.js" defer></script>
-<script src="studies.js" defer></script>
-<script src="home.js" defer></script>
+<script type="module" src="machine/main.js"></script>
 </head>
-<body class="home">
-<a class="skip" href="#main">Skip to content</a>
+<body class="mx" data-sheet="">
+<a class="skip" href="#folio">Skip to the portfolio</a>
 
-<main class="sheet" id="main">
-  <!-- Field I -->
-  <h1 class="name"><a href="index.html"><span class="bl"></span>Vaarun <br><span class="bl"></span>Muthappan</a><span class="guides" aria-hidden="true"></span></h1>
+<header class="top">
+  <a class="name" href="#">Vaarun Muthappan</a>
+  <nav class="topnav" aria-label="Portfolio">
+    <a href="#about">About</a>
+    <a href="#notes">Notes</a>
+    <a href="#projects">Projects</a>
+    <a href="https://www.linkedin.com/in/vaarunm/" target="_blank" rel="noopener me">Contact</a>
+  </nav>
+</header>
 
-  <p class="lead">I'm a data scientist at Paramount, working on Bayesian statistics. This site collects my notes and projects in statistics, machine learning, and data science.</p>
+<!-- The machine. Everything here is an enhancement: the portfolio below is complete without it. -->
+<div class="stage" id="stage">
+  <canvas id="scene" tabindex="0" aria-label="A floating machine with five working mechanisms: Bayesian updating, least squares, a decision tree, a randomisation test and k-means. Drag to turn it, scroll to zoom, and select a mechanism to operate it. The same mechanisms are listed as links after this canvas."></canvas>
+  <div id="tags" aria-hidden="true"></div>
 
-  <div class="study mini" aria-hidden="true" data-still="assets/studies/s1-mini.svg"><noscript><img class="still" src="assets/studies/s1-mini.svg" alt=""></noscript></div>
+  <div class="intro">
+    <p class="lead">I'm a data scientist at Paramount, working with Bayesian statistics. This site has my notes and projects in statistics, machine learning, and data science.</p>
+  </div>
 
-  <nav class="dests" aria-label="Sections">
-    <a class="dest dest-c" href="courses.html">
-      <span class="study s3" aria-hidden="true" data-still="assets/studies/s3-icosahedron.svg"><noscript><img class="still" src="assets/studies/s3-icosahedron.svg" alt=""></noscript></span>
-      <span class="dl"><span class="dt">Concept Notes</span><span class="dd">Statistics, machine learning, data science.</span><span class="ir" aria-hidden="true"></span></span>
-    </a>
-    <a class="dest dest-p" href="projects.html">
-      <span class="study s4" aria-hidden="true" data-still="assets/studies/s4-hoist.svg"><noscript><img class="still" src="assets/studies/s4-hoist.svg" alt=""></noscript></span>
-      <span class="dl"><span class="dt">Project Notes</span><span class="dd">Write-ups and analyses from projects.</span><span class="ir" aria-hidden="true"></span></span>
-    </a>
+  <nav class="figs" aria-label="Mechanisms">
+    <ol>
+      <li><a href="#bayes" data-fig-link="bayes"><i>I</i><span>Bayesian updating</span></a></li>
+      <li><a href="#regression" data-fig-link="regression"><i>II</i><span>Least squares</span></a></li>
+      <li><a href="#tree" data-fig-link="tree"><i>III</i><span>Decision tree</span></a></li>
+      <li><a href="#shuffle" data-fig-link="shuffle"><i>IV</i><span>Randomisation test</span></a></li>
+      <li><a href="#clusters" data-fig-link="clusters"><i>V</i><span>k-means</span></a></li>
+    </ol>
   </nav>
 
-  <!-- Field II -->
-  <figure class="ridge" id="ridge" aria-labelledby="ridge-title">
-    <h2 class="ridge-title" id="ridge-title">Bayesian updating on synthetic data</h2>
-    <p class="ridge-static">After all 48 observations (14 yes, 34 no), a flat prior gives the posterior Beta(15, 35), mean 0.30.</p>
+  <div class="rail" id="rail" role="toolbar" aria-label="Machine controls">
+    <button type="button" data-act="auto" aria-pressed="true" aria-label="Stop turning"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.2 7.2C4.2 7.9 3 8.9 3 10c0 2 3.1 3.6 7 3.6s7-1.6 7-3.6c0-1.1-1.2-2.100-3.200-2.800"/><path d="M8.300 5.100L6.100 7.200l2.300 1.900"/><circle cx="10" cy="9.2" r="1.500"/></svg></button>
+    <button type="button" data-act="pause" aria-pressed="false" aria-label="Pause the mechanisms"><svg class="i-pause" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.2 5v10M12.8 5v10"/></svg><svg class="i-play" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 4.8v10.4l8-5.2z"/></svg></button>
+    <button type="button" data-act="speed" class="txt" aria-label="Change speed" title="Speed"><b>1×</b></button>
+    <span class="sep" aria-hidden="true"></span>
+    <button type="button" data-act="zout" aria-label="Zoom out" title="Zoom out"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10"/></svg></button>
+    <button type="button" data-act="zin" aria-label="Zoom in" title="Zoom in"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10 5v10"/></svg></button>
+    <button type="button" data-act="home" aria-label="Return to the whole machine" title="Return to the whole machine"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7.6V4h3.6M12.4 4H16v3.6M16 12.4V16h-3.6M7.6 16H4v-3.6"/></svg></button>
+    <span class="sep" aria-hidden="true"></span>
+    <button type="button" data-act="reset" aria-label="Reset the machine to its initial state" title="Reset the machine"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.4 6.600A6.200 6.200 0 1 1 3.800 10"/><path d="M3.700 3.400v3.400h3.400"/></svg></button>
+  </div>
+</div>
 
-    <div class="frame" data-still="assets/studies/s1-apparatus-wide.svg" data-still-n="assets/studies/s1-apparatus-narrow.svg">
-      <noscript><picture><source media="(max-width: 719px)" srcset="assets/studies/s1-apparatus-narrow.svg"><img class="still" src="assets/studies/s1-apparatus-wide.svg" alt=""></picture></noscript>
-      <div class="hud" aria-hidden="true">
-        <span class="xt" style="--t:0">0</span>
-        <span class="xt" style="--t:0.25">0.25</span>
-        <span class="xt" style="--t:0.5">0.5</span>
-        <span class="xt" style="--t:0.75">0.75</span>
-        <span class="xt" style="--t:1">1</span>
-        <span class="axt">θ, the underlying rate</span>
-        <span class="rt" style="--r:0">0</span>
-        <span class="rt" style="--r:12">12</span>
-        <span class="rt" style="--r:24">24</span>
-        <span class="rt" style="--r:36">36</span>
-        <span class="rt" style="--r:48">48</span>
-        <span class="handle">n = 48</span>
-      </div>
-      <dl class="ridge-values" hidden>
-        <div class="rv rv-seen"><dt><svg class="key" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><rect x="5.5" y="1.5" width="5" height="10" fill="none"/><path d="M8 1.5v10M8 11.5v1.5"/><circle cx="8" cy="14.2" r="1.3" fill="none"/></svg>Seen</dt><dd data-out="seen">48 / 48</dd></div>
-        <div class="rv rv-yn"><dt><svg class="key" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><circle cx="4.5" cy="8" r="3" class="fill"/><circle cx="11.5" cy="8" r="3" fill="none"/></svg>Yes / no</dt><dd data-out="yn">14 / 34</dd></div>
-        <div class="rv rv-post"><dt><svg class="key" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path d="M1 8C4 3.2 10.5 2.6 15 8C10.5 13.4 4 12.8 1 8Z" fill="none"/><path d="M6.4 4.4A1 3.6 0 0 0 6.4 11.6M10 4.1A1 3.9 0 0 0 10 11.9" fill="none" stroke-opacity=".6"/></svg>Posterior</dt><dd data-out="post">Beta(15, 35)</dd></div>
-        <div class="rv rv-mean"><dt><svg class="key" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path d="M2 3.5H14" /><path d="M8 3.5L12 9H4Z M6.5 9V13M9.5 9V13M4.5 13H11.5V14.5H4.5Z" fill="none"/></svg>Mean</dt><dd data-out="mean">0.300</dd></div>
-        <div class="rv rv-ci"><dt><svg class="key" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path class="sang" d="M1.5 2.5V13.5M14.5 2.5V13.5M1.5 8H14.5M4.5 6L1.5 8L4.5 10M11.5 6L14.5 8L11.5 10" fill="none"/></svg>90% credible interval</dt><dd data-out="ci">0.20 – 0.41</dd></div>
-      </dl>
-      <span class="plinth-hit" aria-hidden="true"></span>
-      <div class="ridge-scrub" hidden>
-        <label class="sr-only" for="ridge-n">Observations seen</label>
-        <input class="ridge-slider" type="range" id="ridge-n" min="0" max="48" step="1" value="48">
-        <span class="rail-hit" aria-hidden="true"></span>
-      </div>
-      <div class="plumb" aria-hidden="true" data-still="assets/studies/s5-plumb.svg"><span class="gen">generating rate 0.30</span><noscript><img class="still" src="assets/studies/s5-plumb.svg" alt=""></noscript></div>
-    </div>
+<main id="folio">
+  <div class="sheet-head"><button class="back" type="button" data-close aria-label="Close" title="Close"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5.500 5.500l9 9M14.500 5.500l-9 9"/></svg></button></div>
+  <p class="plain-note">The interactive machine needs WebGL and JavaScript.</p>
 
-    <div class="ridge-options" hidden>
-      <fieldset class="ridge-prior">
-        <legend>Prior</legend>
-        <div class="lever-row">
-          <svg class="lever" aria-hidden="true" focusable="false" viewBox="0 0 72 72"><path class="quad" d="M53 11.62A46 46 0 0 1 53 60.38" fill="none"/><path class="notch" d="M56.65 18.77L60.36 17.27M56.65 53.23L60.36 54.73" fill="none"/><g class="arm"><path d="M19 36H49" fill="none"/><path d="M19 34.6L49 35.2M19 37.4L49 36.8" fill="none" stroke-opacity=".5"/><circle class="knob" cx="54" cy="36" r="5"/></g><circle cx="14" cy="36" r="5" class="pivot"/><circle cx="14" cy="36" r="1.4" class="fill"/></svg>
-          <label class="p-flat"><input type="radio" name="ridge-prior" value="flat" checked><span>Flat, Beta(1, 1)</span></label>
-          <label class="p-cent"><input type="radio" name="ridge-prior" value="centred"><span>Centred on 0.5, Beta(10, 10)</span></label>
-        </div>
+  <div class="doc">
+    <section id="about" class="sec sec-about">
+      <h1>Vaarun Muthappan</h1>
+      <p class="big">I'm a data scientist at Paramount, working with Bayesian statistics.</p>
+      <p>I studied data science at the University of Michigan, with a minor in Business, then did my Masters in Data Science at NYU.</p>
+      <p class="small">Coursework: Machine Learning in Finance, Reinforcement Learning, Causal Inference, Computer Vision, Big Data, Databases.</p>
+    </section>
+
+    <section id="notes" class="sec">
+      <h2>Notes</h2>
+      <a class="row" href="ids/index.html"><span class="rt">Introduction to Data Science</span><span class="rd">Statistics and machine learning.</span><span class="ra" aria-hidden="true"></span></a>
+    </section>
+
+    <section id="projects" class="sec">
+      <h2>Projects</h2>
+      <a class="row" href="Capstone/index.html"><span class="rt">Analysing Rate My Professor Ratings</span><span class="rd">Capstone project.</span><span class="ra" aria-hidden="true"></span></a>
+    </section>
+
+    <section id="contact" class="sec">
+      <h2>Contact</h2>
+      <a class="row" href="https://www.linkedin.com/in/vaarunm/" target="_blank" rel="noopener me"><span class="rt">LinkedIn</span><span class="ra" aria-hidden="true"></span></a>
+    </section>
+  </div>
+
+  <!-- I. Bayesian updating -->
+  <section class="fig" id="bayes" aria-labelledby="h-bayes">
+    <p class="eyebrow">Fig. I</p>
+    <h2 id="h-bayes">Bayesian updating</h2>
+    <p class="lede">Each ball is a yes or a no. The beam balances at the posterior mean. The slices behind it are the posterior after each observation.</p>
+    <div class="bench">
+      <label class="field"><span class="fl">Observations</span><input type="range" data-k="n" min="0" max="48" step="1" value="48"><output data-out="seen">48 / 48</output></label>
+      <fieldset class="seg"><legend>Prior</legend>
+        <label><input type="radio" name="bayes-prior" value="flat" checked><span>Flat, Beta(1, 1)</span></label>
+        <label><input type="radio" name="bayes-prior" value="centred"><span>Centred on 0.5, Beta(10, 10)</span></label>
       </fieldset>
-      <button class="ridge-replay" type="button"><svg class="crank" aria-hidden="true" focusable="false" viewBox="0 0 44 44"><circle cx="22" cy="22" r="5" fill="none"/><circle cx="22" cy="22" r="1.4" class="fill"/><g class="carm"><path d="M27 22H37" fill="none"/><circle cx="37" cy="22" r="2.2" class="fill"/><path d="M37 22V30" fill="none" stroke-width="2"/></g></svg><span>Replay</span></button>
+      <div class="btns"><button type="button" class="btn" data-k="replay">Replay</button></div>
+      <dl class="read">
+        <div><dt>Yes / no</dt><dd data-out="yn">14 / 34</dd></div>
+        <div><dt>Posterior</dt><dd data-out="post">Beta(15, 35)</dd></div>
+        <div><dt>Mean</dt><dd data-out="mean">0.300</dd></div>
+        <div><dt>90% interval</dt><dd data-out="ci">0.20 – 0.41</dd></div>
+      </dl>
+      <p class="sr-only" aria-live="polite" data-out="say"></p>
     </div>
+    <p class="static">After 48 observations (14 yes, 34 no), a flat prior gives Beta(15, 35): mean 0.30, 90% interval 0.20 to 0.41.</p>
+    <p class="fine">48 synthetic observations.</p>
+    <a class="more" href="ids/index.html#bayesian-inference">Notes: Bayesian Inference</a>
+  </section>
 
-    <p class="sr-only ridge-announce" aria-live="polite"></p>
-    <figcaption>Each line is the posterior for an unknown rate θ after one more yes/no observation, starting from the prior at the top. The 48 observations are synthetic: generated once at a rate of 0.30, then fixed. Shading marks the central 90% of the current posterior.</figcaption>
-  </figure>
+  <!-- II. Least squares -->
+  <section class="fig" id="regression" aria-labelledby="h-regression">
+    <p class="eyebrow">Fig. II</p>
+    <h2 id="h-regression">Least squares</h2>
+    <p class="lede">The pins never move. Springs pull the rod to the line with the smallest sum of squared residuals. Drag the rod, then let go.</p>
+    <div class="bench">
+      <label class="field"><span class="fl">Slope</span><input type="range" data-k="slope" min="-1" max="2" step="0.01" value="0.5"></label>
+      <label class="field"><span class="fl">Intercept</span><input type="range" data-k="icpt" min="-3" max="10" step="0.05" value="2"></label>
+      <label class="check"><input type="checkbox" data-k="hold"><span>Hold the rod</span></label>
+      <div class="btns"><button type="button" class="btn" data-k="release">Let go</button><button type="button" class="btn" data-k="knock">Knock</button></div>
+      <dl class="read">
+        <div><dt>Line</dt><dd data-out="eq">—</dd></div>
+        <div><dt>Least squares</dt><dd data-out="ols">—</dd></div>
+        <div><dt>Sum of squares</dt><dd data-out="sse">—</dd></div>
+        <div><dt>Minimum</dt><dd data-out="min">—</dd></div>
+      </dl>
+      <p class="state" data-out="state" aria-live="polite"></p>
+    </div>
+    <p class="fine">Synthetic data.</p>
+    <a class="more" href="ids/index.html#machine-learning-regression">Notes: Regression</a>
+  </section>
 
-  <!-- Field III -->
-  <p class="bio bio-a"><span class="brule" aria-hidden="true"></span>My previous coursework includes Machine Learning in Finance, Reinforcement Learning, Causal Inference, Computer Vision, Big Data and Databases.</p>
-  <p class="bio bio-b"><span class="brule" aria-hidden="true"></span>My background is in data science: I studied at the University of Michigan (bachelors, with a minor in Business) and at NYU (Masters).</p>
+  <!-- III. Decision tree -->
+  <section class="fig" id="tree" aria-labelledby="h-tree">
+    <p class="eyebrow">Fig. III</p>
+    <h2 id="h-tree">Decision tree</h2>
+    <p class="lede">Each ball is a row. At each rule a wedge sends it left or right of the threshold. Drag a wedge and the rows re-sort.</p>
+    <div class="bench">
+      <label class="field"><span class="fl">Age &gt;</span><input type="range" data-k="t0" min="19" max="58" step="1" value="30"><output data-out="t0">30</output></label>
+      <label class="field"><span class="fl">Income &gt; (left)</span><input type="range" data-k="t1" min="22" max="98" step="1" value="65"><output data-out="t1">65</output></label>
+      <label class="field"><span class="fl">Income &gt; (right)</span><input type="range" data-k="t2" min="22" max="98" step="1" value="50"><output data-out="t2">50</output></label>
+      <div class="btns"><button type="button" class="btn" data-k="fit">Fit</button><button type="button" class="btn" data-k="defaults">Reset</button><button type="button" class="btn" data-k="again">Run again</button></div>
+      <dl class="read">
+        <div><dt>Accuracy</dt><dd data-out="acc">—</dd></div>
+        <div><dt>Gini impurity</dt><dd data-out="gini">—</dd></div>
+      </dl>
+    </div>
+    <p class="fine">36 synthetic rows.</p>
+    <a class="more" href="ids/index.html#ml-classification">Notes: Classification</a>
+  </section>
 
-  <div class="study s2" aria-hidden="true" data-still="assets/studies/s2-golden.svg"><noscript><img class="still" src="assets/studies/s2-golden.svg" alt=""></noscript></div>
+  <!-- IV. Randomisation test -->
+  <section class="fig" id="shuffle" aria-labelledby="h-shuffle">
+    <p class="eyebrow">Fig. IV</p>
+    <h2 id="h-shuffle">Randomisation test</h2>
+    <p class="lede">B said yes more often than A. Shuffle the labels to see how often chance alone does as well.</p>
+    <div class="bench">
+      <label class="field"><span class="fl">Yes in B</span><input type="range" data-k="obs" min="7" max="14" step="1" value="10"><output data-out="k">10</output></label>
+      <div class="btns"><button type="button" class="btn" data-k="once">Shuffle</button><button type="button" class="btn" data-k="many">Shuffle 200</button><button type="button" class="btn" data-k="clear">Clear</button></div>
+      <dl class="read">
+        <div><dt>Difference, B − A</dt><dd data-out="diff">—</dd></div>
+        <div><dt>Shuffles</dt><dd data-out="n">0</dd></div>
+        <div><dt>p, shuffled</dt><dd data-out="psim">—</dd></div>
+        <div><dt>p, exact</dt><dd data-out="pexact">—</dd></div>
+      </dl>
+    </div>
+    <p class="fine">Synthetic data.</p>
+    <a class="more" href="ids/index.html#non-parametric-tests">Notes: Non-parametric Tests</a>
+  </section>
 
-  <div class="study s6-slot" aria-hidden="true" data-still="assets/studies/s6-toss.svg"><noscript><img class="still" src="assets/studies/s6-toss.svg" alt=""></noscript></div>
-
-  <nav class="closing" aria-label="Primary">
-    <a class="cl cl-c" href="courses.html"><span class="glyph" aria-hidden="true"></span><span class="cl-t">Concept Notes</span><span class="ir" aria-hidden="true"></span></a>
-    <a class="cl cl-p" href="projects.html"><span class="glyph" aria-hidden="true"></span><span class="cl-t">Project Notes</span><span class="ir" aria-hidden="true"></span></a>
-  </nav>
+  <!-- V. k-means -->
+  <section class="fig" id="clusters" aria-labelledby="h-clusters">
+    <p class="eyebrow">Fig. V</p>
+    <h2 id="h-clusters">k-means</h2>
+    <p class="lede">Colour each pin by its nearest centroid. Move each centroid to the mean of its pins. Repeat until nothing changes.</p>
+    <div class="bench">
+      <fieldset class="seg"><legend>Clusters</legend>
+        <button type="button" data-kk="2" aria-pressed="false">2</button><button type="button" data-kk="3" aria-pressed="true">3</button><button type="button" data-kk="4" aria-pressed="false">4</button>
+      </fieldset>
+      <div class="btns"><button type="button" class="btn" data-k="step">Step</button><button type="button" class="btn" data-k="run" aria-pressed="true">Run</button><button type="button" class="btn" data-k="seed">New start</button></div>
+      <dl class="read">
+        <div><dt>Updates</dt><dd data-out="iter">0</dd></div>
+        <div><dt>Sum of squares</dt><dd data-out="wcss">—</dd></div>
+        <div class="wide"><dt>History</dt><dd><svg class="spark" data-k="spark" viewBox="0 0 200 50" role="img" aria-label="Sum of squares after each step"></svg></dd></div>
+      </dl>
+      <p class="state" data-out="state" aria-live="polite"></p>
+    </div>
+    <p class="fine">Synthetic data.</p>
+    <a class="more" href="ids/index.html#ml-unsupervised-learning">Notes: Unsupervised Learning</a>
+  </section>
 </main>
-
 </body>
 </html>
