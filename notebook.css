@@ -1,0 +1,180 @@
+/* notebook.css: the working sheet (round 7). One sheet of 1440 x 810 units fitted to the window in
+   broad mode (>= 1100 x 600, JS live); otherwise a scrolling pocket page. u = px per sheet unit
+   (CSS var --u), --fu = px per unit of one figure host (set by notebook.js; equals --u in broad mode).
+   Fig III (the Bayesian steelyard) was removed from the sheet by the owner; bayesfig.js stays on disk, unloaded. */
+
+/* ---- base: the stacked page (no JS, failure, pocket) --------------------------------------------- */
+.nb { --pu: calc(100vw / 390); overflow-x: clip; }
+.nb-sheet { position: relative; padding: 0 calc(20 * var(--pu)) calc(48 * var(--pu)); display: flex; flex-direction: column; }
+.nb-head, .nb-body { display: contents; }
+.nb .name { order: 1; position: relative; font-weight: 500; font-size: calc(34 * var(--pu)); line-height: 1.1; padding-top: calc(40 * var(--pu)); letter-spacing: -0.005em; }
+.nb .name a { text-decoration: none; }
+.nb .guides { position: absolute; left: calc(-12 * var(--pu)); right: calc(-12 * var(--pu)); top: 0; height: 100%; pointer-events: none; }
+.nb .guides .ul { stroke-dasharray: 1 1; stroke-dashoffset: 1; transition: stroke-dashoffset 200ms var(--ease-pen); }
+.nb .name a:hover ~ .guides .ul, .nb .name a:focus-visible ~ .guides .ul { stroke-dashoffset: 0; }
+.nb .lead { order: 2; font-size: calc(17 * var(--pu)); line-height: 1.4; margin-top: calc(12 * var(--pu)); }
+.nb-bios { order: 6; }
+.nb .bio { position: relative; font-size: calc(15.5 * var(--pu)); line-height: 1.45; color: var(--ink-2); margin-top: calc(34 * var(--pu)); }
+.nb .brule { position: absolute; left: 0; top: calc(-14 * var(--pu)); width: calc(120 * var(--pu)); height: calc(8 * var(--pu)); }
+.nb-clock { position: absolute; right: calc(14 * var(--pu)); top: calc(10 * var(--pu)); width: 60px; height: 100px; padding: 0; border: 0; background: none; cursor: pointer; display: block; z-index: 6; }
+.nb-clock[hidden] { display: none; }
+.nb-pend { position: absolute; left: 0; top: 0; width: 100%; height: 82%; display: block; }
+.nb-clock-w { position: absolute; left: 0; right: 0; bottom: 0; text-align: center; font-style: italic; font-size: 13px; line-height: 1; color: var(--ink-2); }
+.nb-clock:hover .nb-clock-w { color: var(--ink); }
+.nb-fig { order: 3; position: relative; margin-top: calc(40 * var(--pu)); }
+.nb-notes { order: 5; position: relative; margin-top: calc(48 * var(--pu)); }
+.nb-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 14px; }
+.nb-title { font-style: italic; font-weight: 400; font-size: calc(21 * var(--pu)); line-height: 1.2; }
+.nb-open { border: 0; background: none; padding: 0; margin: 0; font: inherit; font-style: italic; text-align: left; cursor: pointer; display: inline-flex; align-items: baseline; gap: 0.3em; min-height: 44px; align-items: center; }
+html:not(.js) .nb-open, .nb-failed .nb-open { cursor: default; pointer-events: none; }
+html:not(.js) .nb-lens, html:not(.js) .nb-ow, .nb-failed .nb-lens, .nb-failed .nb-ow { display: none; }
+.nb-lens { display: inline-block; width: 0.62em; height: 0.62em; flex: none; }
+.nb-lens svg, .nb-fold svg { width: 100%; height: 100%; overflow: visible; }
+.nb-ow { font-size: 0.62em; color: var(--ink-2); }
+.nb-open:hover .nb-ow, .nb-open:focus-visible .nb-ow { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.nb-note, .nb-in { font-size: max(11px, calc(13 * var(--pu))); color: var(--ink-2); text-decoration: none; }
+.nb-note:hover, .nb-note:focus-visible, .nb-in:hover, .nb-in:focus-visible { text-decoration: underline; color: var(--ink); }
+.nb-return { border: 0; background: none; padding: 0; font: inherit; font-style: italic; font-size: max(11px, calc(15 * var(--pu))); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 0.4em; min-height: 44px; }
+.nb-return[hidden] { display: none; }
+.nb-return:hover span:last-child, .nb-return:focus-visible span:last-child { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.nb-fold { display: inline-block; width: 1em; height: 1em; }
+.nb-host { position: relative; margin-top: calc(8 * var(--pu)); }
+.nb-host > .still { width: 100%; height: auto; }
+.nb-miss { font-style: italic; font-size: 15px; color: var(--ink-2); padding: 12px 0; }
+.nb-tap { display: none; }
+.nb-tn { display: none; }
+.nb-layer { display: none; }
+.nb-hit { position: absolute; inset: 0; z-index: 4; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.nb-dest { margin-top: calc(18 * var(--pu)); }
+.nb .dests a.dest { display: grid; grid-template-columns: calc(84 * var(--pu)) 1fr; column-gap: calc(14 * var(--pu)); text-decoration: none; align-items: start; }
+.nb .dest .study { width: calc(84 * var(--pu)); height: calc(84 * var(--pu)); display: block; }
+.nb .dest .dl { display: block; }
+.nb .dest .dt { display: block; font-size: calc(20 * var(--pu)); line-height: 1.15; }
+.nb .dest .dd { display: block; font-size: max(11px, calc(13.5 * var(--pu))); line-height: 1.35; color: var(--ink-2); margin-top: 2px; }
+.nb .dest .ir { height: 34px; margin-top: 0; }
+.nb .dest .ir .hd { height: 100%; margin: 0; }
+.nb-in { display: block; margin-left: calc(98 * var(--pu)); margin-top: 0; min-height: 24px; }
+.nb .reduced-x {}
+
+@media (min-width: 720px) {
+  .nb { --pu: calc(min(100vw, 1100px) / 780); }
+  .nb-sheet { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; column-gap: calc(30 * var(--pu)); align-items: start; }
+  .nb .name, .nb .lead { grid-column: 1 / -1; }
+  .nb .name { font-size: calc(30 * var(--pu)); }
+  .nb .lead { font-size: calc(15.5 * var(--pu)); max-width: calc(560 * var(--pu)); }
+  .nb .bio { font-size: calc(14 * var(--pu)); }
+  .nb-title { font-size: calc(19 * var(--pu)); }
+}
+
+/* ---- pocket mode with JS: tiles and the full-screen plate --------------------------------------- */
+.nb-pocket .nb-tap { display: block; font-style: italic; font-size: max(12px, calc(12.5 * var(--pu))); color: var(--ink-2); margin-top: 6px; }
+.nb-pocket .nb-fig .nb-note { display: none; }
+.nb-pocket .nb-fig.is-open .nb-note { display: inline; }
+.nb-pocket .nb-host { overflow: hidden; }
+.nb-pocket .nb-fig.is-open { position: fixed; inset: 0; z-index: 30; margin: 0; background: var(--paper); overflow-y: auto; overscroll-behavior: contain; }
+.nb-pocket .nb-fig.is-open .nb-row { position: sticky; top: 0; z-index: 5; background: var(--paper); padding: 6px 16px 4px; flex-wrap: wrap; border-bottom: 0.8px solid var(--silver); }
+.nb-pocket .nb-fig.is-open .nb-return { order: -1; }
+.nb-pocket .nb-fig.is-open .nb-title { font-size: 19px; width: 100%; }
+.nb-pocket .nb-fig.is-open .nb-ow, .nb-pocket .nb-fig.is-open .nb-lens { display: none; }
+.nb-pocket .nb-fig.is-open .nb-host { overflow: visible; margin: 8px auto 40px; }
+.nb-pocket .nb-fig.is-open .nb-tap { display: none; }
+html.nb-pplate, html.nb-pplate body { overflow: hidden; }
+
+/* ---- broad mode: the one-screen sheet ------------------------------------------------------------ */
+@media (min-width: 1100px) and (min-height: 600px) {
+  html.js:not(.nb-failed) { --u: min(calc(100vw / 1440), calc(100dvh / 810)); overflow: hidden; height: 100dvh; }
+  html.js:not(.nb-failed) body { overflow: hidden; height: 100dvh; }
+  .js:not(.nb-failed) .nb-sheet { position: absolute; display: block; padding: 0; margin: 0; max-width: none;
+    width: calc(1440 * var(--u)); height: calc(810 * var(--u));
+    left: calc((100vw - 1440 * var(--u)) / 2); top: calc((100dvh - 810 * var(--u)) / 2); }
+  .js:not(.nb-failed) .nb-sheet > *, .js:not(.nb-failed) .nb-head > *, .js:not(.nb-failed) .nb-body > * { position: absolute; margin: 0; }
+  .js:not(.nb-failed) .ab, .js:not(.nb-failed) .nb-fig, .js:not(.nb-failed) .nb-notes {
+    left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); width: calc(var(--w) * var(--u)); height: calc(var(--h) * var(--u)); }
+
+  .js:not(.nb-failed) .name { --x: 40; --y: 29; --w: 600; --h: 34; left: calc(40 * var(--u)); top: calc(29 * var(--u)); padding: 0; font-size: max(11px, calc(34 * var(--u))); line-height: calc(34 * var(--u)); white-space: nowrap; }
+  .js:not(.nb-failed) .name .guides { left: calc(-16 * var(--u)); right: auto; width: calc(340 * var(--u)); top: 0; height: 100%; }
+  .js:not(.nb-failed) .lead { left: calc(400 * var(--u)); top: calc(41.3 * var(--u)); width: calc(880 * var(--u)); max-width: none; padding: 0; font-size: max(11px, calc(16 * var(--u))); line-height: calc(22 * var(--u)); }
+  .js:not(.nb-failed) .nb-bios { left: calc(1040 * var(--u)); top: calc(476 * var(--u)); width: calc(360 * var(--u)); }
+  .js:not(.nb-failed) .bio { position: relative; margin: 0; font-size: max(11px, calc(15 * var(--u))); line-height: calc(21.5 * var(--u)); }
+  .js:not(.nb-failed) .bio-b { margin-top: calc(22 * var(--u)); }
+  .js:not(.nb-failed) .is-plate .nb-bios { visibility: hidden; }
+  .js:not(.nb-failed) .brule { top: calc(-11 * var(--u)); width: calc(120 * var(--u)); height: calc(8 * var(--u)); }
+  .js:not(.nb-failed) .nb-clock { right: auto; left: calc(1340 * var(--u)); top: calc(14 * var(--u)); width: calc(60 * var(--u)); height: calc(106 * var(--u)); }
+  .js:not(.nb-failed) .nb-clock-w { font-size: max(11px, calc(12 * var(--u))); }
+  .js:not(.nb-failed) .nb-pend { height: calc(88 * var(--u)); }
+
+  /* figures */
+  .js:not(.nb-failed) .nb-fig > * { position: absolute; }
+  .js:not(.nb-failed) .nb-row { left: 0; top: 0; width: 100%; height: calc(var(--rh, 34) * var(--u)); display: flex; flex-wrap: nowrap; align-items: center; gap: calc(14 * var(--u)); }
+  .js:not(.nb-failed) .nb-title { font-size: max(11px, calc(21 * var(--u))); line-height: 1; white-space: nowrap; }
+  .js:not(.nb-failed) .nb-open { min-height: calc(34 * var(--u)); gap: calc(5 * var(--u)); }
+  .js:not(.nb-failed) .nb-ow { font-size: max(11px, calc(13 * var(--u))); }
+  .js:not(.nb-failed) .nb-lens { width: calc(13 * var(--u)); height: calc(13 * var(--u)); }
+  .js:not(.nb-failed) .nb-note { font-size: max(11px, calc(13 * var(--u))); line-height: 1; white-space: nowrap; }
+  .js:not(.nb-failed) .nb-return { font-size: max(11px, calc(15 * var(--u))); min-height: calc(34 * var(--u)); white-space: nowrap; }
+  .js:not(.nb-failed) .nb-host { left: 0; top: calc(var(--ht, 34) * var(--u)); width: 100%; height: calc(var(--hh) * var(--u)); margin: 0; }
+  :where(#fig-regress) { --x: 40; --y: 128; --w: 400; --h: 658; --hh: 624; }
+  :where(#fig-logit) { --x: 470; --y: 128; --w: 540; --h: 658; --hh: 624; }
+  :where(#fig-bayes) { --x: 1040; --y: 128; --w: 360; --h: 380; --hh: 346; }
+  /* overview: the note link sits low, right aligned (the title row is too narrow for it at 21u) */
+  .js:not(.nb-failed) .nb-sheet:not(.is-plate) .nb-fig .nb-note { position: absolute; right: 0; top: calc(666 * var(--u)); }
+  .js:not(.nb-failed) .nb-sheet:not(.is-plate) #fig-bayes .nb-note { top: calc(375 * var(--u)); }
+  /* plate */
+  .js:not(.nb-failed) .is-plate .nb-fig.is-open { --x: 40; --y: 128; --w: 1100; --h: 658; --ht: 38; --hh: 620; }
+  .js:not(.nb-failed) .is-plate .nb-fig.is-open .nb-note { margin-left: auto; }
+  .js:not(.nb-failed) .is-plate .nb-fig.is-tile { --x: 1170; --w: 230; --h: 192; --rh: 22; --ht: 22; --hh: 170; }
+  .js:not(.nb-failed) .is-plate .nb-fig.is-t1 { --y: 128; }
+  .js:not(.nb-failed) .is-plate .nb-fig.is-tile .nb-host { overflow: hidden; }
+  .js:not(.nb-failed) .is-plate .nb-fig.is-tile .nb-title { font-size: max(11px, calc(13 * var(--u))); }
+  .js:not(.nb-failed) .is-plate .nb-fig.is-tile .nb-open { min-height: calc(22 * var(--u)); }
+  .js:not(.nb-failed) .is-plate .nb-fig.is-tile .nb-note,
+  .js:not(.nb-failed) .is-plate .nb-fig.is-tile .nb-lens { display: none; }
+  .js:not(.nb-failed) .is-plate .nb-fig.is-tile .nb-ow { font-size: max(11px, calc(11 * var(--u))); }
+
+  /* Fig IV notes */
+  .js:not(.nb-failed) .nb-notes { --x: 1040; --y: 128; --w: 360; --h: 302; }
+  .js:not(.nb-failed) .nb-notes > * { position: absolute; }
+  .js:not(.nb-failed) .nb-notes .nb-title { left: 0; top: 0; height: calc(34 * var(--u)); line-height: 1; display: flex; align-items: center; }
+  .js:not(.nb-failed) .nb-notes .dests { left: 0; top: calc(48 * var(--u)); width: 100%; }
+  .js:not(.nb-failed) .nb-dest { margin: 0 0 calc(30 * var(--u)); }
+  .js:not(.nb-failed) .nb .dests a.dest { grid-template-columns: calc(84 * var(--u)) 1fr; column-gap: calc(16 * var(--u)); }
+  .js:not(.nb-failed) .nb .dest .study { width: calc(84 * var(--u)); height: calc(84 * var(--u)); }
+  .js:not(.nb-failed) .nb .dest .dt { font-size: max(11px, calc(20 * var(--u))); line-height: 1.1; margin-top: calc(8 * var(--u)); }
+  .js:not(.nb-failed) .nb .dest .dd { font-size: max(11px, calc(13 * var(--u))); line-height: 1.3; margin-top: calc(2 * var(--u)); }
+  .js:not(.nb-failed) .nb .dest .ir { height: calc(34 * var(--u)); }
+  .js:not(.nb-failed) .nb-in { margin-left: calc(100 * var(--u)); font-size: max(11px, calc(13 * var(--u))); line-height: calc(20 * var(--u)); min-height: 0; }
+  .js:not(.nb-failed) .is-plate .nb-notes { --x: 1170; --y: 346; --w: 230; --h: 238; }
+  .js:not(.nb-failed) .is-plate .nb-notes .nb-title { font-size: max(11px, calc(15 * var(--u))); height: calc(24 * var(--u)); }
+  .js:not(.nb-failed) .is-plate .nb-notes .dests { top: calc(30 * var(--u)); }
+  .js:not(.nb-failed) .is-plate .dests a.dest { display: block; }
+  .js:not(.nb-failed) .is-plate .dest .study, .js:not(.nb-failed) .is-plate .dest .dd { display: none; }
+  .js:not(.nb-failed) .is-plate .dest .ir { height: calc(26 * var(--u)); }
+  .js:not(.nb-failed) .is-plate .nb-dest { margin-bottom: calc(14 * var(--u)); }
+  .js:not(.nb-failed) .is-plate .nb .dest .dt { margin-top: 0; }
+  .js:not(.nb-failed) .is-plate .nb-in { margin-left: 0; }
+
+  /* the drawn layer and the thread notes */
+  .js:not(.nb-failed) .nb-layer { display: block; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
+  .js:not(.nb-failed) .nb-layer svg { overflow: visible; }
+  .js:not(.nb-failed) .nb-tn { display: block; left: calc(var(--x) * var(--u)); top: calc(var(--y) * var(--u)); font-style: italic; font-size: max(11px, calc(12.5 * var(--u))); line-height: 1; color: var(--ink-2); white-space: nowrap; transform-origin: 0 0; transform: rotate(-90deg); pointer-events: none; z-index: 3; opacity: 0; transition: opacity 300ms linear; }
+  .js:not(.nb-failed) .nb-tn.on { opacity: 1; }
+  .js:not(.nb-failed) .is-plate .nb-tn { opacity: 0; transition: none; }
+  .nb-layer .nb-th { fill: none; stroke: var(--sanguine); stroke-width: 0.8px; stroke-linecap: round; }
+  .nb-layer .nb-th.draw { stroke-dasharray: 1 1; stroke-dashoffset: 1; }
+  .nb-layer .nb-th.draw.go { stroke-dashoffset: 0; transition: stroke-dashoffset 700ms var(--ease-pen); }
+  .is-plate .nb-layer .nb-th, .is-plate .nb-layer .nb-ov { display: none; }
+  .nb-layer .nb-pl { display: none; }
+  .is-plate .nb-layer .nb-pl { display: inline; }
+}
+
+/* ---- the drawn glyphs and controls of the shell ---------------------------------------------- */
+.nb-glyph { fill: none; stroke: var(--ink); stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+.nb-glyph .fill { fill: var(--ink); stroke: none; }
+.nb-glyph .sil { stroke: var(--silver); }
+.nb-clock:focus-visible { outline: 2px solid var(--sanguine-deep); outline-offset: 3px; }
+.nb-open:focus-visible, .nb-return:focus-visible, .nb-note:focus-visible, .nb-in:focus-visible { outline: 2px solid var(--sanguine-deep); outline-offset: 3px; }
+
+/* the open figure's title is not a lens */
+.is-open .nb-open { cursor: default; }
+.is-open .nb-lens, .is-open .nb-ow { display: none; }
+@media (max-width: 719px) { .nb .lead { padding-right: 44px; } }

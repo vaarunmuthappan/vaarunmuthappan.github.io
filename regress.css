@@ -1,0 +1,52 @@
+/* regress.css: Fig I, "The line of least squares" (regress.js). Everything is scoped under .nb-regress;
+   the shell sizes the host. The drawing-engine states are repeated here so the module does not depend
+   on sheet.css. */
+.nb-regress { position: relative; width: 100%; height: 100%; -webkit-user-select: none; user-select: none; }
+.nb-regress.rg-pocket { height: auto; }
+.nb-regress > .hd { position: absolute; left: 0; top: 0; display: block; width: 100%; height: 100%; overflow: visible; }
+.nb-regress text { font-variant-numeric: lining-nums tabular-nums; white-space: pre; }
+
+/* hand.js drawing states (as sheet.css) */
+.nb-regress .hd .hs, .nb-regress .hd .hm { stroke-dasharray: 1 1; stroke-dashoffset: 1; visibility: hidden; }
+.nb-regress .hd .hf { opacity: 0; }
+.nb-regress .hd .hz { transform: scale(0); transform-box: fill-box; transform-origin: center; }
+.nb-regress .hd.drawing .hs { stroke-dashoffset: 0; visibility: visible;
+  transition: stroke-dashoffset var(--d, 300ms) var(--ease-pen) var(--t, 0ms), visibility 0s linear var(--t, 0ms); }
+.nb-regress .hd.drawing .hf { opacity: 1; transition: opacity var(--d, 160ms) linear var(--t, 0ms); }
+.nb-regress .hd.drawing .hz { transform: none; transition: transform var(--d, 120ms) var(--ease-mech) var(--t, 0ms); }
+.nb-regress .hd.live .hs, .nb-regress .hd.live .hm { stroke-dasharray: none; stroke-dashoffset: 0; visibility: visible; transition: none; }
+.nb-regress .hd.live .hf { opacity: 1; transition: none; }
+.nb-regress .hd.live .hz { transform: none; transition: none; }
+
+/* native controls: transparent hit areas over the drawn controls, at least 44 x 44 CSS px */
+.nb-regress .rg-ctl { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.nb-regress .rg-ctl.rg-bare { display: none; }
+.nb-regress .rg-sr { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.nb-regress .rg-hit { position: absolute; display: block; margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; color: transparent;
+  font-size: 1px; line-height: 1; overflow: hidden; transform: translate(-50%, -50%); pointer-events: auto; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; }
+.nb-regress .rg-hit[hidden] { display: none; }
+.nb-regress .rg-hit:focus-visible { outline: 2px solid var(--sanguine-deep, #8A3823); outline-offset: 3px; }
+
+/* pegs: the transform is set per frame from the data; the drawn focus ring hugs the peg */
+.nb-regress .rg-peg { left: -22px; top: -22px; width: 44px; height: 44px; border-radius: 50%; transform: none; overflow: visible;
+  touch-action: none; cursor: grab; will-change: transform; }
+.nb-regress .rg-peg.rg-side { cursor: ew-resize; }
+.nb-regress .rg-peg.rg-drag { cursor: grabbing; }
+.nb-regress .rg-pin { cursor: default; }
+.nb-regress .rg-peg:focus-visible { outline: none; }
+.nb-regress .rg-peg::after { content: ""; position: absolute; left: 50%; top: 50%; width: var(--fr, 22px); height: var(--fr, 22px);
+  margin: calc(var(--fr, 22px) / -2) 0 0 calc(var(--fr, 22px) / -2); border: 2px solid var(--sanguine-deep, #8A3823); border-radius: 50%;
+  box-sizing: border-box; opacity: 0; pointer-events: none; }
+.nb-regress .rg-peg:focus-visible::after { opacity: 1; }
+
+/* the lever: one large hit area (pointer angle picks the detent) plus four hidden native radios */
+.nb-regress .rg-lev { position: absolute; inset: 0; margin: 0; padding: 0; border: 0; min-width: 0; pointer-events: none; }
+.nb-regress .rg-lev[hidden] { display: none; }
+.nb-regress .rg-det { position: absolute; width: 22px; height: 22px; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; }
+.nb-regress .rg-det input { position: absolute; left: 50%; top: 50%; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+.nb-regress .rg-det:has(input:focus-visible) { outline: 2px solid var(--sanguine-deep, #8A3823); outline-offset: 3px; }
+.nb-regress .rg-levhit { touch-action: none; cursor: pointer; }
+
+.nb-regress .rg-hand { width: 44px; height: 44px; border-radius: 50%; touch-action: none; cursor: ns-resize; }
+.nb-regress .rg-crank { text-align: left; }

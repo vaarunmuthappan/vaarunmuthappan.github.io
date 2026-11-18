@@ -1,7 +1,8 @@
-/* home.css: the landing sheet (SPEC-5 §2.4). Three compositions:
+/* home.css: the landing sheet (SPEC-5 §2.4, SPEC-6 Part 3). Three compositions:
    broad sheet >= 1200 px (absolute placement in sheet units u), half sheet 720-1199 px (the pocket
    composition in a centred 640 px column) and pocket book < 720 px (u = 100vw / 390).
-   Every text block reserves at least 1.25x its expected height before the next drawing. */
+   Field I: name, lead, destinations, the Spring Rule miniature and the plumb line.
+   Field II: The Process (process.js). Field III: The Spring Rule (springrule.js). Field IV: bio, S6, S2, closing. */
 
 .home { overflow-x: clip; }
 .sheet { position: relative; }
@@ -20,40 +21,17 @@
 .dest .dd { display: block; font-size: var(--f-ann); line-height: 1.5; margin-top: 6px; }
 .dest-c .s3 { view-transition-name: study-concept; }
 .dest-p .s4 { view-transition-name: study-project; }
-.study, .frame, .s6-slot { transition: opacity 180ms linear; }
-.leaving .study:not(.keep), .leaving .frame { opacity: 0.35; }
+.study, .cp-host, .s6-slot { transition: opacity 180ms linear; }
+.leaving .study:not(.keep), .leaving .cp-host { opacity: 0.35; }
 
-/* Field II: the experiment (interim form inside the apparatus frame until pass 1b) */
-.ridge-title { font-style: italic; font-weight: 400; font-size: var(--f-fig); line-height: 1.2; }
-.ridge-static { font-size: var(--f-cap); line-height: 1.5; color: var(--ink-2); }
-.js:not(.sheet-failed) .ridge-static { display: none; }
-.frame { position: relative; }
-.frame > .hd { position: absolute; inset: 0; }
-.frame > .still { position: absolute; inset: 0; }
-.hud span { position: absolute; color: var(--ink-2); font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; line-height: 1; }
-.hud .xt { font-size: var(--f-num); left: calc((140 + 720 * var(--t)) / 1000 * 100%); top: calc(317 / 756 * 100%); transform: translate(-50%, -50%); color: var(--ink-2); }
-.hud .axt { font-size: 13px; font-style: italic; right: calc(200 / 1000 * 100%); top: calc(344 / 756 * 100%); }
-.hud .gen { font-size: 13px; font-style: italic; left: calc(364 / 1000 * 100%); top: calc(22 / 756 * 100%); }
-.hud .rt { font-size: var(--f-num); right: calc(876 / 1000 * 100%); top: calc((478 + 3.75 * var(--r)) / 756 * 100%); transform: translateY(-50%); }
-.hud .handle { font-size: var(--f-num); left: calc((140 + 15 * var(--n, 48)) / 1000 * 100%); top: calc(744 / 756 * 100%); transform: translate(-50%, -50%); }
-.ridge-scrub { position: absolute; left: calc(14% - 22px); width: calc(72% + 44px); top: calc(698 / 756 * 100% - 22px); height: 44px; }
-.ridge-slider { -webkit-appearance: none; appearance: none; display: block; width: 100%; height: 44px; margin: 0; background: transparent; cursor: pointer; }
-.ridge-slider::-webkit-slider-runnable-track { height: 44px; background: transparent; }
-.ridge-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 44px; height: 44px; background: transparent; border: 0; }
-.ridge-slider::-moz-range-track { height: 44px; background: transparent; }
-.ridge-slider::-moz-range-thumb { width: 44px; height: 44px; background: transparent; border: 0; }
-.ridge-slider:focus-visible { outline: 2px solid var(--sanguine-deep); outline-offset: 0; }
-.ridge-values .rv { margin-bottom: 14px; }
-.ridge-values dt { font-size: var(--f-lab); font-weight: 500; font-variant-caps: all-small-caps; letter-spacing: 0.08em; color: var(--ink-2); line-height: 1.3; }
-.ridge-values dd { font-size: var(--f-val); line-height: 1.2; font-variant-numeric: lining-nums tabular-nums; }
-.ridge-prior legend { font-size: var(--f-lab); font-weight: 500; font-variant-caps: all-small-caps; letter-spacing: 0.08em; color: var(--ink-2); margin-bottom: 6px; }
-.ridge-prior label { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: var(--f-cap); line-height: 1.25; cursor: pointer; }
-.ridge-prior input { accent-color: var(--ink); width: 16px; height: 16px; margin: 0; flex: none; }
-.ridge-replay { min-height: 44px; padding: 0 2px; border: 0; background: none; font-size: var(--f-ann); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; cursor: pointer; }
-figcaption { font-size: var(--f-cap); line-height: 1.5; color: var(--ink-2); }
-.reduced .ridge-replay { display: none; }
+/* Fields II and III: the two centrepieces, each under an italic figure title */
+.fig { margin: 0; }
+.fig-title { font-style: italic; font-weight: 400; font-size: var(--f-fig); line-height: 1.2; }
+.cp-host { position: relative; display: block; }
+.cp-host > .still { position: absolute; inset: 0; width: 100%; height: 100%; }
+.mini { position: relative; }
 
-/* Field III */
+/* Field IV */
 .bio { font-size: var(--f-ann); line-height: 1.5; position: relative; }
 .brule { position: absolute; left: 0; top: -22px; width: 120px; height: 8px; }
 .closing a { display: block; text-decoration: none; min-height: 44px; }
@@ -63,6 +41,10 @@ figcaption { font-size: var(--f-cap); line-height: 1.5; color: var(--ink-2); }
 .cl-p:hover .glyph .rot, .cl-p:focus-visible .glyph .rot { transform: rotate(30deg); }
 .cl-t { font-size: var(--f-dt); line-height: 1.1; }
 .cl .ir { margin-top: 8px; }
+.s6-slot { display: block; }
+
+/* the plumb line (S5): Field I only, bob at rest */
+.plumb .gen { display: none; }
 
 /* ---- broad sheet ---------------------------------------------------------- */
 @media (min-width: 1200px) {
@@ -71,12 +53,12 @@ figcaption { font-size: var(--f-cap); line-height: 1.5; color: var(--ink-2); }
     --f-name: calc(104 * var(--tu)); --f-lead: calc(25 * var(--tu)); --f-dt: calc(34 * var(--tu)); --f-fig: calc(28 * var(--tu));
     --f-ann: calc(18 * var(--tu)); --f-cap: calc(17 * var(--tu)); --f-lab: calc(13 * var(--tu)); --f-val: calc(23 * var(--tu)); --f-num: calc(12 * var(--tu));
   }
-  .sheet { width: calc(1440 * var(--u)); max-width: 100%; height: calc(2400 * var(--u)); margin: 0 auto; }
-  .sheet > *, .ridge > * { position: absolute; }
+  .sheet { width: calc(1440 * var(--u)); max-width: 100%; height: calc(3184 * var(--u)); margin: 0 auto; }
+  .sheet > *, .fig > * { position: absolute; }
   .name { position: absolute; left: calc(96 * var(--u)); top: calc(96 * var(--u) - 0.1645em); width: calc(540 * var(--u)); font-size: var(--f-name); line-height: 0.92; }
   .guides { left: calc(-32 * var(--u)); width: calc(576 * var(--u)); top: 0; height: 100%; }
   .lead { left: calc(96 * var(--u)); top: calc(328 * var(--u)); width: calc(456 * var(--u)); }
-  .s2 { left: calc(96 * var(--u)); top: calc(536 * var(--u)); width: calc(380 * var(--u)); height: calc(264 * var(--u)); }
+  .mini { left: calc(96 * var(--u)); top: calc(560 * var(--u)); width: calc(380 * var(--u)); height: calc(190 * var(--u)); }
   .dests { left: 0; top: 0; width: 100%; height: 0; }
   .dest { position: absolute; }
   .dest .study, .dest .dl { position: absolute; }
@@ -86,24 +68,23 @@ figcaption { font-size: var(--f-cap); line-height: 1.5; color: var(--ink-2); }
   .dest-p { left: calc(680 * var(--u)); top: calc(500 * var(--u)); width: calc(664 * var(--u)); height: calc(320 * var(--u)); }
   .dest-p .s4 { left: 0; top: 0; width: calc(448 * var(--u)); height: calc(320 * var(--u)); }
   .dest-p .dl { left: calc(472 * var(--u)); top: calc(100 * var(--u)); width: calc(192 * var(--u)); }
+  /* pin at sheet (620, 56); the bob hangs at rest at y 774-832 (its top is 58 px above the host's foot - 20 px) */
+  .plumb { left: calc(620 * var(--u) - 30px); top: calc(56 * var(--u) - 10px); height: calc(776 * var(--u) + 30px); }
 
-  .ridge { left: 0; top: calc(900 * var(--u)); width: 100%; height: calc(940 * var(--u)); }
-  /* title and static sentence sit clear of the plumb thread at x 620 */
-  .ridge-title { left: calc(96 * var(--u)); top: calc(44 * var(--u)); width: calc(500 * var(--u)); }
-  .ridge-static { left: calc(1216 * var(--u)); top: calc(130 * var(--u)); width: calc(150 * var(--u)); }
-  .ridge > .frame { position: absolute; left: calc(300 * var(--u)); top: calc(90 * var(--u)); width: calc(900 * var(--u)); height: calc(680 * var(--u)); }
-  .ridge-values { left: calc(1216 * var(--u)); top: calc(130 * var(--u)); width: calc(140 * var(--u)); }
-  .ridge-options { left: calc(96 * var(--u)); top: calc(390 * var(--u)); width: calc(184 * var(--u)); }
-  .ridge-replay { position: absolute; left: 0; top: calc(310 * var(--u)); }
-  .ridge > figcaption { left: calc(96 * var(--u)); top: calc(794 * var(--u)); width: calc(464 * var(--u)); }
-  .ridge > .ridge-announce { position: absolute !important; }
-  /* the plumb thread: pin at sheet (620, 56), bob 1700-1758; the frame's left is x 300, top y 990 */
-  .plumb { left: calc(356 / 1000 * 100% - 30px); top: calc(-934 * var(--u) - 10px); height: calc(1702 * var(--u) + 30px); }
+  .fig { left: 0; top: 0; width: 100%; height: 0; }
+  .fig-title { width: calc(560 * var(--u)); left: calc(96 * var(--u)); }
+  .fig-p .fig-title { top: calc(944 * var(--u)); }
+  .fig-s .fig-title { top: calc(1784 * var(--u)); }
+  .cp-host { left: calc(300 * var(--u)); width: calc(900 * var(--u)); height: calc(680 * var(--u)); }
+  .cp-host-p { top: calc(990 * var(--u)); }
+  .cp-host-s { top: calc(1830 * var(--u)); }
 
-  .bio-a { left: calc(96 * var(--u)); top: calc(1900 * var(--u)); width: calc(440 * var(--u)); }
-  .bio-b { left: calc(96 * var(--u)); top: calc(2020 * var(--u)); width: calc(440 * var(--u)); }
+  .bio-a { left: calc(96 * var(--u)); top: calc(2620 * var(--u)); width: calc(440 * var(--u)); }
+  .bio-b { left: calc(96 * var(--u)); top: calc(2740 * var(--u)); width: calc(440 * var(--u)); }
+  .s6-slot { left: calc(700 * var(--u)); top: calc(2600 * var(--u)); width: calc(640 * var(--u)); height: calc(260 * var(--u)); }
+  .s2 { left: calc(96 * var(--u)); top: calc(2890 * var(--u)); width: calc(380 * var(--u)); height: calc(264 * var(--u)); }
   .closing { left: 0; top: 0; width: 100%; height: 0; }
-  .closing .cl { position: absolute; top: calc(2210 * var(--u)); width: calc(260 * var(--u)); }
+  .closing .cl { position: absolute; top: calc(2930 * var(--u)); width: calc(260 * var(--u)); }
   .cl-c { left: calc(700 * var(--u)); }
   .cl-p { left: calc(1020 * var(--u)); }
 }
@@ -112,35 +93,37 @@ figcaption { font-size: var(--f-cap); line-height: 1.5; color: var(--ink-2); }
 @media (max-width: 1199px) {
   :root { --pu: calc(100vw / 390); }
   .sheet { display: flex; flex-direction: column; padding: 0 calc(20 * var(--pu)) calc(72 * var(--pu)); }
-  .sheet > .s2 { order: 1; }
-  .sheet > .ridge, .sheet > .bio, .sheet > .s6-slot, .sheet > .closing { order: 2; }
   .dests { align-self: start; }
   .name { padding-top: calc(64 * var(--pu) - 0.18em); font-size: var(--f-name); line-height: 0.95; }
   .guides { left: calc(-12 * var(--pu)); right: calc(-12 * var(--pu)); top: 0; height: 100%; }
   .lead { margin-top: calc(22 * var(--pu)); }
-  .s2 { width: calc(350 * var(--pu)); height: calc(243 * var(--pu)); margin-top: calc(14 * var(--pu)); }
   .dests { display: grid; grid-template-columns: calc(165 * var(--pu)) calc(165 * var(--pu)); column-gap: calc(20 * var(--pu)); margin-top: calc(30 * var(--pu)); }
   .dest-c .s3 { width: calc(150 * var(--pu)); height: calc(150 * var(--pu)); margin-left: calc(8 * var(--pu)); }
   .dest-p .s4 { width: calc(165 * var(--pu)); height: calc(118 * var(--pu)); margin-top: calc(16 * var(--pu)); }
   .dest-c .dl { margin-top: calc(10 * var(--pu)); }
   .dest-p .dl { margin-top: calc(26 * var(--pu)); }
-  .ridge { position: relative; margin-top: calc(56 * var(--pu)); }
-  .ridge-static { margin-top: 8px; }
-  .ridge > .frame { width: calc(390 * var(--pu)); height: calc(590 * var(--pu)); margin: calc(34 * var(--pu)) 0 0 calc(-20 * var(--pu)); }
-  .ridge-values { display: grid; grid-template-columns: 1fr 1fr; column-gap: calc(20 * var(--pu)); margin-top: calc(70 * var(--pu)); }
-  .ridge-values .rv-ci { grid-column: 1 / -1; }
-  .ridge-options { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px calc(24 * var(--pu)); margin-top: calc(18 * var(--pu)); }
-  .ridge-options[hidden] { display: none; }
-  .ridge > figcaption { margin-top: calc(28 * var(--pu)); }
-  .bio-a { margin-top: calc(72 * var(--pu)); }
+  .sheet > .mini { order: 1; width: calc(350 * var(--pu)); height: calc(175 * var(--pu)); margin-top: calc(40 * var(--pu)); }
+  .sheet > .fig, .sheet > .bio, .sheet > .s6-slot, .sheet > .s2, .sheet > .closing { order: 2; }
+  .plumb { display: none; }
+  .fig { margin-top: calc(64 * var(--pu)); }
+  .fig-s { margin-top: calc(48 * var(--pu)); }
+  .cp-host { width: calc(390 * var(--pu)); margin: calc(18 * var(--pu)) 0 0 calc(-20 * var(--pu)); }
+  .cp-host-p { height: calc(800 * var(--pu)); }
+  .cp-host-s { height: calc(640 * var(--pu)); }
+  .bio-a { margin-top: calc(60 * var(--pu)); }
   .bio-b { margin-top: calc(48 * var(--pu)); }
+  .s6-slot { width: calc(350 * var(--pu)); height: calc(142 * var(--pu)); margin-top: calc(48 * var(--pu)); }
+  .s2 { width: calc(350 * var(--pu)); height: calc(243 * var(--pu)); margin-top: calc(48 * var(--pu)); }
   .closing { margin-top: calc(56 * var(--pu)); display: grid; row-gap: calc(28 * var(--pu)); }
   .closing .cl { width: calc(260 * var(--pu)); max-width: 100%; }
 }
 @media (min-width: 720px) and (max-width: 1199px) {
   :root { --pu: calc(640px / 390); }
   .sheet { width: 640px; margin: 0 auto; padding-left: calc(20 * var(--pu)); padding-right: calc(20 * var(--pu)); }
-  .ridge > .frame { margin-left: calc(-20 * var(--pu)); }
+  .dest .dt { font-size: 30px; }
+  .dest .dd { font-size: 17px; }
+  /* the half sheet carries the wide forms (viewBox 1000 x 756) */
+  .cp-host-p, .cp-host-s { height: calc(390 * 0.756 * var(--pu)); }
 }
 @media (max-width: 719px) {
   :root {
@@ -148,160 +131,4 @@ figcaption { font-size: var(--f-cap); line-height: 1.5; color: var(--ink-2); }
     --f-ann: calc(17 * var(--pu)); --f-cap: calc(16.5 * var(--pu)); --f-lab: calc(12.5 * var(--pu)); --f-val: calc(20 * var(--pu)); --f-num: calc(11 * var(--pu));
   }
   .lead { line-height: 1.42; }
-}
-@media (min-width: 720px) and (max-width: 1199px) {
-  .dest .dt { font-size: 30px; }
-  .dest .dd { font-size: 17px; }
-}
-
-/* ---- pass 1b: the apparatus controls ------------------------------------------------------ */
-.ridge-slider { pointer-events: none; opacity: 0; }
-.ridge-slider:focus-visible { outline: none; }
-.rail-hit, .plinth-hit { position: absolute; touch-action: pan-y; -webkit-tap-highlight-color: transparent; }
-.rail-hit { inset: 0; cursor: ew-resize; }
-.plinth-hit { left: calc(104 / 1000 * 100%); top: calc(462 / 756 * 100%); width: calc(792 / 1000 * 100%); height: calc(208 / 756 * 100%); cursor: row-resize; }
-.scrub-focus .idx-ring { visibility: visible; }
-.frame:has(.rail-hit:hover) .idx-knob { fill: var(--ink); }
-.key { display: inline-block; width: 16px; height: 16px; vertical-align: -3px; margin-right: 7px; fill: none; stroke: var(--ink); stroke-width: 1; stroke-linejoin: round; }
-.key .fill { fill: var(--ink); }
-.key .sang { stroke: var(--sanguine); }
-.ridge-prior input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
-.lever-row { position: relative; height: 84px; }
-.lever { position: absolute; left: 0; top: 6px; width: 72px; height: 72px; fill: none; stroke: var(--ink); stroke-width: 1.1; stroke-linecap: round; cursor: pointer; overflow: visible; }
-.lever .quad { stroke: var(--silver); stroke-width: 0.9; }
-.lever .knob, .lever .pivot { fill: var(--paper); }
-.lever .fill { fill: var(--ink); stroke: none; }
-.lever .arm { transform-box: view-box; transform-origin: 14px 36px; transform: rotate(-22deg); transition: transform 240ms var(--ease-mech), rotate 120ms var(--ease-mech); }
-.ridge-prior:has(input[value="centred"]:checked) .arm { transform: rotate(22deg); }
-.ridge-prior:has(.p-flat:hover) .arm { rotate: -4deg; }
-.ridge-prior:has(.p-cent:hover) .arm { rotate: 4deg; }
-.ridge-prior:has(input:focus-visible) .knob { fill: var(--sanguine-deep); }
-.ridge-prior .lever-row label { position: absolute; left: 78px; right: 0; height: 40px; min-height: 0; font-size: 15px; line-height: 1.3; color: var(--ink-2); }
-.ridge-prior .p-flat { top: 0; }
-.ridge-prior .p-cent { top: 44px; }
-.ridge-prior label:has(input:checked) { color: var(--ink); }
-.ridge-prior label:has(input:focus-visible) span { outline: 2px solid var(--sanguine-deep); outline-offset: 4px; }
-.ridge-replay { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; padding: 0; }
-.ridge-replay span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-.crank { width: 44px; height: 44px; fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-linecap: round; overflow: visible; }
-.crank .fill { fill: var(--ink); stroke: none; }
-.crank .carm { transform-box: view-box; transform-origin: 22px 22px; transform: rotate(-40deg); transition: rotate 160ms var(--ease-mech); }
-.ridge-replay:hover .carm, .ridge-replay:focus-visible .carm { rotate: 25deg; }
-.s6-slot { display: block; }
-@media (min-width: 1200px) {
-  .s6-slot { left: calc(700 * var(--u)); top: calc(1880 * var(--u)); width: calc(640 * var(--u)); height: calc(260 * var(--u)); }
-  .ridge-replay { top: calc(288 * var(--u)); left: -6px; }
-}
-@media (max-width: 1199px) {
-  .ridge-prior { width: 250px; }
-  .s6-slot { width: calc(350 * var(--pu)); height: calc(142 * var(--pu)); margin-top: calc(48 * var(--pu)); }
-}
-
-/* narrow geometry (viewBox 390 x 590) below 720 px; the half sheet keeps the wide geometry */
-@media (max-width: 719px) {
-  .hud .xt { left: calc((35 + 320 * var(--t)) / 390 * 100%); top: calc(190 / 590 * 100%); }
-  .hud .axt { right: calc(72 / 390 * 100%); top: calc(214 / 590 * 100%); font-size: 12px; }
-  .hud .gen { left: calc(139 / 390 * 100%); top: calc(14 / 590 * 100%); font-size: 12px; }
-  .hud .rt { right: calc(370 / 390 * 100%); top: calc((300 + 4.2 * var(--r)) / 590 * 100%); font-size: 11px; }
-  .hud .handle { left: calc((35 + 6.667 * var(--n, 48)) / 390 * 100%); top: calc(576 / 590 * 100%); font-size: 11px; }
-  .ridge-scrub { left: calc(35 / 390 * 100% - 22px); width: calc(320 / 390 * 100% + 44px); top: calc(539 / 590 * 100% - 22px); }
-  /* plumb: pin at (131, 1012), frame top at 1030; bob 1626-1670 */
-  .plumb { left: calc(131 / 390 * 100% - 30px); top: calc(-18 * var(--pu) - 10px); height: calc(640 * var(--pu) + 30px); --bob: 44px; }
-  .plinth-hit { left: calc(22 / 390 * 100%); top: calc(286 / 590 * 100%); width: calc(346 / 390 * 100%); height: calc(228 / 590 * 100%); }
-}
-@media (min-width: 720px) and (max-width: 1199px) {
-  .ridge > .frame { height: calc(390 * 0.756 * var(--pu)); }
-  /* pin 18 above the frame, thread through theta = 0.30 (x 356 of 1000), bob 58 px below the frame */
-  .plumb { left: calc(356 / 1000 * 100% - 30px); top: calc(-18 * var(--pu) - 10px); height: calc(390 * 0.756 * var(--pu) + 18 * var(--pu) + 96px); }
-  .ridge-values { margin-top: 96px; }
-}
-/* the drawn readouts over the frame appear with the construction */
-.frame .hud { transition: none; } /* instant: a fade here was missed by captures (item 8) */
-.js:not(.sheet-failed) .frame:not(:has(> .hd.drawing, > .hd.live)) .hud { opacity: 0; transition: none; }
-
-/* ==== pass 1c (REVIEW-5-1): pedestal geometry, readouts as annotations, miniature, larger controls ==== */
-:root { --vbw: 1000; --vbh: 710; --f-ro: 20px; }
-.hud .xt { top: calc(313 / 710 * 100%); }
-.hud .axt { top: calc(344 / 710 * 100%); }
-.hud .rt { right: calc(894 / 1000 * 100%); top: calc((478 + 2.7 * var(--r)) / 710 * 100%); }
-.hud .handle { left: calc((140 + 15 * var(--n, 48)) / 1000 * 100%); top: calc(698 / 710 * 100%); }
-.ridge-scrub { top: calc(652 / 710 * 100% - 22px); }
-.plinth-hit { left: 12%; top: calc(462 / 710 * 100%); width: 76%; height: calc(162 / 710 * 100%); }
-.frame .ridge-values { position: absolute; inset: 0; width: auto; height: auto; margin: 0; display: block; pointer-events: none; }
-.frame .ridge-values[hidden] { display: none; }
-.frame .rv { position: absolute; margin: 0; white-space: nowrap; }
-.frame .ridge-values dt { font-size: 12px; line-height: 14px; }
-.frame .ridge-values dd { font-size: var(--f-ro); line-height: 1.1; }
-.frame .rv-mean { left: calc(var(--ml, 384) / var(--vbw) * 100%); top: calc(384 / 710 * 100% - 11px); }
-.frame .rv-ci { left: calc(var(--ic, 500) / var(--vbw) * 100%); top: calc(22 / 710 * 100% - 11px); transform: translateX(-50%); text-align: center; }
-.frame .rv-post { right: calc(122 / 1000 * 100%); top: calc(98 / 710 * 100% - 11px); text-align: right; }
-.frame .rv-yn { right: calc(882 / 1000 * 100%); top: calc(646 / 710 * 100% - 11px); text-align: right; }
-.frame .rv-seen { left: calc(884 / 1000 * 100%); top: calc(646 / 710 * 100% - 11px); }
-.plumb .gen { position: absolute; left: 57px; bottom: 41px; transition: opacity 200ms linear; font-size: 13px; font-style: italic; color: var(--ink-2); white-space: nowrap; line-height: 16px; }
-.mini .hd { overflow: hidden; }
-.lever-row { height: 100px; }
-.lever { width: 96px; height: 96px; top: 0; }
-.ridge-prior .lever-row label { left: 86px; right: auto; width: 150px; height: 44px; font-size: 17px; line-height: 1.25; display: flex; align-items: center; }
-.ridge-prior .p-flat { top: 2px; }
-.ridge-prior .p-cent { top: 50px; }
-.crank { width: 56px; height: 56px; }
-.ridge-replay span { text-decoration: none; font-size: var(--f-lab); font-weight: 500; font-variant-caps: all-small-caps; letter-spacing: 0.08em; }
-.ridge-replay:hover span, .ridge-replay:focus-visible span { color: var(--ink); }
-@media (min-width: 1200px) {
-  :root { --f-ro: calc(20 * var(--tu)); }
-  .mini { left: calc(96 * var(--u)); top: calc(560 * var(--u)); width: calc(380 * var(--u)); height: calc(194.5 * var(--u)); }
-  .s2 { left: calc(96 * var(--u)); top: calc(2106 * var(--u)); width: calc(380 * var(--u)); height: calc(264 * var(--u)); }
-  .ridge > .frame { height: calc(639 * var(--u)); }
-  .ridge-options { width: calc(264 * var(--u)); }
-  .ridge-replay { top: calc(288 * var(--u)); }
-}
-@media (max-width: 1199px) {
-  .sheet > .mini { order: 1; width: calc(350 * var(--pu)); height: calc(179 * var(--pu)); margin-top: calc(28 * var(--pu)); }
-  .sheet > .s2 { order: 2; width: calc(350 * var(--pu)); height: calc(243 * var(--pu)); margin-top: calc(48 * var(--pu)); }
-}
-@media (min-width: 720px) and (max-width: 1199px) {
-  .ridge > .frame { height: calc(390 * 0.71 * var(--pu)); }
-  .plumb { height: calc(390 * 0.71 * var(--pu) + 18 * var(--pu) + 96px); }
-  .ridge-options { margin-top: 96px; }
-}
-@media (max-width: 719px) {
-  :root { --vbw: 390; --f-ro: calc(17 * var(--pu)); }
-  .hud .xt { left: calc((46 + 298 * var(--t)) / 390 * 100%); top: calc(190 / 590 * 100%); }
-  .hud .axt { right: calc(72 / 390 * 100%); top: calc(214 / 590 * 100%); }
-  .hud .rt { right: calc(360 / 390 * 100%); top: calc((298 + 3.4 * var(--r)) / 590 * 100%); }
-  .hud .handle { left: calc((46 + 6.2083 * var(--n, 48)) / 390 * 100%); top: calc(540 / 590 * 100%); }
-  .ridge-scrub { left: calc(46 / 390 * 100% - 22px); width: calc(298 / 390 * 100% + 44px); top: calc(503 / 590 * 100% - 22px); }
-  .plinth-hit { left: calc(40 / 390 * 100%); top: calc(286 / 590 * 100%); width: calc(310 / 390 * 100%); height: calc(192 / 590 * 100%); }
-  .frame .ridge-values dt { font-size: 11.5px; }
-  .frame .rv-mean { top: calc(250 / 590 * 100% - 15px); }
-  .frame .rv-mean dt, .frame .rv-mean dd { display: inline; margin-right: 6px; }
-  .frame .rv-ci { top: calc(14 / 590 * 100% - 11px); }
-  .frame .rv-post { right: calc(38 / 390 * 100%); top: calc(74 / 590 * 100% - 11px); }
-  .frame .rv-yn { right: auto; left: calc(34 / 390 * 100%); top: calc(562 / 590 * 100% - 11px); text-align: left; }
-  .frame .rv-seen { left: auto; right: calc(34 / 390 * 100%); top: calc(562 / 590 * 100% - 11px); text-align: right; }
-  .plumb .gen { left: 52px; bottom: 34px; font-size: 12px; }
-  .ridge-options { margin-top: calc(70 * var(--pu)); }
-}
-
-/* ==== final pass (REVIEW-5-2): narrow record and plumb, annotation placement, Field III ==== */
-.frame .rv-post { right: calc((var(--vbw) - var(--pr, 878)) / var(--vbw) * 100%); }
-.frame .rv-ci { top: calc(46 / 710 * 100% - 31px); }
-@media (min-width: 1200px) {
-  .sheet { height: calc(2496 * var(--u)); }
-  .s2 { top: calc(2146 * var(--u)); }
-}
-@media (max-width: 719px) {
-  .ridge > .frame { height: calc(551.6 * var(--pu)); }
-  .hud .xt { top: calc(190 / 551.6 * 100%); }
-  .hud .axt { top: calc(214 / 551.6 * 100%); }
-  .hud .rt { top: calc((298 + 2.6 * var(--r)) / 551.6 * 100%); }
-  .hud .handle { top: calc(501.6 / 551.6 * 100%); }
-  .ridge-scrub { top: calc(464.6 / 551.6 * 100% - 22px); }
-  .plinth-hit { top: calc(286 / 551.6 * 100%); height: calc(153.6 / 551.6 * 100%); }
-  .frame .rv-mean { top: calc(250 / 551.6 * 100% - 15px); }
-  .frame .rv-ci { top: calc(30 / 551.6 * 100% - 31px); }
-  .frame .rv-post { top: calc(74.5 / 551.6 * 100% - 31px); }
-  .frame .rv-yn, .frame .rv-seen { top: calc(523.6 / 551.6 * 100% - 11px); }
-  /* plumb at X(0.30) = 135.4 of 390; bob 38.4 units higher than before */
-  .plumb { left: calc(135.4 / 390 * 100% - 30px); height: calc(601.6 * var(--pu) + 30px); }
 }
